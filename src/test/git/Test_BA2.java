@@ -10,9 +10,9 @@ public class Test_BA2 {
 	
 	
 	private String[] adresses = {
-			"14 Rue Mozart, Paris",
+			"14 Rue Mozart, montreuil",
 			"77 Rue Picasso, Toulouse", 
-			"53 Rue des fleurs, Limoges",
+			"53 Rue des fleurs, brive",
 	};
 
 	
