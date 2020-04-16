@@ -4,7 +4,7 @@ public class Test_BA {
 	
 	
 	public void bonjour() {
-		System.out.println( "Bonjoour" );
+		System.out.println( "salut" );
 	}
 	
 	
