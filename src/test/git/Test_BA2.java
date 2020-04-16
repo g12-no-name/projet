@@ -5,6 +5,7 @@ public class Test_BA2 {
 	
 	public void bonjour() {
 		System.out.println( "Bonjoour" );
+		System.out.println( "Ca va ?" )
 	}
 	
 	
