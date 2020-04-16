@@ -5,14 +5,14 @@ public class Test_BA2 {
 	
 	public void bonjour() {
 		System.out.println( "Bonjoour" );
-		System.out.println( "Ca va ?" )
+		System.out.println( "Ca va ?" );
 	}
 	
 	
 	private String[] adresses = {
-			"14 Rue Mozart, Paris",
+			"99 Rue Mozart, Paris",
 			"77 Rue Picasso, Toulouse", 
-			"53 Rue des fleurs, Limoges",
+			"111 Rue des fleurs, Limoges",
 	};
 
 	
