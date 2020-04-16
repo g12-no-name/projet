@@ -20,7 +20,7 @@ public class Test_BA2 {
 		if ( 0 <= i && i < adresses.length ) {
 			return adresses[i];
 		} else {
-			return null;
+			return "Erreur";
 		}
 	}
 	
