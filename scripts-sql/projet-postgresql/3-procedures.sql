@@ -24,21 +24,18 @@ $ccode$;
 CREATE FUNCTION compte_inserer(
 	p_pseudo 		VARCHAR,
 	p_motdepasse 	VARCHAR,
-	p_email			VARCHAR,
-	p_idcompte 	OUT	INT,
+	p_mail			VARCHAR,
+	p_id        	OUT	INT,
 	p_roles			VARCHAR[]
 ) 
 AS $ccode$
-DECLARE v_role VARCHAR;
+
 BEGIN
-	INSERT INTO compte ( pseudo, motdepasse, email )
-	VALUES ( p_pseudo, p_motdepasse,p_email )
-	RETURNING idcompte INTO p_idcompte;
+	INSERT INTO compte ( pseudo, motdepasse, mail )
+	VALUES ( p_pseudo, p_motdepasse,p_mail )
+	RETURNING id INTO p_id;
 	
-	FOREACH v_role IN ARRAY p_roles LOOP
-		INSERT INTO role ( idcompte, role )
-		VALUES ( p_idcompte, v_role );
-	END LOOP;
+	
 END;
 $ccode$ LANGUAGE plpgsql;
 
@@ -46,36 +43,31 @@ $ccode$ LANGUAGE plpgsql;
 CREATE FUNCTION compte_modifier(
 	p_pseudo 		VARCHAR,
 	p_motdepasse 	VARCHAR,
-	p_email			VARCHAR,
-	p_idcompte 		INT,
-	p_roles			VARCHAR[]
+	p_mail			VARCHAR,
+	p_id     		INT,
+	
 ) 
 RETURNS VOID 
 AS $ccode$
-DECLARE v_role VARCHAR;
+
 BEGIN
 	UPDATE compte 
 	SET pseudo = p_pseudo, 
 		motdepasse = p_motdepasse, 
-		email = p_email 
-	WHERE idcompte =  p_idcompte;
+		mail = p_mail 
+	WHERE id =  p_id;
 
-	DELETE FROM role WHERE idcompte = p_idcompte;
 	
-	FOREACH v_role IN ARRAY p_roles LOOP
-		INSERT INTO role ( idcompte, role )
-		VALUES ( p_idcompte, v_role );
-	END LOOP;
 END;
 $ccode$ LANGUAGE plpgsql;
 
 
-CREATE FUNCTION compte_supprimer( p_idCompte INT ) 
+CREATE FUNCTION compte_supprimer( p_id INT ) 
 RETURNS VOID 
 AS $ccode$
 BEGIN
-	DELETE FROM role WHERE idcompte = p_idcompte;
-	DELETE FROM compte WHERE idcompte = p_idcompte;
+	
+	DELETE FROM compte WHERE id = p_id;
 END;
 $ccode$ LANGUAGE plpgsql;
 
@@ -100,14 +92,14 @@ $ccode$ LANGUAGE plpgsql;
 --$ccode$ LANGUAGE plpgsql;
 
 
-CREATE FUNCTION compte_retrouver( p_idCompte INT ) 
-RETURNS SETOF v_compte_avec_roles 
+CREATE FUNCTION compte_retrouver( p_id INT ) 
+RETURNS SETOF v_compte
 AS $ccode$
 BEGIN
 	RETURN QUERY
 	SELECT * 
-	FROM v_compte_avec_roles
-	WHERE idcompte = p_idcompte;
+	FROM v_compte
+	WHERE id = p_id;
 END;
 $ccode$ LANGUAGE plpgsql;
 
@@ -146,11 +138,11 @@ $ccode$ LANGUAGE plpgsql;
 
 
 CREATE FUNCTION compte_valider_authentification( p_pseudo VARCHAR, p_motdepasse VARCHAR ) 
-RETURNS SETOF v_compte_avec_roles
+RETURNS SETOF v_compte
 AS $ccode$
 BEGIN
 	RETURN QUERY
-	SELECT * FROM v_compte_avec_roles
+	SELECT * FROM v_compte
 	WHERE pseudo = P_pseudo
 	  AND motdepasse = p_motdepasse;
 END;
@@ -159,7 +151,7 @@ $ccode$ LANGUAGE plpgsql;
 
 CREATE FUNCTION compte_verifier_unicite_pseudo(
 	p_pseudo 		VARCHAR,
-	p_idcompte 		INT,
+	p_id     		INT,
 	OUT p_unicite	BOOLEAN
 ) 
 AS $ccode$
@@ -167,7 +159,7 @@ BEGIN
 	SELECT COUNT(*) = 0 INTO p_unicite
 	FROM compte
 	WHERE pseudo = p_pseudo
-	  AND idcompte <> P_idcompte;
+	  AND idcompte <> P_id;
 END;
 $ccode$ LANGUAGE plpgsql;
 
