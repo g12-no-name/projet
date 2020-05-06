@@ -2,101 +2,72 @@ SET search_path TO projet;
 
 
 -- Supprimer toutes les données
-DELETE FROM service;
-DELETE FROM concerner;
-DELETE FROM memo;
-DELETE FROM telephone;
-DELETE FROM personne;
-DELETE FROM categorie;
-DELETE FROM role;
 DELETE FROM compte;
+DELETE FROM benevole;
+DELETE FROM participant;
+DELETE FROM equipe;
+DELETE FROM poste;
+DELETE FROM typePoste;
+DELETE FROM typeCourse;
+DELETE FROM categorieCourse;
+DELETE FROM personne;
 
 
 -- Compte
 
 INSERT INTO compte (idcompte, pseudo, motdepasse, email ) VALUES 
-  (1, 'geek', 'geek', 'geek@3il.fr' ),
-  (2, 'chef', 'chef', 'chef@3il.fr' ),
-  (3, 'job', 'job', 'job@3il.fr' );
+  (1, 'Organisateur', 'Organisateur', 'geek@3il.fr' ),
+  (2, 'Reste', 'Reste', 'chef@3il.fr' ),
 
 ALTER TABLE compte ALTER COLUMN idcompte RESTART WITH 4;
 
 
--- Role
-
-INSERT INTO role (idcompte, role) VALUES 
-  ( 1, 'ADMINISTRATEUR' ),
-  ( 1, 'UTILISATEUR' ),
-  ( 2, 'UTILISATEUR' ),
-  ( 3, 'UTILISATEUR' );
-
-
--- Categorie
-  
-INSERT INTO categorie (idcategorie, libelle ) VALUES 
-  (1, 'Employés' ),
-  (2, 'Partenaires' ),
-  (3, 'Clients' ),
-  (4, 'Fournisseurs' ),
-  (5, 'Dirigeants' );
-
-ALTER TABLE categorie ALTER COLUMN idcategorie RESTART WITH 6;
-
 
 -- Personne
 
-INSERT INTO personne (idpersonne, idcategorie, nom, prenom) VALUES 
-  ( 1, 1, 'GRASSET', 'Jérôme' ),
-  ( 2, 1, 'BOUBY', 'Claude' ),
-  ( 3, 1, 'AMBLARD', 'Emmanuel' );
+INSERT INTO participant (id, nom, prenom, numTel) VALUES 
+  ( 1, 'RandomDude', 'number 1254', '0505050505' ),
+  ( 2, 'RandomGuy', 'number 7826', '0606060606' ),
+  ( 3, 'RandomCat', 'number 9135', '0909090909' );
 
-ALTER TABLE personne ALTER COLUMN idpersonne RESTART WITH 4;
+ALTER TABLE personne ALTER COLUMN id RESTART WITH 4;
 
+--categorieCourse 
 
--- Telephone
+INSERT INTO categorieCourse (id, nom) VALUES
+  (1, 'mixte'),
+  (2, 'femmes'),
+  (3, 'hommes'),
+  (4, 'chats'),
+  (5, 'autres');
 
-INSERT INTO telephone (idtelephone, idpersonne, libelle, numero ) VALUES 
-  ( 11, 1, 'Portable', '06 11 11 11 11' ),
-  ( 12, 1, 'Fax', '05 55 99 11 11' ),
-  ( 13, 1, 'Bureau', '05 55 11 11 11' ),
-  ( 21, 2, 'Portable', '06 22 22 22 22' ),
-  ( 22, 2, 'Fax', '05 55 99 22 22' ),
-  ( 23, 2, 'Bureau', '05 55 22 22 22' ),
-  ( 31, 3, 'Portable', '06 33 33 33 33' ),
-  ( 32, 3, 'Fax', '05 55 99 33 33' ),
-  ( 33, 3, 'Bureau', '05 55 33 33 33' );
+ALTER TABLE categorieCourse ALTER COLUMN id RESTART WITH 5;
 
-ALTER TABLE telephone ALTER COLUMN idtelephone RESTART WITH 100;
+--typeCourse
 
+INSERT INTO typeCourse (id, nom) VALUES
+  (1, 'piti bol d'air'),
+  (2, 'big fat bol d'air');
+  (3, 'juste ici pour la bouffe')
 
--- Memo
+ALTER TABLE typeCourse ALTER COLUMN id RESTART WITH 4;
 
-INSERT INTO memo (idmemo, titre, description, flagurgent, statut, effectif, budget, echeance, idcategorie ) VALUES 
-  ( 1, 'Mémo n°1', 'Texte du mémo n°1', TRUE,  2,   2,   1234.56,   {d  '2020-02-25' }, 1 ),
-  ( 2, 'Mémo n°2', 'Texte du mémo n°2', FALSE, 1,   4,   5000.00,   {d  '2020-05-18' }, 2 ),
-  ( 3, 'Mémo n°3', NULL, TRUE, 0, NULL, NULL, NULL, NULL );
+-- Benevole
 
-ALTER TABLE memo ALTER COLUMN idmemo RESTART WITH 4;
+INSERT INTO benevole (id, nom, prenom, numTel) VALUES 
+  ( 1, 'RandomFriendly', 'number 1254', '0505050505' ),
+  ( 2, 'RandomGuy', 'number 7826', '0606060606' ),
+  ( 3, 'RandomCat', 'number 9135', '0909090909' );
 
-
--- Concerner
-
-INSERT INTO concerner (idmemo, idPersonne) VALUES 
-  ( 1, 1 ),
-  ( 1, 2 ),
-  ( 1, 3 ),
-  ( 2, 1 ),
-  ( 2, 2 );
+ALTER TABLE benevole ALTER COLUMN id RESTART WITH 4;
 
 
--- Service
-
-INSERT INTO service ( idservice, nom, anneecreation, flagsiege ) VALUES 
-  ( 1, 'Direction', 2007, TRUE ),
-  ( 2, 'Comptabilité', NULL, TRUE ),
-  ( 3, 'Agence Limoges', 2008, FALSE ),
-  ( 4, 'Agence Brive', 2014, FALSE );
 
 
-ALTER TABLE service ALTER COLUMN idservice RESTART WITH 5;
+
+
+
+
+
+
 
