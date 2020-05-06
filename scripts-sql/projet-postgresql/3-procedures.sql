@@ -26,7 +26,7 @@ CREATE FUNCTION compte_inserer(
 	p_motdepasse 	VARCHAR,
 	p_mail			VARCHAR,
 	p_id        	OUT	INT,
-	p_roles			VARCHAR[]
+	
 ) 
 AS $ccode$
 
