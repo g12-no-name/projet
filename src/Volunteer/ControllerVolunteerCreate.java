@@ -10,7 +10,7 @@ import jfox.javafx.view.IManagerGui;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
-public class ControllerVolunteerInfo {
+public class ControllerVolunteerCreate {
 
 	
 	// Composants de la vue
@@ -34,11 +34,12 @@ public class ControllerVolunteerInfo {
 	@FXML 
 	private CheckBox			membership;
 	
-	
 	@FXML
 	private Button 				goBack;
 	@FXML
-	private Button 			    modify;
+	private Button 				add;
+	@FXML
+	private Button 				reinitialize;
 	
 	// Autres champs
 	
