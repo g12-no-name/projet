@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="projet/view/maquette/" kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/JFox"/>
 	<classpathentry kind="src" path="generated">
 		<attributes>

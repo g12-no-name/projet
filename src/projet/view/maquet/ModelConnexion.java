@@ -1,4 +1,4 @@
-package projet.view.systeme;
+package projet.view.maquet;
 
 import java.util.logging.Logger;
 
@@ -50,11 +50,11 @@ public class ModelConnexion {
 	
 	// Initialisation
 	
-	@PostConstruct
-	public void init() {
-		courant.setPseudo( "    " );
-		courant.setMotDePasse( "   " );
-	}
+//	@PostConstruct
+//	public void init() {
+//		courant.setPseudo( "    " );
+//		courant.setMotDePasse( "   " );
+//	}
 	
 	
 	// Actions
