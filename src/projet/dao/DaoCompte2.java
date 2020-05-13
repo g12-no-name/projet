@@ -42,7 +42,7 @@ public class DaoCompte2 {
 			stmt = cn.prepareCall( sql ); 
 			stmt.setObject( 1, compte.getPseudo() );
 			stmt.setObject( 2, compte.getMotDePasse() );
-			stmt.setObject( 3, compte.getEmail() );
+			stmt.setObject( 3, compte.getMail() );
 			stmt.registerOutParameter( 4, Types.INTEGER );
 			try {
 				stmt.setObject( 5, cn.createArrayOf( "VARCHAR", compte.getRoles().toArray() ) );
@@ -79,7 +79,7 @@ public class DaoCompte2 {
 			stmt = cn.prepareCall( sql );
 			stmt.setObject( 1, compte.getPseudo() );
 			stmt.setObject( 2, compte.getMotDePasse() );
-			stmt.setObject( 3, compte.getEmail() );
+			stmt.setObject( 3, compte.getMail() );
 			stmt.setObject( 4, compte.getId() );
 			try {
 				stmt.setObject( 5, cn.createArrayOf( "VARCHAR", compte.getRoles().toArray() ) );
@@ -236,18 +236,21 @@ public class DaoCompte2 {
 	
 	private Compte construireCompte( ResultSet rs ) throws SQLException {
 		Compte compte = new Compte();
-		compte.setId( rs.getObject( "idcompte", Integer.class ) );
+		compte.setId( rs.getObject( "id", Integer.class ) );
 		compte.setPseudo( rs.getObject( "pseudo", String.class ) );
 		compte.setMotDePasse( rs.getObject( "motdepasse", String.class ) );
-		compte.setEmail( rs.getObject( "email", String.class ) );
-		try {
-			compte.getRoles().setAll( (String[]) rs.getArray( "roles" ).getArray() );
-		} catch ( SQLFeatureNotSupportedException e) {
-			String roles = rs.getString("roles");
-			if ( roles != null ) {
-				compte.getRoles().setAll( roles.split(",") );
-			}
-		}
+		compte.setMail( rs.getObject( "mail", String.class ) );
+		
+		//////INSTALLER ROLES ICI DEBUG
+		
+//		try {
+//			compte.getRoles().setAll( (String[]) rs.getArray( "roles" ).getArray() );
+//		} catch ( SQLFeatureNotSupportedException e) {
+//			String roles = rs.getString("roles");
+//			if ( roles != null ) {
+//				compte.getRoles().setAll( roles.split(",") );
+//			}
+//		}
 		return compte;
 	}
 	

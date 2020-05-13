@@ -31,7 +31,7 @@ public class Compte  {
 		setId(id);
 		setPseudo(pseudo);
 		setMotDePasse(motDePasse);
-		setEmail(email);
+		setMail(email);
 	}
 	
 	
@@ -77,11 +77,11 @@ public class Compte  {
 		return this.email;
 	}
 
-	public final String getEmail() {
+	public final String getMail() {
 		return this.emailProperty().getValue();
 	}
 
-	public final void setEmail(final String email) {
+	public final void setMail(final String email) {
 		this.emailProperty().setValue(email);
 	}
 

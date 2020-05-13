@@ -1,22 +1,21 @@
 SET search_path TO projet;
 
 
--- Supprime toutes les fonctions du schéma
+-- Supprime toutes les fonctions du schéma    vérifier utf8, caracteres caches, retours a la ligne, tester sans et morceaux par morceaux
 
 DO $ccode$
 DECLARE 
-	r RECORD;
-BEGIN
+	r RECORD; 
+BEGIN 
 	FOR r IN
-		SELECT 'DROP FUNCTION ' || ns.nspname || '.' || proname 
-	       || '(' || oidvectortypes(proargtypes) || ')' AS sql
+		SELECT 'DROP FUNCTION ' || ns.nspname || '.' || proname || '(' || oidvectortypes(proargtypes) || ')' AS sql
 		FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid)
 		WHERE ns.nspname = 'projet'  
 	LOOP
 		EXECUTE r.sql;
 	END LOOP;
 END;
-$ccode$;
+$ccode$ LANGUAGE plpgsql;
 
 
 -- Fonctions
@@ -25,7 +24,7 @@ CREATE FUNCTION compte_inserer(
 	p_pseudo 		VARCHAR,
 	p_motdepasse 	VARCHAR,
 	p_mail			VARCHAR,
-	p_id        	OUT	INT,
+	p_id        	OUT	INT
 	
 ) 
 AS $ccode$
@@ -44,7 +43,7 @@ CREATE FUNCTION compte_modifier(
 	p_pseudo 		VARCHAR,
 	p_motdepasse 	VARCHAR,
 	p_mail			VARCHAR,
-	p_id     		INT,
+	p_id     		INT
 	
 ) 
 RETURNS VOID 
@@ -93,24 +92,23 @@ $ccode$ LANGUAGE plpgsql;
 
 
 CREATE FUNCTION compte_retrouver( p_id INT ) 
-RETURNS SETOF v_compte
+RETURNS SETOF compte
 AS $ccode$
 BEGIN
 	RETURN QUERY
 	SELECT * 
-	FROM v_compte
+	FROM compte
 	WHERE id = p_id;
 END;
 $ccode$ LANGUAGE plpgsql;
 
 
 CREATE FUNCTION compte_lister_tout() 
-RETURNS SETOF v_compte_avec_roles 
-AS $ccode$
+RETURNS SETOF compte AS $ccode$
 BEGIN
 	RETURN QUERY
 	SELECT * 
-	FROM v_compte_avec_roles 
+	FROM compte
 	ORDER BY pseudo;
 END;
 $ccode$ LANGUAGE plpgsql;
@@ -121,7 +119,7 @@ $ccode$ LANGUAGE plpgsql;
 --    idcompte    INT,
 --    pseudo      VARCHAR,
 --    motdepasse  VARCHAR,
---    email       VARCHAR,
+--    mail       VARCHAR,
 --    roles       VARCHAR[]
 --)
 --AS $ccode$
@@ -138,13 +136,13 @@ $ccode$ LANGUAGE plpgsql;
 
 
 CREATE FUNCTION compte_valider_authentification( p_pseudo VARCHAR, p_motdepasse VARCHAR ) 
-RETURNS SETOF v_compte
+RETURNS SETOF compte
 AS $ccode$
 BEGIN
 	RETURN QUERY
-	SELECT * FROM v_compte
+	SELECT * FROM compte
 	WHERE pseudo = P_pseudo
-	  AND motdepasse = p_motdepasse;
+	AND motdepasse = p_motdepasse;
 END;
 $ccode$ LANGUAGE plpgsql;
 
@@ -159,7 +157,7 @@ BEGIN
 	SELECT COUNT(*) = 0 INTO p_unicite
 	FROM compte
 	WHERE pseudo = p_pseudo
-	  AND idcompte <> P_id;
+	  AND id <> P_id;
 END;
 $ccode$ LANGUAGE plpgsql;
 
