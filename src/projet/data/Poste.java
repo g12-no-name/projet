@@ -21,7 +21,7 @@ public class Poste  {
 	private final Property<TypePoste> typePoste=new SimpleObjectProperty<>();
 	private final Property<LocalTime> heureD=new SimpleObjectProperty<>();
 	private final Property<LocalTime> heureF=new SimpleObjectProperty<>();
-	private final ObservableList<Benevole> benevoles = FXCollections.observableArrayList();
+	private final ObservableList<Assignation> benevoles = FXCollections.observableArrayList();
 
 	
 	
@@ -143,7 +143,7 @@ public class Poste  {
 		this.heureFProperty().setValue(heureF);
 	}
 	
-	public ObservableList<Benevole> getBenevoles() {
+	public ObservableList<Assignation> getBenevoles() {
 		return benevoles;}
 }
 
