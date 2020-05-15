@@ -64,12 +64,12 @@ public class ControllerVolunteerInfo {
 	// Actions
 	
 	@FXML
-	private void doAnnuler() {
+	private void doGoBack() {
 		//managerGui.showView( /*EnumView.CategorieListe*/ );
 	}
 	
 	@FXML
-	private void doValider() {
+	private void doModify() {
 		//modelCategorie.validerMiseAJour();
 		//managerGui.showView( /*EnumView.CategorieListe*/ );
 	}

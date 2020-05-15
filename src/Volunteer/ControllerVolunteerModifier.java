@@ -10,7 +10,7 @@ import jfox.javafx.view.IManagerGui;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
-public class ControllerVolunteerCreate {
+public class ControllerVolunteerModifier {
 
 	
 	// Composants de la vue
@@ -37,7 +37,7 @@ public class ControllerVolunteerCreate {
 	@FXML
 	private Button 				goBack;
 	@FXML
-	private Button 				add;
+	private Button 				confirm;
 	@FXML
 	private Button 				reinitialize;
 	
@@ -46,7 +46,7 @@ public class ControllerVolunteerCreate {
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	//private ModelCategorie		modelCategorie;
+	private ModelVolunteer	modelVolunteer;
 
 
 	// Initialisation du Controller
@@ -70,14 +70,13 @@ public class ControllerVolunteerCreate {
 	}
 	
 	@FXML
-	private void doAdd() {
+	private void doConfirm() {
 		//modelCategorie.validerMiseAJour();
 		//managerGui.showView( /*EnumView.CategorieListe*/ );
 	}
-	
+
 	@FXML 
 	private void doReinitialize() {
 		
 	}
-
 }
