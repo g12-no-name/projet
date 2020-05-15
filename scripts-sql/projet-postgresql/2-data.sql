@@ -50,8 +50,8 @@ INSERT INTO categorieCourse (id, nom) VALUES
   (1, 'mixte'),
   (2, 'femmes'),
   (3, 'hommes'),
-  (4, 'chats'),
-  (5, 'autres');
+  (4, 'V.A.E'),
+  (5, 'chats');
 
 ALTER TABLE categorieCourse ALTER COLUMN id RESTART WITH 5;
 

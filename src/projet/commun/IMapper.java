@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+import projet.data.Benevole;
 import projet.data.Categorie;
 import projet.data.Compte;
 import projet.data.Memo;

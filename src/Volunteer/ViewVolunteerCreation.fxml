@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="390.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.waifu.ControllerWaifuForm">
+<AnchorPane fx:id="paneRoot" prefHeight="390.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Volunteer.ControllerVolunteerCreate">
    <children>
       <Label alignment="CENTER" layoutY="29.0" styleClass="titre-vue" text="Ajout d'un nouveau bénévole" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
       <VBox alignment="CENTER" fillWidth="false" layoutY="80.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
@@ -43,7 +43,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
                         <TextField fx:id="textFieldDateNaissance" prefHeight="25.0" prefWidth="102.0" />
-                        <Label prefHeight="29.0" prefWidth="43.0" text="Mineur:" />
+                        <Label fx:id="mineur" prefHeight="29.0" prefWidth="43.0" text="Mineur:" />
                         <CheckBox mnemonicParsing="false" />
                      </children>
                   </HBox>
@@ -60,21 +60,21 @@
                      <children>
                         <Label text="Permis de conduire:" />
                         <Label text="Membre du club:" GridPane.rowIndex="1" />
-                        <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" />
-                        <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="permisDeConduire" mnemonicParsing="false" GridPane.columnIndex="1" />
+                        <CheckBox fx:id="membership" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <Label text="Disponibilités" GridPane.rowIndex="5" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="textFieldDispo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#doValider" prefHeight="25.0" prefWidth="60.0" text="Annuler" />
-            <Button cancelButton="true" mnemonicParsing="false" onAction="#doAnnuler" text="Ajouter" />
-            <Button mnemonicParsing="false" text="Tout effacer" />
+            <Button fx:id="goBack" defaultButton="true" mnemonicParsing="false" onAction="#doGoBack" prefHeight="25.0" prefWidth="60.0" text="Annuler" />
+            <Button fx:id="add" cancelButton="true" mnemonicParsing="false" onAction="#doAdd" text="Ajouter" />
+            <Button fx:id="reinitialize" mnemonicParsing="false" onAction="#doReinitialize" text="Tout effacer" />
          </children>
       </HBox>
    </children>
