@@ -156,7 +156,7 @@
             </TabPane>
             <ScrollPane>
                <content>
-                  <ImageView fx:id="imageCarte" fitHeight="250.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageCarte" fitHeight="250.0" fitWidth="300.0" onMouseDragged="#déplacer" onMousePressed="#pointDeContact" pickOnBounds="true" preserveRatio="true" />
                </content>
             </ScrollPane>
          </children>

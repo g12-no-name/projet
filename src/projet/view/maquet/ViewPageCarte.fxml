@@ -73,7 +73,7 @@
          <children>
             <ScrollPane>
                <content>
-                  <ImageView fx:id="imageCarte" fitHeight="220.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageCarte" fitHeight="220.0" fitWidth="600.0" onMouseDragged="#déplacer" onMousePressed="#pointDeContact" pickOnBounds="true" preserveRatio="true" />
                </content>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
