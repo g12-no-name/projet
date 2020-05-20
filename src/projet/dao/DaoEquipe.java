@@ -44,7 +44,7 @@ public class DaoEquipe {
 			cn = dataSource.getConnection();
 
 			// Insère l'equipe
-			sql = "INSERT INTO equipe ( nom, nbBouffe,typeCourse, catCourse ) VALUES ( ?, ?, ?, ?, ? )";
+			sql = "INSERT INTO equipe ( nom, nbBouffe,typeCourse, catCourse ) VALUES ( ?, ?, ?, ? )";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
 			stmt.setString(	1, equipe.getNom() );
 			stmt.setInt(	2, equipe.getNbBouffe() );
@@ -84,6 +84,7 @@ public class DaoEquipe {
 			stmt.setObject( 2, equipe.getNbBouffe() );
 			stmt.setObject( 3, equipe.getTypeCourse().getId() );
 			stmt.setObject( 4, equipe.getCatCourse().getId() );
+			stmt.setObject( 5, equipe.getId() );
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
