@@ -31,7 +31,7 @@ public class Benevole  {
 	private final Property<Boolean>	membre		= new SimpleObjectProperty<>();
 	private final Property<LocalTime>	heureD		= new SimpleObjectProperty<>();
 	private final Property<LocalTime>	HeureF		= new SimpleObjectProperty<>();
-	private final ObservableList<Poste> postes = FXCollections.observableArrayList();
+	private final ObservableList<Assignation> postes = FXCollections.observableArrayList();
 
 	
 	// Constructeurs
@@ -52,7 +52,7 @@ public class Benevole  {
 	
 	@Override
 	public String toString() {
-		return getNom();
+		return getNom()+" "+getPrenom();
 	}
 	
 	
@@ -283,7 +283,7 @@ public class Benevole  {
 		this.HeureFProperty().setValue(HeureF);
 	}
 	
-	public ObservableList<Poste> getPostes() {
+	public ObservableList<Assignation> getPostes() {
 		return postes;
 	}
 	

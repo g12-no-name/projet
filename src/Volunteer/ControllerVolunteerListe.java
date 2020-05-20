@@ -4,49 +4,36 @@ import javax.inject.Inject;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ListView;
 import jfox.javafx.view.IManagerGui;
+import projet.data.Benevole;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
-public class ControllerVolunteerCreate {
+public class ControllerVolunteerListe {
 
 	
 	// Composants de la vue
 	
 	@FXML
-	private TextField			textFieldNom;
+	private ListView<Benevole> list;
 	@FXML
-	private TextField			textFieldTel;
+	private Button				buttonAdd;
 	@FXML
-	private TextField			textFieldMail;
+	private Button				buttonDelete;
 	@FXML
-	private TextField			textFieldAdresse;
+	private Button				buttonObserver;
 	@FXML
-	private TextField			textFieldDateNaissance;
-	@FXML
-	private TextField			textFieldDispo;
-	@FXML
-	private CheckBox			mineur;
-	@FXML
-	private CheckBox 			permisDeConduire;
-	@FXML 
-	private CheckBox			membership;
+	private Button				buttonModifier;
 	
-	@FXML
-	private Button 				goBack;
-	@FXML
-	private Button 				add;
-	@FXML
-	private Button 				reinitialize;
+	
 	
 	// Autres champs
 	
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	//private ModelCategorie		modelCategorie;
+	private ModelVolunteer		modelVolunteer;
 
 
 	// Initialisation du Controller
@@ -65,18 +52,23 @@ public class ControllerVolunteerCreate {
 	// Actions
 	
 	@FXML
-	private void doGoBack() {
+	private void doAdd() {
 		//managerGui.showView( /*EnumView.CategorieListe*/ );
 	}
 	
 	@FXML
-	private void doAdd() {
+	private void doDelete() {
 		//modelCategorie.validerMiseAJour();
 		//managerGui.showView( /*EnumView.CategorieListe*/ );
 	}
 	
-	@FXML 
-	private void doReinitialize() {
+	@FXML
+	private void doModify() {
+		
+	}
+	
+	@FXML
+	private void doObserve() {
 		
 	}
 
