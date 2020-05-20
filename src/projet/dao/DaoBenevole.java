@@ -28,7 +28,7 @@ public class DaoBenevole {
 	
 	// Actions
 
-	public void inserer( Benevole benevole ) {
+	public int inserer( Benevole benevole ) {
 
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
@@ -64,6 +64,7 @@ public class DaoBenevole {
 		} finally {
 			UtilJdbc.close( stmt, cn );
 		}
+		return benevole.getId();
 	}
 
 

@@ -32,7 +32,12 @@ public enum EnumView implements IEnumView {
 	PosteInfo			( "poste/ViewPosteInfo.fxml" ),
 	PosteListe			( "poste/ViewPosteListe.fxml" ),
 	PosteModif			( "poste/ViewPosteModif.fxml" ),
-
+	
+	BenevoleListe		( "Volunteer/ViewVolunteerListe.fxml" ),
+	BenevoleCreate		( "Volunteer/ViewVolunteerCreation.fxml" ),
+	BenevoleModify		( "Volunteer/ViewVolunteerModif.fxml" ),
+	BenevoleView		( "Volunteer/ViewVolunteerInfo.fxml" ),
+	
 	PagePrincipale      ("maquet/ViewPagePrincipale.fxml"),
 	PageCarte           ("maquet/ViewPageCarte.fxml"),
 

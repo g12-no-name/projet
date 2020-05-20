@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -32,7 +33,12 @@
               </rowConstraints>
                <children>
                   <Label text="Nom et prénom" />
-                  <TextField fx:id="textFieldNom" GridPane.columnIndex="1" />
+                  <HBox GridPane.columnIndex="1">
+                     <children>
+                        <TextField fx:id="textFieldNom" prefHeight="25.0" prefWidth="100.0" promptText="Nom" />
+                        <TextField fx:id="textFieldPrenom" prefHeight="25.0" prefWidth="106.0" promptText="Prenom" />
+                     </children>
+                  </HBox>
                   <Label prefHeight="17.0" prefWidth="80.0" text="Telephone" GridPane.rowIndex="1" />
                   <TextField fx:id="textFieldTel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label prefHeight="17.0" prefWidth="80.0" text="Mail" GridPane.rowIndex="2" />
@@ -42,7 +48,7 @@
                   <Label prefHeight="17.0" prefWidth="80.0" text="Naissance" GridPane.rowIndex="4" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <TextField fx:id="textFieldDateNaissance" prefHeight="25.0" prefWidth="102.0" />
+                        <DatePicker fx:id="datePickerDateNaissance" prefHeight="25.0" prefWidth="100.0" />
                         <Label fx:id="mineur" prefHeight="29.0" prefWidth="43.0" text="Mineur:" />
                         <CheckBox mnemonicParsing="false" />
                      </children>
@@ -65,7 +71,12 @@
                      </children>
                   </GridPane>
                   <Label text="Disponibilités" GridPane.rowIndex="5" />
-                  <TextField fx:id="textFieldDispo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <TextField fx:id="textFieldDispoD" prefHeight="25.0" prefWidth="101.0" promptText="A partir de" />
+                        <TextField fx:id="textFieldDispoF" prefHeight="25.0" prefWidth="109.0" promptText="Jusqu'a" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </children>

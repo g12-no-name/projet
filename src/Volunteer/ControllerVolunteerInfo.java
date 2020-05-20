@@ -5,8 +5,11 @@ import javax.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import jfox.javafx.view.IManagerGui;
+import projet.data.Benevole;
+import projet.view.EnumView;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
@@ -16,7 +19,7 @@ public class ControllerVolunteerInfo {
 	// Composants de la vue
 	
 	@FXML
-	private TextField			textFieldNom;
+	private TextField			textFieldNomEtPrenom;
 	@FXML
 	private TextField			textFieldTel;
 	@FXML
@@ -24,9 +27,9 @@ public class ControllerVolunteerInfo {
 	@FXML
 	private TextField			textFieldAdresse;
 	@FXML
-	private TextField			textFieldDateNaissance;
+	private DatePicker			datePickerDateNaissance;
 	@FXML
-	private TextField			textFieldDispo;
+	private TextField			textFieldDispos;
 	@FXML
 	private CheckBox			mineur;
 	@FXML
@@ -45,7 +48,7 @@ public class ControllerVolunteerInfo {
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	//private ModelCategorie		modelCategorie;
+	private ModelVolunteer      modelV;
 
 
 	// Initialisation du Controller
@@ -55,9 +58,16 @@ public class ControllerVolunteerInfo {
 
 		// Data binding
 		
-		//Categorie courant = modelCategorie.getCourant();
-		//textFieldId.textProperty().bindBidirectional( courant.idProperty(), new IntegerStringConverter()  );
-		//textFieldLibelle.textProperty().bindBidirectional( courant.libelleProperty()  );
+		Benevole courant = modelV.getCourant();
+		textFieldNomEtPrenom.setText(courant.getNom()+" "+courant.getPrenom());
+		textFieldTel.setText( courant.getNumTel() );
+		textFieldMail.setText( courant.getMail() );
+		textFieldAdresse.setText( courant.getAdresse() );
+		datePickerDateNaissance.setValue( courant.getDateNaissance() );
+		textFieldDispos.setText( "A partir de "+courant.getHeureD().toString()+" jusqu'à "+courant.getHeureF().toString() );
+		mineur.setSelected( courant.getMineur() );
+		permisDeConduire.setSelected( courant.getPermis() );
+		membership.setSelected( courant.getMembre() );
 	}
 	
 	
@@ -65,13 +75,12 @@ public class ControllerVolunteerInfo {
 	
 	@FXML
 	private void doGoBack() {
-		//managerGui.showView( /*EnumView.CategorieListe*/ );
+		managerGui.showView( EnumView.BenevoleListe );
 	}
 	
 	@FXML
 	private void doModify() {
-		//modelCategorie.validerMiseAJour();
-		//managerGui.showView( /*EnumView.CategorieListe*/ );
+		managerGui.showView( EnumView.BenevoleModify );
 	}
 
 }

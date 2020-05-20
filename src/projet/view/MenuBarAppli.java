@@ -65,11 +65,11 @@ public class MenuBarAppli extends MenuBar {
 		
 		// Manu Données
 		
-		menu =  new Menu( "Données" );;
+		menu =  new Menu( "Donnees" );;
 		this.getMenus().add(menu);
 		menuDonnees = menu;
 		
-		item = new MenuItem( "Mémos" );
+		item = new MenuItem( "Memos" );
 		item.setOnAction(  (e) -> managerGui.showView( EnumView.MemoListe )  );
 		menu.getItems().add( item );
 		
@@ -77,11 +77,11 @@ public class MenuBarAppli extends MenuBar {
 		item.setOnAction(  (e) -> managerGui.showView( EnumView.ServiceListe )  );
 		menu.getItems().add( item );
 		
-		item = new MenuItem( "Personnes" );
-		item.setOnAction(  (e) -> managerGui.showView( EnumView.PersonneListe )  );
+		item = new MenuItem( "Benevoles" );
+		item.setOnAction(  (e) -> managerGui.showView( EnumView.BenevoleListe)  );
 		menu.getItems().add( item );
 		
-		item = new MenuItem( "Catégories" );
+		item = new MenuItem( "Categories" );
 		item.setOnAction(  (e) -> managerGui.showView( EnumView.CategorieListe )  );
 		menu.getItems().add( item );
 		itemCategories = item;
