@@ -9,10 +9,10 @@
 
 <AnchorPane fx:id="paneRoot" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.poste.ControllerPosteListe">
    <children>
-      <Label alignment="CENTER" styleClass="titre-vue" text="Liste des postes" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+      <Label alignment="CENTER" styleClass="titre-vue" text="Liste des assignations à ce poste" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
       <HBox alignment="CENTER" layoutY="75.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <ListView fx:id="listView" layoutX="88.0" layoutY="75.0" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#gererClicSurListe" prefHeight="200.0" prefWidth="200.0">
+            <ListView fx:id="listView" layoutX="88.0" layoutY="75.0" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#gererClicSurListe" prefHeight="230.0" prefWidth="369.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -23,8 +23,8 @@
          <children>
             <Button fx:id="buttonAjouter" mnemonicParsing="false" onAction="#doAjouter" text="Ajouter" />
             <Button fx:id="buttonModifier" mnemonicParsing="false" onAction="#doModifier" text="Modifier" />
-            <Button fx:id="buttonObserver" mnemonicParsing="false" onAction="#doObserver" text="Observer" />
             <Button fx:id="buttonSupprimer" mnemonicParsing="false" onAction="#doSupprimer" text="Supprimer" />
+            <Button mnemonicParsing="false" text="Retour" />
          </children>
       </HBox>
    </children>
