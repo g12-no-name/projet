@@ -9,8 +9,8 @@ public enum EnumView implements IEnumView {
 	
 	// Valeurs
 	
-	Info				( "systeme/ViewInfo.fxml" ),
-	Connexion			( "systeme/ViewConnexion.fxml" ),
+	
+	
 	CompteListe			( "compte/ViewCompteListe.fxml" ),
 	CompteForm			( "compte/ViewCompteForm.fxml" ),
 	CategorieListe		( "personne/ViewCategorieListe.fxml" ),
@@ -40,6 +40,8 @@ public enum EnumView implements IEnumView {
 	
 	PagePrincipale      ("maquet/ViewPagePrincipale.fxml"),
 	PageCarte           ("maquet/ViewPageCarte.fxml"),
+	Info				( "maquet/ViewInfo.fxml" ),
+	Connexion			( "maquet/ViewConnexion.fxml" ),
 
 	;
 
