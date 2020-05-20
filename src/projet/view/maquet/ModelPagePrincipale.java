@@ -37,6 +37,8 @@ public class ModelPagePrincipale {
 	
 	// donnés observables
 	
+	private final Property<Image> carte= new SimpleObjectProperty<>();
+	
 	private final Benevole	courant = new Benevole();
 	
 	private final Poste 	courant2 = new Poste();
@@ -59,6 +61,7 @@ public class ModelPagePrincipale {
 		@PostConstruct
 		public void init() {
 			schema.addListener( obs -> flagModifSchema = true );
+			chargerImages();
 		}
 		
 	// Actualisations
@@ -72,6 +75,10 @@ public class ModelPagePrincipale {
 	 	}
 		
 		// Getters 
+		
+		public Property<Image> imageCarteProperty() {
+			return carte;
+		}
 		
 		public ObservableList<Benevole> getListe() {
 			return liste;
@@ -90,6 +97,12 @@ public class ModelPagePrincipale {
 		}
 		
 	// Action
+		
+		public void chargerImages() {  
+			String cheminCarte = "Images/Carte.png";  
+			carte.setValue( new Image(        
+					getClass().getResource( cheminCarte ).toExternalForm() ) );
+		}
 		
 		public void preparerAjouter() {
 			mapper.update( courant, new Benevole() );

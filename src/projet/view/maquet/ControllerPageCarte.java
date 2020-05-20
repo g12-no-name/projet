@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.view.EnumView;
@@ -24,9 +25,15 @@ public class ControllerPageCarte {
 	private TextField           heure;
 	@Inject
 	private IManagerGui		managerGui;
+	@FXML
+	private ImageView imageCarte;
+	@Inject
+	private ModelPageCarte  modelpagecarte;
 	
 	@FXML
 	private void initialize() {
+		imageCarte.imageProperty().bind(
+				modelpagecarte.imageCarteProperty() );
 
 		
 		// l'heure actuelle
