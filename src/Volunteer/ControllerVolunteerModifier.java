@@ -5,8 +5,11 @@ import javax.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import jfox.javafx.view.IManagerGui;
+import projet.data.Benevole;
+import projet.view.EnumView;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
@@ -18,15 +21,19 @@ public class ControllerVolunteerModifier {
 	@FXML
 	private TextField			textFieldNom;
 	@FXML
+	private TextField			textFieldPrenom;
+	@FXML
 	private TextField			textFieldTel;
 	@FXML
 	private TextField			textFieldMail;
 	@FXML
 	private TextField			textFieldAdresse;
 	@FXML
-	private TextField			textFieldDateNaissance;
+	private DatePicker			datePickerDateNaissance;
 	@FXML
-	private TextField			textFieldDispo;
+	private TextField			textFieldDispoD;
+	@FXML
+	private TextField			textFieldDispoF;
 	@FXML
 	private CheckBox			mineur;
 	@FXML
@@ -46,7 +53,7 @@ public class ControllerVolunteerModifier {
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	private ModelVolunteer	modelVolunteer;
+	private ModelVolunteer	modelV;
 
 
 	// Initialisation du Controller
@@ -56,9 +63,22 @@ public class ControllerVolunteerModifier {
 
 		// Data binding
 		
-		//Categorie courant = modelCategorie.getCourant();
-		//textFieldId.textProperty().bindBidirectional( courant.idProperty(), new IntegerStringConverter()  );
-		//textFieldLibelle.textProperty().bindBidirectional( courant.libelleProperty()  );
+		Benevole courant = modelV.getCourant();
+		
+		textFieldNom.textProperty().bindBidirectional( courant.nomProperty() );
+		textFieldPrenom.textProperty().bindBidirectional( courant.prenomProperty() );
+		
+		textFieldTel.textProperty().bindBidirectional( courant.numTelProperty() );
+		textFieldMail.textProperty().bindBidirectional( courant.mailProperty() );
+		textFieldAdresse.textProperty().bindBidirectional( courant.adresseProperty() );
+		
+		datePickerDateNaissance.valueProperty().bindBidirectional( courant.dateNaissanceProperty() );
+		//textFieldDispoD.textProperty().bindBidirectional( courant.heureDProperty() );
+		//textFieldDispoF.textProperty().bindBidirectional( courant.heureDProperty() );
+		
+		mineur.selectedProperty().bindBidirectional( courant.mineurProperty() );
+		permisDeConduire.selectedProperty().bindBidirectional( courant.permisProperty() );
+		membership.selectedProperty().bindBidirectional( courant.membreProperty() );
 	}
 	
 	
@@ -66,17 +86,17 @@ public class ControllerVolunteerModifier {
 	
 	@FXML
 	private void doGoBack() {
-		//managerGui.showView( /*EnumView.CategorieListe*/ );
+		managerGui.showView( EnumView.BenevoleListe );
 	}
 	
 	@FXML
 	private void doConfirm() {
-		//modelCategorie.validerMiseAJour();
-		//managerGui.showView( /*EnumView.CategorieListe*/ );
+		modelV.validerMiseAJour();
+		managerGui.showView( EnumView.BenevoleListe );
 	}
 
 	@FXML 
 	private void doReinitialize() {
-		
+		initialize();
 	}
 }

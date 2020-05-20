@@ -2,8 +2,11 @@ package projet.view.maquet;
 
 import javax.inject.Inject;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import jfox.javafx.view.IManagerGui;
+import projet.view.EnumView;
 
 
 public class ControllerInfo {
@@ -21,6 +24,8 @@ public class ControllerInfo {
 	
 	@Inject
 	private ModelInfo	modelInfo;
+	@Inject
+	private IManagerGui		managerGui;
 	
 	
 	// Initialisation
@@ -32,6 +37,15 @@ public class ControllerInfo {
 		labelTitre.textProperty().bind( modelInfo.titreProperty() );
 		labelMessage.textProperty().bind( modelInfo.messageProperty() );
 		
+	}
+	
+	@FXML
+	private void doAccueil() {
+		managerGui.execTask( () -> {
+			Platform.runLater( () -> {
+         			managerGui.showView(EnumView.PagePrincipale);
+            }) ;
+		} );
 	}
 	
 

@@ -9,9 +9,6 @@ import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
 import projet.dao.DaoBenevole;
 import projet.data.Benevole;
-import projet.data.Categorie;
-import projet.data.Personne;
-import projet.data.Telephone;
 
 
 public class ModelVolunteer {
@@ -62,7 +59,12 @@ public class ModelVolunteer {
 	}
 	
 
-	public void preparerModifier( Personne item ) {
+	public void preparerModifier( Benevole item ) {
+		//modelCategorie.actualiserListe();
+		mapper.update( courant, daoBenevole.retrouver( item.getId() ) );
+	}
+	
+	public void preparerAffichage( Benevole item ) {
 		//modelCategorie.actualiserListe();
 		mapper.update( courant, daoBenevole.retrouver( item.getId() ) );
 	}
@@ -75,15 +77,21 @@ public class ModelVolunteer {
 		StringBuilder message = new StringBuilder();
 		
 		if( courant.getNom() == null || courant.getNom().isEmpty() ) {
-			message.append( "\nLe nom ne doit pas être vide." );
+			message.append( "\nLe nom ne doit pas etre vide." );
 		} else  if ( courant.getNom().length()> 25 ) {
 			message.append( "\nLe nom est trop long." );
 		}
 
 		if( courant.getPrenom() == null || courant.getPrenom().isEmpty() ) {
-			message.append( "\nLe prénom ne doit pas être vide." );
+			message.append( "\nLe prenom ne doit pas etre vide." );
 		} else if ( courant.getPrenom().length()> 25 ) {
-			message.append( "\nLe prénom est trop long." );
+			message.append( "\nLe prenom est trop long." );
+		}
+		
+		if( courant.getNumTel() == null || courant.getNumTel().isEmpty() ) {
+			message.append( "\nVeuillez indiquer votre num�ro de telephone." );
+		} else  if ( courant.getNom().length()> 25 ) {
+			message.append( "\nLe numero est trop long." );
 		}
 
 //		if( courant.getCategorie() == null ) {
