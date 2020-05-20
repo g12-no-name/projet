@@ -32,6 +32,10 @@ public enum EnumView implements IEnumView {
 	PosteInfo			( "poste/ViewPosteInfo.fxml" ),
 	PosteListe			( "poste/ViewPosteListe.fxml" ),
 	PosteModif			( "poste/ViewPosteModif.fxml" ),
+	ListeAssignationPoste		("poste/ViewListeAssignationPoste.fxml"),
+	AjouterAssignationPoste		("poste/ViewAjouterAssignationPoste.fxml"),
+	ModifierAssignationPoste	("poste/ViewModifierAssignationPoste.fxml"),
+	
 
 	PagePrincipale      ("maquet/ViewPagePrincipale.fxml"),
 	PageCarte           ("maquet/ViewPageCarte.fxml"),

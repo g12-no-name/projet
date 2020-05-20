@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -14,34 +14,33 @@
 
 <AnchorPane fx:id="paneRoot" prefHeight="390.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.poste.ControllerPosteCreation">
    <children>
-      <Label alignment="CENTER" layoutY="29.0" styleClass="titre-vue" text="Creation du poste" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
+      <Label alignment="CENTER" layoutY="29.0" styleClass="titre-vue" text="Modifier une assignation" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
       <VBox alignment="CENTER" fillWidth="false" layoutY="80.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <GridPane prefHeight="259.0" prefWidth="305.0">
               <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="92.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="211.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="122.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="183.2" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="96.8000244140625" minHeight="10.0" prefHeight="93.60001220703126" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="30.79998779296875" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="119.20001831054688" minHeight="10.0" prefHeight="107.20001831054688" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="130.39996337890625" minHeight="10.0" prefHeight="92.79998168945312" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.40001220703124" minHeight="0.0" prefHeight="29.000024414062494" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="74.4000244140625" minHeight="0.0" prefHeight="29.199951171875" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Nom" textAlignment="CENTER" />
-                  <TextField fx:id="textFieldNom" GridPane.columnIndex="1" />
+                  <Label text="Bénévole" textAlignment="CENTER" />
                   <TextField fx:id="textFieldHeureD" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <TextField fx:id="textFieldHeureF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Type" GridPane.rowIndex="1" />
                   <Label text="Heure de début" GridPane.rowIndex="2" />
                   <Label text="Heure de fin" GridPane.rowIndex="3" />
-                  <Label text="Bénévoles " GridPane.rowIndex="4" />
-                  <ComboBox fx:id="comboBoxType" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Button cancelButton="true" mnemonicParsing="false" onAction="#doModifierBenevole" text="Modifier bénévoles" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Disponibilités" GridPane.rowIndex="1" />
+                  <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </ListView>
                </children>
             </GridPane>
          </children>
