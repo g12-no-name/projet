@@ -61,36 +61,6 @@ public class MenuBarAppli extends MenuBar {
 		item = new MenuItem( "Quitter" );
 		item.setOnAction(  (e) -> managerGui.exit()  );
 		menu.getItems().add( item );
-
-		
-		// Manu Données
-		
-		menu =  new Menu( "Donnees" );;
-		this.getMenus().add(menu);
-		menuDonnees = menu;
-		
-		item = new MenuItem( "Memos" );
-		item.setOnAction(  (e) -> managerGui.showView( EnumView.MemoListe )  );
-		menu.getItems().add( item );
-		
-		item = new MenuItem( "Services" );
-		item.setOnAction(  (e) -> managerGui.showView( EnumView.ServiceListe )  );
-		menu.getItems().add( item );
-		
-		item = new MenuItem( "Benevoles" );
-		item.setOnAction(  (e) -> managerGui.showView( EnumView.BenevoleListe)  );
-		menu.getItems().add( item );
-		
-		item = new MenuItem( "Categories" );
-		item.setOnAction(  (e) -> managerGui.showView( EnumView.CategorieListe )  );
-		menu.getItems().add( item );
-		itemCategories = item;
-		
-		item = new MenuItem( "Comptes" );
-		item.setOnAction(  (e) -> managerGui.showView( EnumView.CompteListe )  );
-		menu.getItems().add( item );
-		itemComptes = item;
-
 		
 		// Manu Etats
 		
