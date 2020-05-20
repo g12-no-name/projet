@@ -18,6 +18,7 @@ import projet.commun.IMapper;
 import projet.dao.DaoPoste;
 import projet.data.Assignation;
 import projet.data.Poste;
+import projet.data.TypePoste;
 import projet.view.systeme.ModelConfig;
 
 
@@ -68,6 +69,9 @@ public class ModelPoste  {
 		return schema;
 	}
 	
+	public ObservableList<TypePoste> getTypePoste() {
+		return modelTypePoste.getListe();
+	}
 	
 	// Actualisations
 	

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="390.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.waifu.ControllerWaifuForm">
+<AnchorPane fx:id="paneRoot" prefHeight="390.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.poste.ControllerPosteInfo">
    <children>
       <Label alignment="CENTER" layoutY="29.0" styleClass="titre-vue" text="Informations sur le poste" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
       <VBox alignment="CENTER" fillWidth="false" layoutY="80.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
@@ -33,22 +33,22 @@
                <children>
                   <Label text="Nom" textAlignment="CENTER" />
                   <TextField fx:id="textFieldNom" editable="false" GridPane.columnIndex="1" />
-                  <TextField fx:id="textFieldTel" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="textFieldMail" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="textFieldAdresse" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="textFieldType" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="textFieldHeureD" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="textFieldHeureF" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Type" GridPane.rowIndex="1" />
                   <Label text="Heure de début" GridPane.rowIndex="2" />
                   <Label text="Heure de fin" GridPane.rowIndex="3" />
                   <Label text="Bénévoles " GridPane.rowIndex="5" />
-                  <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="2147483647" />
+                  <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="2147483647" />
                </children>
             </GridPane>
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#doValider" prefHeight="25.0" prefWidth="60.0" text="Retour" />
-            <Button cancelButton="true" mnemonicParsing="false" onAction="#doAnnuler" text="Modifier" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#doRetour" prefHeight="25.0" prefWidth="60.0" text="Retour" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#doModifier" text="Modifier" />
          </children>
       </HBox>
    </children>

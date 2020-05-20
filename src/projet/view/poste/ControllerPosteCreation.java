@@ -3,6 +3,7 @@ package projet.view.poste;
 import javax.inject.Inject;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.util.converter.LocalTimeStringConverter;
@@ -10,11 +11,12 @@ import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Assignation;
 import projet.data.Poste;
+import projet.data.TypePoste;
 import projet.view.EnumView;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
-public class ControllerPosteInfo {
+public class ControllerPosteCreation {
 
 	
 	// Composants de la vue
@@ -22,7 +24,7 @@ public class ControllerPosteInfo {
 	@FXML
 	private TextField			textFieldNom;
 	@FXML
-	private TextField			textFieldType;
+	private ComboBox<TypePoste>			comboBoxType;
 	@FXML
 	private TextField			textFieldHeureD;
 	@FXML
@@ -48,7 +50,8 @@ public class ControllerPosteInfo {
 		
 		Poste courant = modelPoste.getCourant();
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty()  );
-		textFieldType.textProperty().bindBidirectional( courant.getTypePoste().nomProperty() );
+		comboBoxType.setItems( modelPoste.getTypePoste() );
+		comboBoxType.valueProperty().bindBidirectional( courant.typePosteProperty() );
 		textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter()  );
 		textFieldHeureF.textProperty().bindBidirectional( courant.heureFProperty(), new LocalTimeStringConverter()  ); 
 		listView.setItems(courant.getBenevoles());
@@ -64,10 +67,12 @@ public class ControllerPosteInfo {
 	}
 	
 	@FXML
-	private void doModifier() {
-		Poste courant = modelPoste.getCourant();
-		modelPoste.preparerModifier(courant);
-		managerGui.showView( EnumView.PosteModif );
+	private void doValider() {
+		modelPoste.validerMiseAJour();
+		managerGui.showView( EnumView.PosteListe );	
+	}
+	
+	@FXML void doModifierBenevole() {
 		
 	}
 
