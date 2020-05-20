@@ -17,7 +17,10 @@ import projet.data.TypePoste;
 @Mapper
 public interface IMapper {  
 	
-	Compte update( @MappingTarget Compte target, Compte source  );
+	
+	Benevole update (@MappingTarget Benevole target, Benevole source );
+	
+	Compte    update(@MappingTarget Compte target, Compte source );
 	
 	Categorie update( @MappingTarget Categorie target, Categorie source );
 	

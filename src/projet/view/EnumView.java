@@ -27,10 +27,15 @@ public enum EnumView implements IEnumView {
 	TestDaoService		( "test/ViewTestDaoService.fxml" ),
 	EtatPersonnesParCateogire1	( "personne/ViewEtatPersonnesParCategorie1.fxml" ),
 	EtatPersonnesParCateogire2	( "personne/ViewEtatPersonnesParCategorie2.fxml" ),
+
 	PosteCreation		( "poste/ViewPosteCreation.fxml" ),
 	PosteInfo			( "poste/ViewPosteInfo.fxml" ),
 	PosteListe			( "poste/ViewPosteListe.fxml" ),
 	PosteModif			( "poste/ViewPosteModif.fxml" ),
+
+	PagePrincipale      ("maquet/ViewPagePrincipale.fxml"),
+	PageCarte           ("maquet/ViewPageCarte.fxml"),
+
 	;
 
 	
