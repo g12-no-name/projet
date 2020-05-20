@@ -18,7 +18,7 @@ public final class Roles {
 			UTILISATEUR
 	) );
 
-	private static final String[]	 	libellés = new String[] {
+	private static final String[]	 	libelles = new String[] {
 			"Administrateur",
 			"Utilisateur",
 	};
@@ -35,12 +35,12 @@ public final class Roles {
 		return roles;
 	}
 	
-	public static String getLibellé( String role ) {
+	public static String getLibelle( String role ) {
 		int index = roles.indexOf( role );
 		if ( index == -1 ) {
 			throw new IllegalArgumentException();
 		} 
-		return libellés[index];
+		return libelles[index];
 	}
 
 }

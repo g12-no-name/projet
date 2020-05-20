@@ -41,11 +41,9 @@ public class ControllerInfo {
 	
 	@FXML
 	private void doAccueil() {
-		managerGui.execTask( () -> {
-			Platform.runLater( () -> {
-         			managerGui.showView(EnumView.PagePrincipale);
-            }) ;
-		} );
+		managerGui.showView(EnumView.PagePrincipale);
+//		managerGui.execTask( () -> {Platform.runLater( () -> {managerGui.showView(EnumView.PagePrincipale);}) ;
+//		} );
 	}
 	
 

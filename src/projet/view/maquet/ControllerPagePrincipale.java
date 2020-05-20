@@ -16,10 +16,8 @@ import javafx.scene.input.MouseEvent;
 import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Benevole;
-import projet.data.Memo;
 import projet.data.Poste;
 import projet.view.EnumView;
-import projet.view.memo.ModelMemo;
 
 public class ControllerPagePrincipale {
 	
@@ -121,9 +119,9 @@ public class ControllerPagePrincipale {
 		private void doSupprimer() {
 			Benevole item = listView.getSelectionModel().getSelectedItem();
 			if ( item == null ) {
-				managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
+				managerGui.showDialogError( "Aucun element n'est selectionne dans la liste.");
 			} else {
-				boolean reponse = managerGui.showDialogConfirm( "Confirmez-vous la suppresion ?" );
+				boolean reponse = managerGui.showDialogConfirm( "Confirmez-vous la suppression�?" );
 				if ( reponse ) {
 					modelpageprincipale.supprimer( item );
 					refresh();
@@ -152,7 +150,7 @@ public class ControllerPagePrincipale {
 		   }
 		
 		@FXML
-		   private void déplacer(MouseEvent souris) {
+		   private void deplacer(MouseEvent souris) {
 		      double offsetX = (souris.getX() - x)/largeur + ascenceur.getHvalue();
 		      double offsetY = (souris.getY() - y)/largeur + ascenceur.getVvalue();
 		      ascenceur.setHvalue(offsetX);

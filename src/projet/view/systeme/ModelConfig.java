@@ -42,23 +42,21 @@ public class ModelConfig {
 		String valeur = props.getProperty( "dossier.schemas" );
 		if ( valeur == null ) {
 			throw new ExceptionAnomaly( 
-				"Paramètre absent dans le fichier de configuration :\n"
-				+ "dossier.schemas" );
+				"Parametre absent dans le fichier de configuration :\n"+ "dossier.schemas" );
 		}
-		dossierSchemas = new File( valeur );
-		if ( ! dossierSchemas.exists() ) {
-			throw new ExceptionAnomaly( 
-					"Le dossier des schémas n'existe pas :\n"
-					+ dossierSchemas.toString() );
-		}
-		
+//		dossierSchemas = new File( valeur );
+//		if ( ! dossierSchemas.exists() ) {
+//			throw new ExceptionAnomaly( 
+//					"Le dossier des schemas n'existe pas :\n"+ dossierSchemas.toString() );
+//		}
+//		
 	}
 	
 	
 	// Getters
 	
-	public File getDossierSchemas() {
-		return dossierSchemas;
-	}
+//	public File getDossierSchemas() {
+//		return dossierSchemas;
+//	}
 
 }

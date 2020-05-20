@@ -50,10 +50,10 @@ public class MenuBarAppli extends MenuBar {
 		
 		// Manu Système
 		
-		menu =  new Menu( "Système" );;
+		menu =  new Menu( "Systeme" );
 		this.getMenus().add(menu);
 		
-		item = new MenuItem( "Se déconnecter" );
+		item = new MenuItem( "Se deconnecter" );
 		item.setOnAction(  (e) -> managerGui.showView( EnumView.Connexion )  );
 		menu.getItems().add( item );
 		itemDeconnecter = item;
@@ -62,7 +62,77 @@ public class MenuBarAppli extends MenuBar {
 		item.setOnAction(  (e) -> managerGui.exit()  );
 		menu.getItems().add( item );
 		
-		// Manu Etats
+		/////////////Vues Principales
+		
+		menu = new Menu( "Vue Generale" );
+		this.getMenus().add(menu);
+		menu.setOnAction( (e) -> managerGui.showView( EnumView.PagePrincipale ) );
+		
+		menu = new Menu( "Vue Carte" );
+		this.getMenus().add(menu);
+		menu.setOnAction( (e) -> managerGui.showView( EnumView.PageCarte ) );
+		
+		/////////////Vues d'information
+		
+		menu = new Menu( "Postes" );
+		this.getMenus().add(menu);
+		menu.setOnAction( (e) -> managerGui.showView( EnumView.PosteListe ));
+		
+		menu = new Menu( "Benevoles" );
+		this.getMenus().add(menu);
+		menu.setOnAction( (e) -> managerGui.showView( EnumView.BenevoleListe ));
+		
+		
+		
+
+
+		// Configuration initiale du menu
+		configurerMenu( modelConnexion.getCompteActif() );
+
+		// Le changement du compte connecté modifie automatiquement le menu
+		modelConnexion.compteActifProperty().addListener( (obs) -> {
+					Platform.runLater( () -> configurerMenu( modelConnexion.getCompteActif() ) );
+				}
+			); 
+		
+	}
+
+	
+	// Méthodes auxiliaires
+	
+	private void configurerMenu( Compte compteActif  ) {
+
+		itemDeconnecter.setDisable(true);
+		
+		
+		
+//		menuDonnees.setVisible(false);
+//		itemCategories.setVisible(false);
+//		itemComptes.setVisible(false);
+//		menuEtats.setVisible(false);
+//		menuTests.setVisible(false);
+//		menuEtats.setVisible(false);
+		
+		if( compteActif != null ) {
+			itemDeconnecter.setDisable(false);
+			if( compteActif.isInRole( Roles.UTILISATEUR) ) {
+				menuDonnees.setVisible(true);
+				menuEtats.setVisible(true);
+			}
+			if( compteActif.isInRole( Roles.ADMINISTRATEUR ) ) {
+				menuDonnees.setVisible(true);
+				itemCategories.setVisible(true);
+				itemComptes.setVisible(true);
+				menuTests.setVisible(true);
+			}
+		}
+	}
+	
+}
+
+
+/* GLITCH WORLD
+ * // Manu Etats
 		
 		menu =  new Menu( "Etats" );;
 		this.getMenus().add(menu);
@@ -111,47 +181,4 @@ public class MenuBarAppli extends MenuBar {
 		
 		item = new MenuItem( "DaoService" );
 		item.setOnAction(  (e) -> managerGui.showView( EnumView.TestDaoService )  );
-		menu.getItems().add( item );
-
-
-		// Configuration initiale du menu
-		configurerMenu( modelConnexion.getCompteActif() );
-
-		// Le changement du compte connecté modifie automatiquement le menu
-		modelConnexion.compteActifProperty().addListener( (obs) -> {
-					Platform.runLater( () -> configurerMenu( modelConnexion.getCompteActif() ) );
-				}
-			); 
-		
-	}
-
-	
-	// Méthodes auxiliaires
-	
-	private void configurerMenu( Compte compteActif  ) {
-
-		itemDeconnecter.setDisable(true);
-		
-		menuDonnees.setVisible(false);
-		itemCategories.setVisible(false);
-		itemComptes.setVisible(false);
-		menuEtats.setVisible(false);
-		menuTests.setVisible(false);
-		menuEtats.setVisible(false);
-		
-		if( compteActif != null ) {
-			itemDeconnecter.setDisable(false);
-			if( compteActif.isInRole( Roles.UTILISATEUR) ) {
-				menuDonnees.setVisible(true);
-				menuEtats.setVisible(true);
-			}
-			if( compteActif.isInRole( Roles.ADMINISTRATEUR ) ) {
-				menuDonnees.setVisible(true);
-				itemCategories.setVisible(true);
-				itemComptes.setVisible(true);
-				menuTests.setVisible(true);
-			}
-		}
-	}
-	
-}
+		menu.getItems().add( item );*/

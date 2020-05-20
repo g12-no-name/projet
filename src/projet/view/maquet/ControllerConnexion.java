@@ -61,7 +61,7 @@ public class ControllerConnexion {
 			modelConnexion.ouvrirSessionUtilisateur();
 			Platform.runLater( () -> {
          			modelInfo.titreProperty().setValue( "Bienvenue" );
-        			modelInfo.messageProperty().setValue( "Connexion réussie" );
+        			modelInfo.messageProperty().setValue( "Connexion reussie" );
         			managerGui.showView(EnumView.Info);
             }) ;
 		} );

@@ -200,7 +200,7 @@ public class ControllerCompteForm {
 		
 		@Override
 		public String toString() {
-			return Roles.getLibellé( role );
+			return Roles.getLibelle( role );
 		}
 		
 	}

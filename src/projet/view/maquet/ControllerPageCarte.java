@@ -39,16 +39,15 @@ public class ControllerPageCarte {
 	
 	@FXML
 	private void initialize() {
-		imageCarte.imageProperty().bind(
-				modelpagecarte.imageCarteProperty() );
+		imageCarte.imageProperty().bind(modelpagecarte.imageCarteProperty() );
 
 		
 		// l'heure actuelle
 		Date now= new Date();
 	      
-	       DateFormat df = new SimpleDateFormat("HH:mm:ss.SSS");
-	        String dateTimeString = df.format(now);
-	        heure.setText(dateTimeString);
+	    DateFormat df = new SimpleDateFormat("HH:mm:ss.SSS");
+	    String dateTimeString = df.format(now);
+	    heure.setText(dateTimeString);
 	}
 	
 	
@@ -70,7 +69,7 @@ public class ControllerPageCarte {
 			   }
 			
 			@FXML
-			   private void déplacer(MouseEvent souris) {
+			   private void deplacer(MouseEvent souris) {
 			      double offsetX = (souris.getX() - x)/largeur + ascenceur.getHvalue();
 			      double offsetY = (souris.getY() - y)/largeur + ascenceur.getVvalue();
 			      ascenceur.setHvalue(offsetX);

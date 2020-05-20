@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.maquet.ControllerPagePrincipale">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.maquet.ControllerPagePrincipale">
    <top>
       <GridPane prefHeight="81.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -156,7 +156,7 @@
             </TabPane>
             <ScrollPane>
                <content>
-                  <ImageView fx:id="imageCarte" fitHeight="250.0" fitWidth="300.0" onMouseDragged="#déplacer" onMousePressed="#pointDeContact" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageCarte" fitHeight="250.0" fitWidth="300.0" onMouseDragged="#deplacer" onMousePressed="#pointDeContact" pickOnBounds="true" preserveRatio="true" />
                </content>
             </ScrollPane>
          </children>

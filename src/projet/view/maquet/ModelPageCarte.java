@@ -9,7 +9,7 @@ import jfox.commun.exception.ExceptionValidation;
 
 public class ModelPageCarte {
 	
-	//données observables
+	//donnees observables
 	private final Property<Image> carte= new SimpleObjectProperty<>();
 
 	public ModelPageCarte() {
@@ -27,9 +27,8 @@ public class ModelPageCarte {
 	
 	
 	public void chargerImages() {  
-		String cheminCarte = "Images/Carte.png";  
-		carte.setValue( new Image(        
-				getClass().getResource( cheminCarte ).toExternalForm() ) );
+		String cheminCarte = "Carte.jpg";  
+		carte.setValue( new Image(  getClass().getResource( cheminCarte ).toExternalForm() ) );
 	}
 	
 	
