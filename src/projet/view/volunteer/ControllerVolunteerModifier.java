@@ -1,4 +1,4 @@
-package Volunteer;
+package projet.view.volunteer;
 
 import javax.inject.Inject;
 
@@ -13,7 +13,7 @@ import projet.view.EnumView;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
-public class ControllerVolunteerCreate {
+public class ControllerVolunteerModifier {
 
 	
 	// Composants de la vue
@@ -44,7 +44,7 @@ public class ControllerVolunteerCreate {
 	@FXML
 	private Button 				goBack;
 	@FXML
-	private Button 				add;
+	private Button 				confirm;
 	@FXML
 	private Button 				reinitialize;
 	
@@ -53,7 +53,7 @@ public class ControllerVolunteerCreate {
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	private ModelVolunteer		modelV;
+	private ModelVolunteer	modelV;
 
 
 	// Initialisation du Controller
@@ -76,12 +76,15 @@ public class ControllerVolunteerCreate {
 		//textFieldDispoD.textProperty().bindBidirectional( courant.heureDProperty() );
 		//textFieldDispoF.textProperty().bindBidirectional( courant.heureDProperty() );
 		
-		mineur.selectedProperty().bindBidirectional( courant.mineurProperty() );
+		try{
+			mineur.selectedProperty().bindBidirectional( courant.mineurProperty() );
+		}catch(NullPointerException e) {}
+		try {
 		permisDeConduire.selectedProperty().bindBidirectional( courant.permisProperty() );
+		}catch(NullPointerException e) {}
+		try {
 		membership.selectedProperty().bindBidirectional( courant.membreProperty() );
-		
-	///////////////////////////////PLZ END ME
-	
+		}catch(NullPointerException e) {}
 	}
 	
 	
@@ -93,14 +96,13 @@ public class ControllerVolunteerCreate {
 	}
 	
 	@FXML
-	private void doAdd() {
+	private void doConfirm() {
 		modelV.validerMiseAJour();
 		managerGui.showView( EnumView.BenevoleListe );
 	}
-	
+
 	@FXML 
 	private void doReinitialize() {
 		initialize();
 	}
-
 }

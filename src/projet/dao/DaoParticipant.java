@@ -38,7 +38,7 @@ public class DaoParticipant {
 
 		try {
 			cn = dataSource.getConnection();
-			sql = "INSERT INTO participant ( nom, prenom, dateNaissance, mail, numTel, adresse, ville, mineur, autorisationParentale, club, capitaine, paiement, attestation, dossierMedic, equipe ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO participant ( nom, prenom, dateNaissance, mail, numTel, adresse, ville, mineur, autorisationParentale, club, capitaine, paiement, attestation, dossierMedic, equipe ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS );
 				stmt.setObject( 1, participant.getNom() );
 				stmt.setObject( 2, participant.getPrenom() );

@@ -37,7 +37,7 @@ public class DaoBenevole {
 
 		try {
 			cn = dataSource.getConnection();
-			sql = "INSERT INTO benevole ( nom, prenom, dateNaissance, mail, numTel, adresse, ville, mineur, autorisationParentale, club, capitaine, paiement, attestation, dossierMedic, equipe ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO benevole ( nom, prenom, dateNaissance, mail, numTel, adresse, ville, mineur, autorisationParentale, permis, membre, heureD, heureF) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS );
 				stmt.setObject( 1, benevole.getNom() );
 				stmt.setObject( 2, benevole.getPrenom() );
@@ -54,7 +54,7 @@ public class DaoBenevole {
 				stmt.setObject( 13, benevole.getHeureF() );
 				stmt.executeUpdate();
 
-				// Récupère l'identifiant généré par le SGBD
+				// Recup l'identifiant genere par le SGBD
 				rs = stmt.getGeneratedKeys();
 				rs.next();
 				benevole.setId( rs.getObject( 1, Integer.class ) );

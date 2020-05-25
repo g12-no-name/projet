@@ -1,4 +1,4 @@
-package Volunteer;
+package projet.view.volunteer;
 
 import javax.inject.Inject;
 
@@ -58,16 +58,29 @@ public class ControllerVolunteerInfo {
 
 		// Data binding
 		
-		Benevole courant = modelV.getCourant();
-		textFieldNomEtPrenom.setText(courant.getNom()+" "+courant.getPrenom());
-		textFieldTel.setText( courant.getNumTel() );
-		textFieldMail.setText( courant.getMail() );
-		textFieldAdresse.setText( courant.getAdresse() );
-		datePickerDateNaissance.setValue( courant.getDateNaissance() );
-		textFieldDispos.setText( "A partir de "+courant.getHeureD().toString()+" jusqu'à "+courant.getHeureF().toString() );
-		mineur.setSelected( courant.getMineur() );
-		permisDeConduire.setSelected( courant.getPermis() );
-		membership.setSelected( courant.getMembre() );
+Benevole courant = modelV.getCourant();
+		String s="";
+		try {s+=courant.nomProperty().get()+" ";}catch(Exception e) {}
+		try {s+=courant.prenomProperty().get();}catch(Exception e) {}
+		textFieldNomEtPrenom.setText(s);
+		
+		textFieldTel.textProperty().bindBidirectional( courant.numTelProperty() );
+		textFieldMail.textProperty().bindBidirectional( courant.mailProperty() );
+		textFieldAdresse.textProperty().bindBidirectional( courant.adresseProperty() );
+		
+		datePickerDateNaissance.valueProperty().bindBidirectional( courant.dateNaissanceProperty() );
+		//textFieldDispoD.textProperty().bindBidirectional( courant.heureDProperty() );
+		//textFieldDispoF.textProperty().bindBidirectional( courant.heureDProperty() );
+		
+		try{
+			mineur.selectedProperty().bindBidirectional( courant.mineurProperty() );
+		}catch(NullPointerException e) {}
+		try {
+		permisDeConduire.selectedProperty().bindBidirectional( courant.permisProperty() );
+		}catch(NullPointerException e) {}
+		try {
+		membership.selectedProperty().bindBidirectional( courant.membreProperty() );
+		}catch(NullPointerException e) {}
 	}
 	
 	
@@ -82,5 +95,9 @@ public class ControllerVolunteerInfo {
 	private void doModify() {
 		managerGui.showView( EnumView.BenevoleModify );
 	}
-
+	
+	private String deleteNullError(String s) {
+		if(s==null) {return "";}
+		return s;
+	}
 }

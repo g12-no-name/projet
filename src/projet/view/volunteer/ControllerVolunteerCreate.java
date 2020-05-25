@@ -1,4 +1,4 @@
-package Volunteer;
+package projet.view.volunteer;
 
 import javax.inject.Inject;
 
@@ -13,7 +13,7 @@ import projet.view.EnumView;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
-public class ControllerVolunteerModifier {
+public class ControllerVolunteerCreate {
 
 	
 	// Composants de la vue
@@ -34,17 +34,18 @@ public class ControllerVolunteerModifier {
 	private TextField			textFieldDispoD;
 	@FXML
 	private TextField			textFieldDispoF;
+	
 	@FXML
 	private CheckBox			mineur;
 	@FXML
 	private CheckBox 			permisDeConduire;
 	@FXML 
 	private CheckBox			membership;
-	
+
 	@FXML
 	private Button 				goBack;
 	@FXML
-	private Button 				confirm;
+	private Button 				add;
 	@FXML
 	private Button 				reinitialize;
 	
@@ -53,7 +54,7 @@ public class ControllerVolunteerModifier {
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	private ModelVolunteer	modelV;
+	private ModelVolunteer		modelV;
 
 
 	// Initialisation du Controller
@@ -79,6 +80,9 @@ public class ControllerVolunteerModifier {
 		mineur.selectedProperty().bindBidirectional( courant.mineurProperty() );
 		permisDeConduire.selectedProperty().bindBidirectional( courant.permisProperty() );
 		membership.selectedProperty().bindBidirectional( courant.membreProperty() );
+		
+	///////////////////////////////PLZ END ME
+	
 	}
 	
 	
@@ -90,13 +94,14 @@ public class ControllerVolunteerModifier {
 	}
 	
 	@FXML
-	private void doConfirm() {
+	private void doAdd() {
 		modelV.validerMiseAJour();
 		managerGui.showView( EnumView.BenevoleListe );
 	}
-
+	
 	@FXML 
 	private void doReinitialize() {
 		initialize();
 	}
+
 }

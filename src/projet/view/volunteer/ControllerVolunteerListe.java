@@ -1,4 +1,4 @@
-package Volunteer;
+package projet.view.volunteer;
 
 import javax.inject.Inject;
 
