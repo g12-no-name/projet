@@ -25,7 +25,13 @@ ALTER TABLE compte ALTER COLUMN id RESTART WITH 4;
 
 
 
--- Personne
+-- Poste
+INSERT INTO poste (id,nom,heured,heuref) VALUES
+ (1,'Parking','07:00:00','09:00:00'),
+ (2,'Signaleur','08:30:00','13:30:00'),
+ (3,'Buvette','07:00:00','15:00:00');
+ 
+ALTER TABLE poste ALTER COLUMN id RESTART WITH 4;
 
 -- Benevole
 
