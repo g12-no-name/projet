@@ -1,7 +1,9 @@
-package projet.veiw.restaurant;
+package projet.view.restaurant;
 
 import projet.data.Equipe;
-//import projet.dao.DaoEquipe;
+import projet.view.restaurant.ModelRestaurant;
+
+import javax.inject.Inject;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,7 +11,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 
-public class controllerRestaurant {
+public class ControllerRestaurant {
 	
 	@FXML
 	private TextField participant1;
@@ -26,7 +28,8 @@ public class controllerRestaurant {
 	private Equipe equipeCourrante;
 	private boolean equipeSelectionne = false;//indique si une equipe est selectionné
 	
-	
+	@Inject
+	private ModelRestaurant	modelRestaurant;
 	
 	
 	
@@ -49,10 +52,9 @@ public class controllerRestaurant {
 	
 	@FXML
 	private void deductionRepas() {
-		// retire le nombre ed repas necessaire
+		// retire le nombre de repas necessaire
 		if(this.equipeSelectionne) {
-			this.equipeCourrante.setNbBouffe(Integer.valueOf(this.nbRepas.getText())-this.nbRetireValue);
-			//projet.dao.DaoEquipe.modifier(this.equipeCourrante);
+			this.modelRestaurant.deductionRepas(this.equipeCourrante, (Integer.valueOf(this.nbRepas.getText())-this.nbRetireValue));
 			//
 			this.equipeSelectionne = false;
 		}
