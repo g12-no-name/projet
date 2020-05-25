@@ -23,6 +23,7 @@ public class MenuBarAppli extends MenuBar {
 	private Menu	menuDonnees;
 	private Menu	menuEtats;
 	private Menu	menuTests;
+	private Menu	menuPoste;
 	
 	private MenuItem itemDeconnecter;
 
@@ -76,7 +77,19 @@ public class MenuBarAppli extends MenuBar {
 		
 		menu = new Menu( "Postes" );
 		this.getMenus().add(menu);
-		menu.setOnAction( (e) -> managerGui.showView( EnumView.PosteListe ));
+		menuPoste=menu;
+		
+		item = new MenuItem( "Liste Poste" );
+		item.setOnAction(  (e) -> managerGui.showView( EnumView.PosteListe)  );
+		menu.getItems().add( item );
+		
+		item = new MenuItem( "Creation Poste" );
+		item.setOnAction(  (e) -> managerGui.showView( EnumView.PosteCreation )  );
+		menu.getItems().add( item );
+		
+		
+		
+		
 		
 		menu = new Menu( "Benevoles" );
 		this.getMenus().add(menu);

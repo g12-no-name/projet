@@ -41,7 +41,7 @@ public class DaoPoste {
 			cn = dataSource.getConnection();
 
 			// Insère l'equipe
-			sql = "INSERT INTO poste ( nom, typePoste ,heureD, heureF ) VALUES ( ?, ?, ?, ?, ? )";
+			sql = "INSERT INTO poste ( nom, typePoste ,heureD, heureF ) VALUES ( ?, ?, ?, ? )";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
 			stmt.setString(	1, poste.getNom() );
 			stmt.setInt(	2, poste.getTypePoste().getId() );
