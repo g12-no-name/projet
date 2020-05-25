@@ -10,7 +10,6 @@ import javafx.scene.control.MenuItem;
 import jfox.javafx.view.IManagerGui;
 import projet.commun.Roles;
 import projet.data.Compte;
-import projet.report.EnumReport;
 import projet.report.ManagerReport;
 import projet.view.systeme.ModelConnexion;
 
@@ -66,25 +65,27 @@ public class MenuBarAppli extends MenuBar {
 		
 		menu = new Menu( "Vue Generale" );
 		this.getMenus().add(menu);
-		menu.setOnAction( (e) -> managerGui.showView( EnumView.PagePrincipale ) );
+		item = new MenuItem( "Vue Generale" );
+		item.setOnAction(  (e) -> managerGui.showView( EnumView.PagePrincipale )  );
+		menu.getItems().add( item );
 		
-		menu = new Menu( "Vue Carte" );
-		this.getMenus().add(menu);
-		menu.setOnAction( (e) -> managerGui.showView( EnumView.PageCarte ) );
+		item = new MenuItem( "Vue Carte" );
+		item.setOnAction( (e) -> managerGui.showView( EnumView.PageCarte ) );
+		menu.getItems().add( item );
 		
 		/////////////Vues d'information
 		
-		menu = new Menu( "Postes" );
+		menu = new Menu( "Data" );
 		this.getMenus().add(menu);
-		menu.setOnAction( (e) -> managerGui.showView( EnumView.PosteListe ));
+		item = new MenuItem( "Postes" );
+		item.setOnAction(  (e) -> managerGui.showView( EnumView.PosteListe )  );
+		menu.getItems().add( item );
 		
-		menu = new Menu( "Benevoles" );
-		this.getMenus().add(menu);
-		menu.setOnAction( (e) -> managerGui.showView( EnumView.BenevoleListe ));
+		item = new MenuItem( "Benevs" );
+		item.setOnAction( (e) -> managerGui.showView( EnumView.BenevoleListe ) );
+		menu.getItems().add( item );
 		
 		
-		
-
 
 		// Configuration initiale du menu
 		configurerMenu( modelConnexion.getCompteActif() );
