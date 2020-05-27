@@ -34,18 +34,18 @@ public class ManagerGui extends ManagerGuiAbstract {
 	@Override
 	protected void configureStage()  {
 		
-		// Choisit la vue à afficher
+		// Choisit la vue a afficher
 		showView( EnumView.Connexion);
 		
 		// Configure le stage
-		stage.setTitle( "Gestion de contacts" );
+		stage.setTitle( "Gestion de l'organisation du Bol d'air" );
 		stage.setWidth(600);
 		stage.setHeight(440);
 		stage.setMinWidth(400);
 		stage.setMinHeight(300);
 		stage.getIcons().add(new Image(getClass().getResource("icone.png").toExternalForm()));
 		
-		// Configuration par défaut pour les boîtes de dialogue
+		// Configuration par defaut pour les boites de dialogue
 		typeConfigDialogDefault = ConfigDialog.class;
 	}
 

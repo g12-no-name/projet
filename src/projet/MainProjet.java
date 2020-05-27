@@ -32,12 +32,12 @@ public class MainProjet {
 			// Configure le ManagerReport
 			context.getBean( ManagerReport.class ).setDirReports( "etats" );;
 			
-			// Démarre l'application
+			// Demarre l'application
 			context.getBean( ManagerGui.class ).launch();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Impossible de démarrer l'application.", "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Impossible de demarrer l'application.", "", JOptionPane.ERROR_MESSAGE);
 			System.exit(1);
 		}
 		System.exit(0);
