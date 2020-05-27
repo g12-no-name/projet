@@ -2,6 +2,8 @@ package projet.view.restaurant;
 
 import projet.data.Equipe;
 import projet.view.restaurant.ModelRestaurant;
+import projet.view.ManagerGui;
+import projet.view.EnumView;
 
 import javax.inject.Inject;
 
@@ -30,13 +32,23 @@ public class ControllerRestaurant {
 	
 	@Inject
 	private ModelRestaurant	modelRestaurant;
-	
+	@Inject
+	private ManagerGui	managerGui;
 	
 	
 	@FXML
 	private void initialize() {
 		
 	}
+	
+	@FXML
+    private void goBack() {
+		managerGui.showView( EnumView.PagePrincipale );
+    }
+	
+	
+	
+	
 	
 	@FXML
 	private void recherche() {
