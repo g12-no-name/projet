@@ -236,7 +236,7 @@ public class DaoParticipant {
 	
 	// Méthodes auxiliaires
 	
-	private Participant construireParticipant( ResultSet rs, Boolean flagComplet ) throws SQLException {
+	public Participant construireParticipant( ResultSet rs, Boolean flagComplet ) throws SQLException {
 		Participant participant = new Participant();
 		participant.setId(rs.getObject( "id", Integer.class ));
 		participant.setNom(rs.getObject( "nom", String.class ));

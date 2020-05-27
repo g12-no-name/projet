@@ -1,9 +1,12 @@
 package projet.view.restaurant;
 
 import projet.data.Equipe;
+import projet.data.Participant;
 import projet.view.restaurant.ModelRestaurant;
 import projet.view.ManagerGui;
 import projet.view.EnumView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,6 +32,7 @@ public class ControllerRestaurant {
 	private int nbRetireValue = 0;
 	private Equipe equipeCourrante;
 	private boolean equipeSelectionne = false;//indique si une equipe est selectionné
+	private List<Participant> participantsCourant;
 	
 	@Inject
 	private ModelRestaurant	modelRestaurant;
@@ -57,8 +61,12 @@ public class ControllerRestaurant {
 		//
 		if(this.equipeCourrante != null) {
 			this.nbRepas.setText(String.valueOf(this.equipeCourrante.getNbBouffe()+2));
-			//			
+			//
+			this.participantsCourant = this.modelRestaurant.getDaoEquipe().listParticipant(this.equipeCourrante.getId());
 			String text = "Equipe:"+this.equipeCourrante.getNom()+"\n";
+			text = text+"\t capitain:"+(this.participantsCourant.get(0).getNom())+" "+(this.participantsCourant.get(0).getPrenom())+" \n";
+			text = text+"\t equipe:"+(this.participantsCourant.get(1).getNom())+" "+(this.participantsCourant.get(1).getPrenom())+" \n";
+			//
 			if(this.equipeCourrante.getTypeCourse().getId() == 1) {
 				text = text+"\t Mini Bol d'air \n";
 			}else {
