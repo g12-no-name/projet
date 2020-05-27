@@ -29,6 +29,8 @@ public class ControllerVolunteerListe {
 	private Button				buttonObserver;
 	@FXML
 	private Button				buttonModifier;
+	@FXML 
+	private Button				buttonGetBack;
 	
 	
 	
@@ -87,35 +89,40 @@ public class ControllerVolunteerListe {
 		managerGui.showView( EnumView.BenevoleView );
 	}
 	
+	@FXML
+	private void goBack() {
+		managerGui.showView( EnumView.PagePrincipale );
+	}
+	
 	// Gestion des evenements
 
-		// Clic sur la liste
-		@FXML
-		private void gererClicSurListe( MouseEvent event ) {
-			if (event.getButton().equals(MouseButton.PRIMARY)) {
-				if (event.getClickCount() == 2) {
-					if ( list.getSelectionModel().getSelectedIndex() == -1 ) {
-						managerGui.showDialogError( "Aucun element n'est selectionne dans la liste.");
-					} else {
-						doModify();
-					}
+	// Clic sur la liste
+	@FXML
+	private void gererClicSurListe( MouseEvent event ) {
+		if (event.getButton().equals(MouseButton.PRIMARY)) {
+			if (event.getClickCount() == 2) {
+				if ( list.getSelectionModel().getSelectedIndex() == -1 ) {
+					managerGui.showDialogError( "Aucun element n'est selectionne dans la liste.");
+				} else {
+					doModify();
 				}
 			}
 		}
+	}
 
+	
+	// Methodes auxiliaires
+	
+	private void configurerBoutons() {
 		
-		// Méthodes auxiliaires
-		
-		private void configurerBoutons() {
-			
-	    	if( list.getSelectionModel().getSelectedItems().isEmpty() ) {
-				buttonModifier.setDisable(true);
-				buttonDelete.setDisable(true);
-			} else {
-				buttonModifier.setDisable(false);
-				buttonDelete.setDisable(false);
-			}
+    	if( list.getSelectionModel().getSelectedItems().isEmpty() ) {
+			buttonModifier.setDisable(true);
+			buttonDelete.setDisable(true);
+		} else {
+			buttonModifier.setDisable(false);
+			buttonDelete.setDisable(false);
 		}
+	}
 
 	
 		

@@ -25,6 +25,7 @@
             <Button fx:id="buttonModifier" mnemonicParsing="false" onAction="#doModify" text="Modifier" />
             <Button fx:id="buttonObserver" mnemonicParsing="false" onAction="#doObserve" text="Observer" />
             <Button fx:id="buttonDelete" mnemonicParsing="false" onAction="#doDelete" text="Supprimer" />
+            <Button fx:id="buttonGetBack" mnemonicParsing="false" onAction="#goBack" text="Retour" />
          </children>
       </HBox>
    </children>
