@@ -1,12 +1,15 @@
 package projet.view.poste;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import javax.inject.Inject;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.util.converter.LocalTimeStringConverter;
 import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Assignation;
@@ -52,14 +55,55 @@ public class ControllerPosteModif {
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty()  );
 		comboBoxType.setItems( modelPoste.getTypePoste() );
 		comboBoxType.valueProperty().bindBidirectional( courant.typePosteProperty() );
-		textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter()  );
-		textFieldHeureF.textProperty().bindBidirectional( courant.heureFProperty(), new LocalTimeStringConverter()  ); 
+		courant.heureDProperty().addListener(obs->actualiserHeureDDansVue());
+		actualiserHeureDDansVue();
+		courant.heureFProperty().addListener(obs->actualiserHeureFDansVue());
+		actualiserHeureFDansVue();
+		//textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter()  );
+		//textFieldHeureF.textProperty().bindBidirectional( courant.heureFProperty(), new LocalTimeStringConverter()  ); 
 		listView.setItems(courant.getBenevoles());
 		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole() ));
 	}
 	
 	
 	// Actions
+	
+	private void actualiserHeureDDansModele() {
+		// Modifie le statut en fct du bouton radio selectionné
+		String texte = textFieldHeureD.getText();
+		try {
+			LocalTime heure= LocalTime.parse(texte, DateTimeFormatter.ofPattern("hh:mm"));
+			modelPoste.getCourant().setHeureD(heure);
+		}catch(DateTimeParseException e) {
+			StringBuilder message = new StringBuilder();
+			message.append("\nEcrivez heure debut sous le format hh:mm");
+		};
+	}
+	
+	private void actualiserHeureFDansModele() {
+		// Modifie l'heure dans le modele en fonction du texte
+		String texte = textFieldHeureF.getText();
+		try {
+			LocalTime heure= LocalTime.parse(texte, DateTimeFormatter.ofPattern("hh:mm"));
+			modelPoste.getCourant().setHeureF(heure);
+		}catch(DateTimeParseException e) {
+			StringBuilder message = new StringBuilder();
+			message.append("\nEcrivez heure fin sous le format hh:mm");
+		};
+	}
+
+	private void actualiserHeureDDansVue() {
+		// Selectionne le bouton radio correspondant au statut
+		String texte=modelPoste.getCourant().getHeureD().toString();
+		textFieldHeureD.setText(texte);
+	}
+	
+	private void actualiserHeureFDansVue() {
+		// Selectionne le bouton radio correspondant au statut
+		String texte=modelPoste.getCourant().getHeureF().toString();
+		textFieldHeureF.setText(texte);
+	}
+	
 	
 	@FXML
 	private void doRetour() {
@@ -68,6 +112,8 @@ public class ControllerPosteModif {
 	
 	@FXML
 	private void doValider() {
+		actualiserHeureDDansModele();
+		actualiserHeureFDansModele();
 		modelPoste.validerMiseAJour();
 		managerGui.showView( EnumView.PosteListe );	
 	}
