@@ -4,12 +4,14 @@ import javax.inject.Inject;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Assignation;
+import projet.data.Poste;
 import projet.view.EnumView;
 
 
@@ -26,6 +28,8 @@ public class ControllerListeAssignationPoste {
 	private Button				buttonSupprimer;
 	@FXML
 	private Button				buttonAjouter;
+	@FXML
+	private Label 				nomPoste;
 
 
 	// Autres champs
@@ -40,9 +44,10 @@ public class ControllerListeAssignationPoste {
 
 	@FXML
 	private void initialize() {
-
+		Poste courant =modelPoste.getCourant();
 		// Data binding
 		listView.setItems( modelPoste.getCourant().getBenevoles() );
+		nomPoste.textProperty().bind(courant.nomProperty());
 		
 		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole() ));
 		
@@ -98,6 +103,11 @@ public class ControllerListeAssignationPoste {
 		managerGui.showView( EnumView.ListeAssignationPoste);
 	}
 	
+	@FXML
+	private void doAccueil() {
+		managerGui.showView( EnumView.PagePrincipale);
+	}
+	
 	// Gestion des évènements
 
 	// Clic sur la liste
@@ -122,7 +132,7 @@ public class ControllerListeAssignationPoste {
     	if( listView.getSelectionModel().getSelectedItems().isEmpty() ) {
 			buttonModifier.setDisable(true);
 			buttonSupprimer.setDisable(true);
-			buttonAjouter.setDisable(true);
+			buttonAjouter.setDisable(false);
 		} else {
 			buttonModifier.setDisable(false);
 			buttonSupprimer.setDisable(false);

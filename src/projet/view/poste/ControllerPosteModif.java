@@ -1,7 +1,6 @@
 package projet.view.poste;
 
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import javax.inject.Inject;
@@ -55,9 +54,7 @@ public class ControllerPosteModif {
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty()  );
 		comboBoxType.setItems( modelPoste.getTypePoste() );
 		comboBoxType.valueProperty().bindBidirectional( courant.typePosteProperty() );
-		courant.heureDProperty().addListener(obs->actualiserHeureDDansVue());
 		actualiserHeureDDansVue();
-		courant.heureFProperty().addListener(obs->actualiserHeureFDansVue());
 		actualiserHeureFDansVue();
 		//textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter()  );
 		//textFieldHeureF.textProperty().bindBidirectional( courant.heureFProperty(), new LocalTimeStringConverter()  ); 
@@ -68,28 +65,40 @@ public class ControllerPosteModif {
 	
 	// Actions
 	
-	private void actualiserHeureDDansModele() {
+	private boolean actualiserHeureDDansModele() {
 		// Modifie le statut en fct du bouton radio selectionné
 		String texte = textFieldHeureD.getText();
+		boolean b=true;
+		System.out.println(texte);
 		try {
-			LocalTime heure= LocalTime.parse(texte, DateTimeFormatter.ofPattern("hh:mm"));
+			LocalTime heure= LocalTime.parse(texte);
+			System.out.println(heure.toString());
 			modelPoste.getCourant().setHeureD(heure);
 		}catch(DateTimeParseException e) {
+			b=false;
+			System.out.println("erreur d");
 			StringBuilder message = new StringBuilder();
 			message.append("\nEcrivez heure debut sous le format hh:mm");
 		};
+		return b;
 	}
 	
-	private void actualiserHeureFDansModele() {
+	private boolean actualiserHeureFDansModele() {
 		// Modifie l'heure dans le modele en fonction du texte
 		String texte = textFieldHeureF.getText();
+		boolean b=true;
+		System.out.println(texte);
 		try {
-			LocalTime heure= LocalTime.parse(texte, DateTimeFormatter.ofPattern("hh:mm"));
+			LocalTime heure= LocalTime.parse(texte);
+			System.out.println(heure.toString());
 			modelPoste.getCourant().setHeureF(heure);
 		}catch(DateTimeParseException e) {
+			b=false;
+			System.out.println("erreur f");
 			StringBuilder message = new StringBuilder();
 			message.append("\nEcrivez heure fin sous le format hh:mm");
 		};
+		return b;
 	}
 
 	private void actualiserHeureDDansVue() {
@@ -104,6 +113,10 @@ public class ControllerPosteModif {
 		textFieldHeureF.setText(texte);
 	}
 	
+	@FXML
+	private void doAccueil() {
+		managerGui.showView( EnumView.PagePrincipale);
+	}
 	
 	@FXML
 	private void doRetour() {
@@ -112,14 +125,16 @@ public class ControllerPosteModif {
 	
 	@FXML
 	private void doValider() {
-		actualiserHeureDDansModele();
-		actualiserHeureFDansModele();
-		modelPoste.validerMiseAJour();
-		managerGui.showView( EnumView.PosteListe );	
+		if(actualiserHeureDDansModele()) {
+			if(actualiserHeureFDansModele()) {
+				modelPoste.validerMiseAJour();
+				managerGui.showView( EnumView.PosteListe );	
+			}
+		}
 	}
 	
 	@FXML void doModifierBenevole() {
-		
+		managerGui.showView( EnumView.ListeAssignationPoste );	
 	}
 
 }

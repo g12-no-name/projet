@@ -67,6 +67,11 @@ public class ControllerAjouterAssignationPoste {
 	}
 	
 	@FXML
+	private void doAccueil() {
+		managerGui.showView( EnumView.PagePrincipale);
+	}
+	
+	@FXML
 	private void doValider() {
 		modelPoste.validerMiseAJour();
 		managerGui.showView( EnumView.PosteListe );	

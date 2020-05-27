@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="paneRoot" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.poste.ControllerPosteListe">
+<AnchorPane fx:id="paneRoot" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.poste.ControllerListeAssignationPoste">
    <children>
-      <Label alignment="CENTER" styleClass="titre-vue" text="Liste des assignations à ce poste" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+      <Label alignment="CENTER" styleClass="titre-vue" text="Liste des assignations au poste" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
       <HBox alignment="CENTER" layoutY="75.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <ListView fx:id="listView" layoutX="88.0" layoutY="75.0" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#gererClicSurListe" prefHeight="230.0" prefWidth="369.0">
@@ -21,11 +21,13 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="263.0" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#doAccueil" text="Accueil" />
             <Button fx:id="buttonAjouter" mnemonicParsing="false" onAction="#doAjouter" text="Ajouter" />
             <Button fx:id="buttonModifier" mnemonicParsing="false" onAction="#doModifier" text="Modifier" />
             <Button fx:id="buttonSupprimer" mnemonicParsing="false" onAction="#doSupprimer" text="Supprimer" />
             <Button mnemonicParsing="false" text="Retour" />
          </children>
       </HBox>
+      <Label fx:id="nomPoste" layoutX="189.0" layoutY="38.0" text="Label" />
    </children>
 </AnchorPane>

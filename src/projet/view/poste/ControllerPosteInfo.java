@@ -64,6 +64,11 @@ public class ControllerPosteInfo {
 	}
 	
 	@FXML
+	private void doAccueil() {
+		managerGui.showView( EnumView.PagePrincipale);
+	}
+	
+	@FXML
 	private void doModifier() {
 		Poste courant = modelPoste.getCourant();
 		modelPoste.preparerModifier(courant);

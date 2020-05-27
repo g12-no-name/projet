@@ -21,6 +21,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="263.0" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#doAccueil" text="Accueil" />
             <Button fx:id="buttonAjouter" mnemonicParsing="false" onAction="#doAjouter" text="Ajouter" />
             <Button fx:id="buttonModifier" mnemonicParsing="false" onAction="#doModifier" text="Modifier" />
             <Button fx:id="buttonObserver" mnemonicParsing="false" onAction="#doObserver" text="Observer" />

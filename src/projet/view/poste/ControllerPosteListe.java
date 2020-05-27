@@ -93,6 +93,11 @@ public class ControllerPosteListe {
 			managerGui.showView( EnumView.PosteInfo );
 		}
 	}
+	
+	@FXML
+	private void doAccueil() {
+		managerGui.showView( EnumView.PagePrincipale);
+	}
 
 	@FXML
 	private void doSupprimer() {
