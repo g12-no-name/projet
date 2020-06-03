@@ -33,6 +33,14 @@ INSERT INTO poste (id,nom,heured,heuref) VALUES
  
 ALTER TABLE poste ALTER COLUMN id RESTART WITH 4;
 
+----TypePoste
+INSERT INTO typePoste (id,nom) VALUES
+ (1,'NOM1'),
+ (2,'NOM2'),
+ (3,'NOM3');
+ 
+ALTER TABLE typePoste ALTER COLUMN id RESTART WITH 4;
+
 -- Benevole
 
 INSERT INTO benevole (id, nom, prenom, numTel) VALUES 

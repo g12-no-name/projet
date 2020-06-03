@@ -23,6 +23,7 @@ public class ControllerPagePrincipale {
 	
 	   private double x, y;
 	   private double largeur;
+	   
 	
 	
 	// Composant de la vue	
@@ -72,7 +73,7 @@ public class ControllerPagePrincipale {
 			// l'heure actuelle
 			Date now= new Date();
 		      
-		       DateFormat df = new SimpleDateFormat("HH:mm:ss.SSS");
+		       DateFormat df = new SimpleDateFormat("HH:mm");
 		        String dateTimeString = df.format(now);
 		        heure.setText(dateTimeString);
 		}
@@ -81,18 +82,26 @@ public class ControllerPagePrincipale {
 			modelpageprincipale.actualiserListe();
 			UtilFX.selectInListView( listView, modelpageprincipale.getCourant() );
 			listView.requestFocus();
-		}
-		
-		public void refresh2() {
 			modelpageprincipale.actualiserListe2();
 			UtilFX.selectInListView( listView2, modelpageprincipale.getCourant2() );
 			listView2.requestFocus();
-			
 		}
+		
+		
 
 	
 	
 	// Actions
+		
+		@FXML
+		private void doheure() {
+				    Date now= new Date();
+		      
+		            DateFormat df = new SimpleDateFormat("HH:mm");
+		            String dateTimeString = df.format(now);
+		            heure.setText(dateTimeString);
+		     
+		}
 	
 		@FXML
 		private void doCarte() {
@@ -121,7 +130,7 @@ public class ControllerPagePrincipale {
 			if ( item == null ) {
 				managerGui.showDialogError( "Aucun element n'est selectionne dans la liste.");
 			} else {
-				boolean reponse = managerGui.showDialogConfirm( "Confirmez-vous la suppression ?" );
+				boolean reponse = managerGui.showDialogConfirm( "Confirmez-vous la suppressionï¿½?" );
 				if ( reponse ) {
 					modelpageprincipale.supprimer( item );
 					refresh();
@@ -138,7 +147,7 @@ public class ControllerPagePrincipale {
 				boolean reponse = managerGui.showDialogConfirm( "Confirmez-vous la suppresionÂ ?" );
 				if ( reponse ) {
 					modelpageprincipale.supprimer2( item );
-					refresh2();
+					refresh();
 				}
 			}
 		}
@@ -163,7 +172,7 @@ public class ControllerPagePrincipale {
 		   private void Zoom() {
 		         double memX = ascenceur.getHvalue();
 		         double memY = ascenceur.getVvalue();
-		         largeur = 25;
+		         largeur = 400;
 		         imageCarte.setFitWidth(largeur);
 		         ascenceur.setHvalue(memX);
 		         ascenceur.setVvalue(memY);

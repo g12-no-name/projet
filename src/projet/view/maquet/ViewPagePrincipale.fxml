@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.maquet.ControllerPagePrincipale">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.maquet.ControllerPagePrincipale">
    <top>
       <GridPane prefHeight="81.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -32,7 +32,7 @@
          <children>
             <HBox prefHeight="41.0" prefWidth="404.0">
                <children>
-                  <Button defaultButton="true" mnemonicParsing="false" text="Mode de Base">
+                  <Button defaultButton="true" mnemonicParsing="false" onMouseMoved="#doheure" text="Mode de Base">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" top="5.0" />
                      </HBox.margin>
@@ -43,7 +43,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#doCarte" text="Mode Carte">
+                  <Button mnemonicParsing="false" onAction="#doCarte" onMouseMoved="#doheure" text="Mode Carte">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
@@ -64,12 +64,12 @@
                   </Button>
                </children>
             </HBox>
-            <TextField fx:id="heure" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="heure" alignment="CENTER" onAction="#doheure" onMouseMoved="#doheure" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                </GridPane.margin>
             </TextField>
-            <TextField text="Bol d'Air" GridPane.rowIndex="1">
+            <TextField onMouseMoved="#doheure" text="Bol d'Air" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
@@ -91,22 +91,22 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
-                  <Button mnemonicParsing="false" onAction="#doAjoutPoste" prefWidth="130.0" text="Ajout de Poste">
+                  <Button mnemonicParsing="false" onAction="#doAjoutPoste" onMouseMoved="#doheure" prefHeight="25.0" prefWidth="130.0" text="Ajout de Poste">
                      <VBox.margin>
                         <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#doSupprimer2" prefHeight="23.0" prefWidth="130.0" text="Suppression de Poste">
+                  <Button mnemonicParsing="false" onAction="#doSupprimer2" onMouseMoved="#doheure" prefHeight="23.0" prefWidth="130.0" text="Suppression de Poste">
                      <VBox.margin>
                         <Insets bottom="15.0" left="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#doAjoutBenevole" prefHeight="25.0" prefWidth="130.0" text="Ajout du benevole">
+                  <Button mnemonicParsing="false" onAction="#doAjoutBenevole" onMouseMoved="#doheure" prefHeight="25.0" prefWidth="130.0" text="Ajout du benevole">
                      <VBox.margin>
                         <Insets bottom="15.0" left="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#doSupprimer" prefWidth="130.0" text="Suppression du Benevole">
+                  <Button mnemonicParsing="false" onAction="#doSupprimer" onMouseMoved="#doheure" prefWidth="130.0" text="Suppression du Benevole">
                      <VBox.margin>
                         <Insets bottom="15.0" left="10.0" />
                      </VBox.margin>
@@ -114,7 +114,7 @@
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#Zoom" prefWidth="130.0" text="Zoom">
+                  <Button mnemonicParsing="false" onAction="#Zoom" onMouseMoved="#doheure" prefWidth="130.0" text="Zoom">
                      <VBox.margin>
                         <Insets bottom="15.0" left="10.0" />
                      </VBox.margin>
@@ -128,14 +128,14 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Slider>
-                  <TextField alignment="CENTER" text="Sponsor">
+                  <TextField alignment="CENTER" onMouseMoved="#doheure" text="Sponsor">
                      <VBox.margin>
                         <Insets left="10.0" right="80.0" />
                      </VBox.margin>
                   </TextField>
                </children>
             </VBox>
-            <TextArea prefHeight="200.0" prefWidth="200.0" text="Coordonnées" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextArea onMouseMoved="#doheure" prefHeight="200.0" prefWidth="200.0" text="Coordonnées" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
                </GridPane.margin>
@@ -144,19 +144,19 @@
               <tabs>
                 <Tab text="Bénevole">
                      <content>
-                        <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="listView" onMouseMoved="#doheure" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </Tab>
                 <Tab text="Poste">
                      <content>
-                        <ListView fx:id="listView2" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="listView2" onMouseMoved="#doheure" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </Tab>
               </tabs>
             </TabPane>
-            <ScrollPane>
+            <ScrollPane fx:id="ascenceur">
                <content>
-                  <ImageView fx:id="imageCarte" fitHeight="250.0" fitWidth="300.0" onMouseDragged="#deplacer" onMousePressed="#pointDeContact" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageCarte" fitHeight="250.0" fitWidth="300.0" onMouseDragged="#deplacer" onMouseMoved="#doheure" onMousePressed="#pointDeContact" pickOnBounds="true" preserveRatio="true" />
                </content>
             </ScrollPane>
          </children>

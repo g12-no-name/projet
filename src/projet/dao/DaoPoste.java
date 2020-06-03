@@ -234,13 +234,13 @@ public class DaoPoste {
 		Poste poste = new Poste();
 		poste.setId(rs.getObject( "id", Integer.class ));
 		poste.setNom(rs.getObject( "nom", String.class ));
-		poste.setTypePoste(daoTypePoste.retrouver(rs.getObject( "typePoste", Integer.class )));
 		poste.setHeureD(rs.getObject("heureD", LocalTime.class));
 		poste.setHeureF(rs.getObject("heureF", LocalTime.class));
-//		if ( flagComplet ) {
+     	if ( flagComplet ) {
 //			equipe.setTypeCourse(daoTypeCourse.retrouver(rs.getObject("id", Integer.class)));
 //			equipe.setCatCourse(daoCategorieCourse.retrouver(rs.getObject("id", Integer.class)));
-//		}
+     		poste.setTypePoste(daoTypePoste.retrouver(rs.getObject( "typePoste", Integer.class )));
+		}
 		
 		return poste;
 	}
