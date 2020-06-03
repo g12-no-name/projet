@@ -170,7 +170,7 @@ public class MenuBarAppli extends MenuBar {
 		menu.getItems().add( item );
 
 		
-		// Manu Tests
+		// Menu Tests
 		
 		menu =  new Menu( "Tests" );;
 		this.getMenus().add(menu);

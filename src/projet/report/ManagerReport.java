@@ -17,9 +17,11 @@ import javax.swing.SwingUtilities;
 
 import javafx.application.Platform;
 import javafx.embed.swing.SwingNode;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -246,8 +248,8 @@ public class ManagerReport {
 	
 	/**
 	 * Supprime les fichiers temporaires dont le nom commence par le 
-	 * préfixe indiqué dans la constante PREFIX_FILE_TEMP,
-	 * s'ils ont été créés il y a plus de 24 heures.
+	 * prefixe indique dans la constante PREFIX_FILE_TEMP,
+	 * s'ils ont ete crees il y a plus de 24 heures.
 	 */
 	@PostConstruct
 	public void cleanDirTemp() {
