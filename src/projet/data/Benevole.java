@@ -111,7 +111,11 @@ public class Benevole {
 				}
 			}
 		} else {
-			disponible.put(getHeureD(), getHeureF());
+			if(heureD==null || heureF==null) {
+				disponible.put(LocalTime.MIDNIGHT, LocalTime.MIDNIGHT);
+			}else {
+				disponible.put(getHeureD(), getHeureF());
+			}
 		}
 	}
 

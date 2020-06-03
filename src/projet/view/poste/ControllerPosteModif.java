@@ -20,7 +20,8 @@ import projet.view.EnumView;
 
 public class ControllerPosteModif {
 
-	
+	public static int dernier;
+
 	// Composants de la vue
 	
 	@FXML
@@ -51,6 +52,7 @@ public class ControllerPosteModif {
 		// Data binding
 		
 		Poste courant = modelPoste.getCourant();
+		dernier=courant.getId();
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty()  );
 		comboBoxType.setItems( modelPoste.getTypePoste() );
 		comboBoxType.valueProperty().bindBidirectional( courant.typePosteProperty() );

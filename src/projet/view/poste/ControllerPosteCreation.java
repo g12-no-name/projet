@@ -7,11 +7,8 @@ import javax.inject.Inject;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
-import projet.data.Assignation;
 import projet.data.Poste;
 import projet.data.TypePoste;
 import projet.view.EnumView;
@@ -20,7 +17,6 @@ import projet.view.EnumView;
 
 public class ControllerPosteCreation {
 
-	
 	// Composants de la vue
 	
 	@FXML
@@ -31,9 +27,9 @@ public class ControllerPosteCreation {
 	private TextField			textFieldHeureD;
 	@FXML
 	private TextField			textFieldHeureF;
-	@FXML
-	private ListView<Assignation>			listView;
-	
+//	@FXML
+//	private ListView<Assignation>			listView;
+//	
 	
 	// Autres champs
 	
@@ -49,15 +45,14 @@ public class ControllerPosteCreation {
 	private void initialize() {
 
 		// Data binding
-		
 		Poste courant = modelPoste.getCourant();
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty()  );
 		comboBoxType.setItems( modelPoste.getTypePoste() );
 		comboBoxType.valueProperty().bindBidirectional( courant.typePosteProperty() );
 		//textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter()  );
 		//textFieldHeureF.textProperty().bindBidirectional( courant.heureFProperty(), new LocalTimeStringConverter()  ); 
-		listView.setItems(courant.getBenevoles());
-		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole() ));
+//		listView.setItems(courant.getBenevoles());
+//		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole() ));
 	}
 	
 	
@@ -131,8 +126,8 @@ public class ControllerPosteCreation {
 		}
 	}
 	
-	@FXML void doModifierBenevole() {
-		managerGui.showView( EnumView.ListeAssignationPoste );	
-	}
+//	@FXML void doModifierBenevole() {
+//		managerGui.showView( EnumView.ListeAssignationPoste );	
+//	}
 
 }

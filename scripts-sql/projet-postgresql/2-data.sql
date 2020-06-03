@@ -29,10 +29,10 @@ ALTER TABLE compte ALTER COLUMN id RESTART WITH 4;
 
 -- Benevole
 
-INSERT INTO benevole (id, nom, prenom, numTel) VALUES 
-  ( 4, 'RandomFriendly', 'number 1254', '0505050505' ),
-  ( 5, 'RandomGuy', 'number 7826', '0606060606' ),
-  ( 6, 'RandomCat', 'number 9135', '0909090909' );
+INSERT INTO benevole (id, nom, prenom, numTel,heureD, heureF) VALUES 
+  ( 4, 'RandomFriendly', 'number 1254', '0505050505','15:05','16:00' ),
+  ( 5, 'RandomGuy', 'number 7826', '0606060606',null,null ),
+  ( 6, 'RandomCat', 'number 9135', '0909090909',null,null );
 
 ALTER TABLE personne ALTER COLUMN id RESTART WITH 6;
 

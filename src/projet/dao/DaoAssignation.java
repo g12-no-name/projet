@@ -171,6 +171,34 @@ public class DaoAssignation {
 			UtilJdbc.close( rs, stmt, cn );
 		}
 	}
+	
+	public List<Assignation> listerAssignationPoste(int idPoste)   {
+
+		Connection			cn		= null;
+		PreparedStatement	stmt	= null;
+		ResultSet 			rs 		= null;
+		String				sql;
+
+		try {
+			cn = dataSource.getConnection();
+
+			sql = "SELECT * FROM assignation WHERE idPoste = ? ORDER BY id";
+			stmt = cn.prepareStatement(sql);
+            stmt.setObject( 1, idPoste);
+			rs = stmt.executeQuery();
+			
+			List<Assignation> assignations = new ArrayList<>();
+			while (rs.next()) {
+				assignations.add( construireAssignation(rs, false) );
+			}
+			return assignations;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+	}
 
 	
 //	public List<Personne> listerPourMemo( int idMemo )   {
