@@ -38,5 +38,6 @@ public class ModelRestaurant {
 		daoEquipe.modifier(e);
 	}
 	
+	public DaoEquipe getDaoEquipe() {return this.daoEquipe;}
 	
 }

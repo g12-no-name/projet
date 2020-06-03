@@ -57,8 +57,7 @@ public class ControllerVolunteerInfo {
 	private void initialize() {
 
 		// Data binding
-		
-Benevole courant = modelV.getCourant();
+		Benevole courant = modelV.getCourant();
 		String s="";
 		try {s+=courant.nomProperty().get()+" ";}catch(Exception e) {}
 		try {s+=courant.prenomProperty().get();}catch(Exception e) {}
@@ -69,8 +68,6 @@ Benevole courant = modelV.getCourant();
 		textFieldAdresse.textProperty().bindBidirectional( courant.adresseProperty() );
 		
 		datePickerDateNaissance.valueProperty().bindBidirectional( courant.dateNaissanceProperty() );
-		//textFieldDispoD.textProperty().bindBidirectional( courant.heureDProperty() );
-		//textFieldDispoF.textProperty().bindBidirectional( courant.heureDProperty() );
 		
 		try{
 			mineur.selectedProperty().bindBidirectional( courant.mineurProperty() );
@@ -81,6 +78,11 @@ Benevole courant = modelV.getCourant();
 		try {
 		membership.selectedProperty().bindBidirectional( courant.membreProperty() );
 		}catch(NullPointerException e) {}
+		
+		s="";
+		if(courant.getHeureD()!=null) {s+="A partir de: "+courant.getHeureD().getHour()+":"+courant.getHeureD().getMinute()+" ";}
+		if(courant.getHeureF()!=null) {s+="jusqu'a: "+courant.getHeureF().getHour()+":"+courant.getHeureF().getMinute();}
+		textFieldDispos.setText(s);
 	}
 	
 	
@@ -96,8 +98,8 @@ Benevole courant = modelV.getCourant();
 		managerGui.showView( EnumView.BenevoleModify );
 	}
 	
-	private String deleteNullError(String s) {
-		if(s==null) {return "";}
-		return s;
+	@FXML
+	public void refresh() {
+		initialize();
 	}
 }

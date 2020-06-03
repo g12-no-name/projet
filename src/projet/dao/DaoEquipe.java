@@ -13,7 +13,8 @@ import javax.sql.DataSource;
 
 import jfox.dao.jdbc.UtilJdbc;
 import projet.data.Equipe;
-
+import projet.data.Participant;
+import projet.dao.DaoParticipant;
 
 public class DaoEquipe {
 
@@ -175,6 +176,40 @@ public class DaoEquipe {
 			UtilJdbc.close( rs, stmt, cn );
 		}
 	}
+	
+	
+	public List<Participant> listParticipant(int idEquipe){
+		Connection			cn		= null;
+		PreparedStatement	stmt	= null;
+		ResultSet 			rs 		= null;
+		String				sql;
+
+		try {
+			cn = dataSource.getConnection();
+
+			sql = "SELECT * FROM participant WHERE equipe = ?";
+            stmt = cn.prepareStatement(sql);
+            stmt.setObject( 1, idEquipe);
+            rs = stmt.executeQuery();
+			
+			List<Participant> participants = new ArrayList<>();
+			while (rs.next()) {
+				participants.add( daoParticipant.construireParticipant(rs, true));
+			}
+			return participants;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+		
+		
+		//
+		
+	}
+	
+	
 
 	
 //	public List<Personne> listerPourMemo( int idMemo )   {

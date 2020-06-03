@@ -50,7 +50,7 @@ public class ControllerVolunteerListe {
 		// Data binding
 				list.setItems( modelV.getListe() );
 				
-				// Configuraiton des boutons
+				// Configuration des boutons
 				list.getSelectionModel().selectedItemProperty().addListener(
 						(obs, oldVal, newVal) -> {
 							configurerBoutons();
@@ -104,7 +104,7 @@ public class ControllerVolunteerListe {
 				if ( list.getSelectionModel().getSelectedIndex() == -1 ) {
 					managerGui.showDialogError( "Aucun element n'est selectionne dans la liste.");
 				} else {
-					doModify();
+					doObserve();
 				}
 			}
 		}
@@ -125,12 +125,10 @@ public class ControllerVolunteerListe {
 	}
 
 	
-		
 	public void refresh() {
 		modelV.actualiserListe();
 		UtilFX.selectInListView( list, modelV.getCourant() );
 		list.requestFocus();
 	}
-
 
 }

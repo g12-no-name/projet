@@ -45,13 +45,23 @@ public class ControllerPageCarte {
 		// l'heure actuelle
 		Date now= new Date();
 	      
-	    DateFormat df = new SimpleDateFormat("HH:mm:ss.SSS");
+	    DateFormat df = new SimpleDateFormat("HH:mm");
 	    String dateTimeString = df.format(now);
 	    heure.setText(dateTimeString);
 	}
 	
 	
 	// Actions
+	
+	        @FXML
+	         private void doheure() {
+			    Date now= new Date();
+	      
+	            DateFormat df = new SimpleDateFormat("HH:mm");
+	            String dateTimeString = df.format(now);
+	            heure.setText(dateTimeString);
+	     
+	        }
 	
 			@FXML
 			private void doPrincipale() {

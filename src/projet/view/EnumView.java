@@ -46,7 +46,9 @@ public enum EnumView implements IEnumView {
 	PageCarte           ("maquet/ViewPageCarte.fxml"),
 	Info				( "maquet/ViewInfo.fxml" ),
 	Connexion			( "maquet/ViewConnexion.fxml" ),
-
+	
+	resto			( "restaurant/ViewRestaurant.fxml" )
+	
 	;
 
 	
