@@ -89,7 +89,9 @@ public class MenuBarAppli extends MenuBar {
 		item.setOnAction( (e) -> managerGui.showView( EnumView.BenevoleListe ) );
 		menu.getItems().add( item );
 		
-		
+		item = new MenuItem( "resto" );
+		item.setOnAction( (e) -> managerGui.showView( EnumView.resto ) );
+		menu.getItems().add( item );
 
 		// Configuration initiale du menu
 		configurerMenu( modelConnexion.getCompteActif() );
