@@ -18,6 +18,7 @@ import projet.view.EnumView;
 public class ControllerListeAssignationPoste {
 	
 	
+	
 	// Composants de la vue
 
 	@FXML
@@ -38,16 +39,17 @@ public class ControllerListeAssignationPoste {
 	private IManagerGui			managerGui;
 	@Inject
 	private ModelPoste			modelPoste;
+	@Inject
+	private ModelAssignation	modelAssignation;
 	
 	
 	// Initialisation du Controller
 
 	@FXML
 	private void initialize() {
-		Poste courant =modelPoste.getCourant();
 		// Data binding
-		listView.setItems( modelPoste.getCourant().getBenevoles() );
-		nomPoste.textProperty().bind(courant.nomProperty());
+		listView.setItems( modelAssignation.getListe() );
+		nomPoste.textProperty().bind(modelPoste.getCourant().nomProperty());
 		
 		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole() ));
 		
@@ -69,7 +71,7 @@ public class ControllerListeAssignationPoste {
 	
 	@FXML
 	private void doAjouter() {
-		modelPoste.preparerAjouter();;
+		modelAssignation.preparerAjouter();
 		managerGui.showView( EnumView.AjouterAssignationPoste);
 	}
 
@@ -78,8 +80,7 @@ public class ControllerListeAssignationPoste {
 		Assignation item = listView.getSelectionModel().getSelectedItem();
 		if ( item == null ) {
 			managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
-		} else {
-			
+		} else {	
 			managerGui.showView( EnumView.ModifierAssignationPoste );
 		}
 	}

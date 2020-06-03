@@ -5,7 +5,7 @@ SET search_path TO projet;
 
 -- Schéma
 
-
+DROP TABLE IF EXISTS assignation;
 DROP TABLE IF EXISTS compte;
 DROP TABLE IF EXISTS benevole;
 DROP TABLE IF EXISTS participant;
