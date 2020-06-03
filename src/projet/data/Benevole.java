@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 
 public class Benevole {
 
-	// Données observables
+	// Donnees observables
 
 	private final Property<Integer> id = new SimpleObjectProperty<>();
 	private final StringProperty nom = new SimpleStringProperty();

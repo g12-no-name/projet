@@ -1,4 +1,4 @@
-package Volunteer;
+package projet.view.volunteer;
 
 import javax.inject.Inject;
 
@@ -51,6 +51,7 @@ public class ModelVolunteer {
 	}
 
 	
+	
 	// Actions
 	
 	public void preparerAjouter() {
@@ -60,19 +61,17 @@ public class ModelVolunteer {
 	
 
 	public void preparerModifier( Benevole item ) {
-		//modelCategorie.actualiserListe();
 		mapper.update( courant, daoBenevole.retrouver( item.getId() ) );
 	}
 	
 	public void preparerAffichage( Benevole item ) {
-		//modelCategorie.actualiserListe();
 		mapper.update( courant, daoBenevole.retrouver( item.getId() ) );
 	}
 	
 
 	public void validerMiseAJour() {
 
-		// Vérifie la validité des données
+		// Verifie la validite des donnees
 		
 		StringBuilder message = new StringBuilder();
 		
@@ -103,13 +102,13 @@ public class ModelVolunteer {
 		}
 
 		
-		// Effectue la mise à jour
+		// Effectue la mise a jour
 		
 		if ( courant.getId() == null ) {
 			// Insertion
 			courant.setId( daoBenevole.inserer( courant ) );
 		} else {
-			// modficiation
+			// modificiation
 			daoBenevole.modifier( courant );
 		}
 	}

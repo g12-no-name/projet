@@ -13,10 +13,10 @@ import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import jfox.dao.jdbc.UtilJdbc;
-import projet.data.Poste;
+import projet.data.Assignation;
 
 
-public class DaoPoste {
+public class DaoAssignation {
 
 	
 	// Champs
@@ -24,13 +24,15 @@ public class DaoPoste {
 	@Inject
 	private DataSource		dataSource;
 	@Inject
-	private DaoTypePoste 	daoTypePoste;
+	private DaoPoste 		daoPoste;
+	@Inject
+	private DaoBenevole 	daoBenevole;
 
 
 	
 	// Actions
 
-	public int inserer(Poste poste)  {
+	public int inserer(Assignation assignation)  {
 
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
@@ -41,18 +43,18 @@ public class DaoPoste {
 			cn = dataSource.getConnection();
 
 			// Insère l'equipe
-			sql = "INSERT INTO poste ( nom, typePoste ,heureD, heureF ) VALUES ( ?, ?, ?, ? )";
+			sql = "INSERT INTO assignation ( idBenevole, idPoste,heureD, heureF ) VALUES (?, ?, ?, ? )";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
-			stmt.setString(	1, poste.getNom() );
-			stmt.setInt(	2, poste.getTypePoste().getId() );
-			stmt.setObject(	3, poste.getHeureD() );
-			stmt.setObject(	4, poste.getHeureF());
+			stmt.setInt(	1, assignation.getBenevole().getId() );
+			stmt.setInt(	2, assignation.getPoste().getId() );
+			stmt.setObject(	3, assignation.getHeureD() );
+			stmt.setObject(	4, assignation.getHeureF());
 			stmt.executeUpdate();
 
 			// Récupère l'identifiant généré par le SGBD
 			rs = stmt.getGeneratedKeys();
 			rs.next();
-			poste.setId( rs.getObject( 1, Integer.class ) );
+			assignation.setId( rs.getObject( 1, Integer.class ) );
 	
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -61,11 +63,11 @@ public class DaoPoste {
 		}
 		
 		// Retourne l'identifiant
-		return poste.getId();
+		return assignation.getId();
 	}
 
 	
-	public void modifier(Poste poste)  {
+	public void modifier(Assignation assignation)  {
 
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
@@ -75,13 +77,13 @@ public class DaoPoste {
 			cn = dataSource.getConnection();
 
 			// Modifie l'equipe
-			sql = "UPDATE poste SET nom = ?, typePoste = ?, heureD = ?, heureF = ? WHERE id =  ?";
+			sql = "UPDATE assignation SET idBenevole = ?, idPoste = ?, heureD = ?, heureF = ? WHERE id =  ?";
 			stmt = cn.prepareStatement( sql );
-			stmt.setString(	1, poste.getNom() );
-			stmt.setInt(	2, poste.getTypePoste().getId() );
-			stmt.setObject(	3, poste.getHeureD() );
-			stmt.setObject(	4, poste.getHeureF());
-			stmt.setObject(	5, poste.getId());
+			stmt.setInt(	1, assignation.getBenevole().getId() );
+			stmt.setInt(	2, assignation.getPoste().getId() );
+			stmt.setObject(	3, assignation.getHeureD() );
+			stmt.setObject(	4, assignation.getHeureF());
+			stmt.setObject(	5, assignation.getId());
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -102,7 +104,7 @@ public class DaoPoste {
 			cn = dataSource.getConnection();
 
 			// Supprime l'equipe
-			sql = "DELETE FROM poste WHERE id = ? ";
+			sql = "DELETE FROM assignation WHERE id = ? ";
 			stmt = cn.prepareStatement(sql);
 			stmt.setObject( 1, id );
 			stmt.executeUpdate();
@@ -115,7 +117,7 @@ public class DaoPoste {
 	}
 
 	
-	public Poste retrouver(int id)  {
+	public Assignation retrouver(int id)  {
 
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
@@ -125,13 +127,13 @@ public class DaoPoste {
 		try {
 			cn = dataSource.getConnection();
 
-			sql = "SELECT * FROM poste WHERE id = ?";
+			sql = "SELECT * FROM assignation WHERE id = ?";
             stmt = cn.prepareStatement(sql);
             stmt.setObject( 1, id);
             rs = stmt.executeQuery();
 
             if ( rs.next() ) {
-                return construirePoste(rs, true );
+                return construireAssignation(rs, true );
             } else {
             	return null;
             }
@@ -143,7 +145,7 @@ public class DaoPoste {
 	}
 
 	
-	public List<Poste> listerTout()   {
+	public List<Assignation> listerTout()   {
 
 		Connection			cn		= null;
 		PreparedStatement	stmt	= null;
@@ -153,15 +155,15 @@ public class DaoPoste {
 		try {
 			cn = dataSource.getConnection();
 
-			sql = "SELECT * FROM poste ORDER BY nom";
+			sql = "SELECT * FROM assignation ORDER BY id";
 			stmt = cn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
-			List<Poste> postes = new ArrayList<>();
+			List<Assignation> assignations = new ArrayList<>();
 			while (rs.next()) {
-				postes.add( construirePoste(rs, false) );
+				assignations.add( construireAssignation(rs, false) );
 			}
-			return postes;
+			return assignations;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -229,20 +231,20 @@ public class DaoPoste {
 	
 // Méthodes auxiliaires
 	
-	private Poste construirePoste( ResultSet rs, boolean flagComplet ) throws SQLException {
+	private Assignation construireAssignation( ResultSet rs, boolean flagComplet ) throws SQLException {
 
-		Poste poste = new Poste();
-		poste.setId(rs.getObject( "id", Integer.class ));
-		poste.setNom(rs.getObject( "nom", String.class ));
-		poste.setHeureD(rs.getObject("heureD", LocalTime.class));
-		poste.setHeureF(rs.getObject("heureF", LocalTime.class));
-     	if ( flagComplet ) {
+		Assignation assignation = new Assignation();
+		assignation.setId(rs.getObject( "id", Integer.class ));
+		assignation.setBenevole(daoBenevole.retrouver(rs.getObject( "id", Integer.class )));
+		assignation.setPoste(daoPoste.retrouver(rs.getObject( "id", Integer.class )));
+		assignation.setHeureD(rs.getObject("heureD", LocalTime.class));
+		assignation.setHeureF(rs.getObject("heureF", LocalTime.class));
+//		if ( flagComplet ) {
 //			equipe.setTypeCourse(daoTypeCourse.retrouver(rs.getObject("id", Integer.class)));
 //			equipe.setCatCourse(daoCategorieCourse.retrouver(rs.getObject("id", Integer.class)));
-     		poste.setTypePoste(daoTypePoste.retrouver(rs.getObject( "typePoste", Integer.class )));
-		}
+//		}
 		
-		return poste;
+		return assignation;
 	}
 
 }

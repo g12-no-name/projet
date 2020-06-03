@@ -93,6 +93,11 @@ public class ControllerPosteListe {
 			managerGui.showView( EnumView.PosteInfo );
 		}
 	}
+	
+	@FXML
+	private void doAccueil() {
+		managerGui.showView( EnumView.PagePrincipale);
+	}
 
 	@FXML
 	private void doSupprimer() {
@@ -134,7 +139,7 @@ public class ControllerPosteListe {
 			buttonModifier.setDisable(true);
 			buttonSupprimer.setDisable(true);
 			buttonObserver.setDisable(true);
-			buttonAjouter.setDisable(true);
+			buttonAjouter.setDisable(false);
 		} else {
 			buttonModifier.setDisable(false);
 			buttonSupprimer.setDisable(false);

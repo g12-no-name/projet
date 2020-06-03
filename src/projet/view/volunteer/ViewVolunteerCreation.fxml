@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="390.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Volunteer.ControllerVolunteerModifier">
+<AnchorPane fx:id="paneRoot" prefHeight="390.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.volunteer.ControllerVolunteerCreate">
    <children>
-      <Label alignment="CENTER" layoutY="29.0" styleClass="titre-vue" text="Modification du benevole" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
+      <Label alignment="CENTER" layoutY="29.0" styleClass="titre-vue" text="Ajout d'un nouveau bénévole" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
       <VBox alignment="CENTER" fillWidth="false" layoutY="80.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <GridPane prefHeight="224.0" prefWidth="303.0">
@@ -35,8 +35,8 @@
                   <Label text="Nom et prénom" />
                   <HBox GridPane.columnIndex="1">
                      <children>
-                        <TextField fx:id="textFieldNom" prefHeight="25.0" prefWidth="104.0" promptText="Nom" />
-                        <TextField fx:id="textFieldPrenom" prefHeight="25.0" prefWidth="105.0" promptText="Prenom" />
+                        <TextField fx:id="textFieldNom" prefHeight="25.0" prefWidth="100.0" promptText="Nom" />
+                        <TextField fx:id="textFieldPrenom" prefHeight="25.0" prefWidth="106.0" promptText="Prenom" />
                      </children>
                   </HBox>
                   <Label prefHeight="17.0" prefWidth="80.0" text="Telephone" GridPane.rowIndex="1" />
@@ -48,9 +48,9 @@
                   <Label prefHeight="17.0" prefWidth="80.0" text="Naissance" GridPane.rowIndex="4" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <DatePicker fx:id="datePickerDateNaissance" prefHeight="25.0" prefWidth="105.0" />
+                        <DatePicker fx:id="datePickerDateNaissance" prefHeight="25.0" prefWidth="100.0" />
                         <Label prefHeight="29.0" prefWidth="43.0" text="Mineur:" />
-                        <CheckBox mnemonicParsing="false" />
+                        <CheckBox fx:id="mineur" mnemonicParsing="false" />
                      </children>
                   </HBox>
                   <Label text="Divers" GridPane.rowIndex="6" />
@@ -66,15 +66,15 @@
                      <children>
                         <Label text="Permis de conduire:" />
                         <Label text="Membre du club:" GridPane.rowIndex="1" />
-                        <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" />
-                        <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="permisDeConduire" mnemonicParsing="false" GridPane.columnIndex="1" />
+                        <CheckBox fx:id="membership" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <Label text="Disponibilités" GridPane.rowIndex="5" />
                   <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <TextField fx:id="textFieldDispoD" prefHeight="25.0" prefWidth="104.0" promptText="A partir de:" />
-                        <TextField fx:id="textFieldDispoF" prefHeight="25.0" prefWidth="101.0" promptText="Jusqu'a" />
+                        <TextField fx:id="textFieldDispoD" prefHeight="25.0" prefWidth="101.0" promptText="A partir de" />
+                        <TextField fx:id="textFieldDispoF" prefHeight="25.0" prefWidth="109.0" promptText="Jusqu'a" />
                      </children>
                   </HBox>
                </children>
@@ -84,8 +84,8 @@
       <HBox alignment="CENTER" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button fx:id="goBack" defaultButton="true" mnemonicParsing="false" onAction="#doGoBack" prefHeight="25.0" prefWidth="60.0" text="Annuler" />
-            <Button fx:id="confirm" cancelButton="true" mnemonicParsing="false" onAction="#doConfirm" text="Confirmer" />
-            <Button fx:id="reinitialize" mnemonicParsing="false" onAction="#doReinitialize" text="Reinitialiser" />
+            <Button fx:id="add" cancelButton="true" mnemonicParsing="false" onAction="#doAdd" text="Ajouter" />
+            <Button fx:id="reinitialize" mnemonicParsing="false" onAction="#doReinitialize" text="Tout effacer" />
          </children>
       </HBox>
    </children>

@@ -1,4 +1,4 @@
-package Volunteer;
+package projet.view.volunteer;
 
 import javax.inject.Inject;
 
@@ -13,15 +13,13 @@ import projet.view.EnumView;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
-public class ControllerVolunteerCreate {
+public class ControllerVolunteerInfo {
 
 	
 	// Composants de la vue
 	
 	@FXML
-	private TextField			textFieldNom;
-	@FXML
-	private TextField			textFieldPrenom;
+	private TextField			textFieldNomEtPrenom;
 	@FXML
 	private TextField			textFieldTel;
 	@FXML
@@ -31,9 +29,7 @@ public class ControllerVolunteerCreate {
 	@FXML
 	private DatePicker			datePickerDateNaissance;
 	@FXML
-	private TextField			textFieldDispoD;
-	@FXML
-	private TextField			textFieldDispoF;
+	private TextField			textFieldDispos;
 	@FXML
 	private CheckBox			mineur;
 	@FXML
@@ -41,19 +37,18 @@ public class ControllerVolunteerCreate {
 	@FXML 
 	private CheckBox			membership;
 	
+	
 	@FXML
 	private Button 				goBack;
 	@FXML
-	private Button 				add;
-	@FXML
-	private Button 				reinitialize;
+	private Button 			    modify;
 	
 	// Autres champs
 	
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	private ModelVolunteer		modelV;
+	private ModelVolunteer      modelV;
 
 
 	// Initialisation du Controller
@@ -62,26 +57,32 @@ public class ControllerVolunteerCreate {
 	private void initialize() {
 
 		// Data binding
-		
 		Benevole courant = modelV.getCourant();
-		
-		textFieldNom.textProperty().bindBidirectional( courant.nomProperty() );
-		textFieldPrenom.textProperty().bindBidirectional( courant.prenomProperty() );
+		String s="";
+		try {s+=courant.nomProperty().get()+" ";}catch(Exception e) {}
+		try {s+=courant.prenomProperty().get();}catch(Exception e) {}
+		textFieldNomEtPrenom.setText(s);
 		
 		textFieldTel.textProperty().bindBidirectional( courant.numTelProperty() );
 		textFieldMail.textProperty().bindBidirectional( courant.mailProperty() );
 		textFieldAdresse.textProperty().bindBidirectional( courant.adresseProperty() );
 		
 		datePickerDateNaissance.valueProperty().bindBidirectional( courant.dateNaissanceProperty() );
-		//textFieldDispoD.textProperty().bindBidirectional( courant.heureDProperty() );
-		//textFieldDispoF.textProperty().bindBidirectional( courant.heureDProperty() );
 		
-		mineur.selectedProperty().bindBidirectional( courant.mineurProperty() );
+		try{
+			mineur.selectedProperty().bindBidirectional( courant.mineurProperty() );
+		}catch(NullPointerException e) {}
+		try {
 		permisDeConduire.selectedProperty().bindBidirectional( courant.permisProperty() );
+		}catch(NullPointerException e) {}
+		try {
 		membership.selectedProperty().bindBidirectional( courant.membreProperty() );
+		}catch(NullPointerException e) {}
 		
-	///////////////////////////////PLZ END ME
-	
+		s="";
+		if(courant.getHeureD()!=null) {s+="A partir de: "+courant.getHeureD().getHour()+":"+courant.getHeureD().getMinute()+" ";}
+		if(courant.getHeureF()!=null) {s+="jusqu'a: "+courant.getHeureF().getHour()+":"+courant.getHeureF().getMinute();}
+		textFieldDispos.setText(s);
 	}
 	
 	
@@ -93,14 +94,12 @@ public class ControllerVolunteerCreate {
 	}
 	
 	@FXML
-	private void doAdd() {
-		modelV.validerMiseAJour();
-		managerGui.showView( EnumView.BenevoleListe );
+	private void doModify() {
+		managerGui.showView( EnumView.BenevoleModify );
 	}
 	
-	@FXML 
-	private void doReinitialize() {
+	@FXML
+	public void refresh() {
 		initialize();
 	}
-
 }

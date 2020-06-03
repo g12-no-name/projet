@@ -1,4 +1,4 @@
-package Volunteer;
+package projet.view.volunteer;
 
 import javax.inject.Inject;
 
@@ -29,6 +29,8 @@ public class ControllerVolunteerListe {
 	private Button				buttonObserver;
 	@FXML
 	private Button				buttonModifier;
+	@FXML 
+	private Button				buttonGetBack;
 	
 	
 	
@@ -48,7 +50,7 @@ public class ControllerVolunteerListe {
 		// Data binding
 				list.setItems( modelV.getListe() );
 				
-				// Configuraiton des boutons
+				// Configuration des boutons
 				list.getSelectionModel().selectedItemProperty().addListener(
 						(obs, oldVal, newVal) -> {
 							configurerBoutons();
@@ -87,43 +89,46 @@ public class ControllerVolunteerListe {
 		managerGui.showView( EnumView.BenevoleView );
 	}
 	
+	@FXML
+	private void goBack() {
+		managerGui.showView( EnumView.PagePrincipale );
+	}
+	
 	// Gestion des evenements
 
-		// Clic sur la liste
-		@FXML
-		private void gererClicSurListe( MouseEvent event ) {
-			if (event.getButton().equals(MouseButton.PRIMARY)) {
-				if (event.getClickCount() == 2) {
-					if ( list.getSelectionModel().getSelectedIndex() == -1 ) {
-						managerGui.showDialogError( "Aucun element n'est selectionne dans la liste.");
-					} else {
-						doModify();
-					}
+	// Clic sur la liste
+	@FXML
+	private void gererClicSurListe( MouseEvent event ) {
+		if (event.getButton().equals(MouseButton.PRIMARY)) {
+			if (event.getClickCount() == 2) {
+				if ( list.getSelectionModel().getSelectedIndex() == -1 ) {
+					managerGui.showDialogError( "Aucun element n'est selectionne dans la liste.");
+				} else {
+					doObserve();
 				}
 			}
 		}
-
-		
-		// Méthodes auxiliaires
-		
-		private void configurerBoutons() {
-			
-	    	if( list.getSelectionModel().getSelectedItems().isEmpty() ) {
-				buttonModifier.setDisable(true);
-				buttonDelete.setDisable(true);
-			} else {
-				buttonModifier.setDisable(false);
-				buttonDelete.setDisable(false);
-			}
-		}
+	}
 
 	
+	// Methodes auxiliaires
+	
+	private void configurerBoutons() {
 		
+    	if( list.getSelectionModel().getSelectedItems().isEmpty() ) {
+			buttonModifier.setDisable(true);
+			buttonDelete.setDisable(true);
+		} else {
+			buttonModifier.setDisable(false);
+			buttonDelete.setDisable(false);
+		}
+	}
+
+	
 	public void refresh() {
 		modelV.actualiserListe();
 		UtilFX.selectInListView( list, modelV.getCourant() );
 		list.requestFocus();
 	}
-
 
 }

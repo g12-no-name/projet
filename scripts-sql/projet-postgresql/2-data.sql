@@ -78,9 +78,26 @@ INSERT INTO typeCourse (id, nom) VALUES
 
 ALTER TABLE typeCourse ALTER COLUMN id RESTART WITH 4;
 
+--typePoste
 
+INSERT INTO typePoste (id, nom) VALUES
+  (1, 'bouffe'),
+  (2, 'random'),
+  (3, 'game');
 
+ALTER TABLE typePoste ALTER COLUMN id RESTART WITH 4;
 
+--Poste
+
+INSERT INTO poste (id, nom, typePoste, heureD, heureF) VALUES
+  (1, 'poste 1', 1, '15:05','15:15' ),
+  (2, 'poste 4', 3, '08:05','10:15'),
+  (3, 'I do', 2, '14:05','16:15'),
+  (4, 'not know', 2, '12:05','15:15'),
+  (5, 'what to do', 1, '15:05','15:15'),
+  (6, 'anymore', 2, '15:05','15:15');
+
+ALTER TABLE poste ALTER COLUMN id RESTART WITH 7;
 
 
 

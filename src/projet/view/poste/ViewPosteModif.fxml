@@ -34,8 +34,8 @@
                <children>
                   <Label text="Nom" textAlignment="CENTER" />
                   <TextField fx:id="textFieldNom" editable="false" GridPane.columnIndex="1" />
-                  <TextField fx:id="textFieldHeureD" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="textFieldHeureF" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="textFieldHeureD" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="textFieldHeureF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Type" GridPane.rowIndex="1" />
                   <Label text="Heure de début" GridPane.rowIndex="2" />
                   <Label text="Heure de fin" GridPane.rowIndex="3" />
@@ -49,6 +49,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#doAccueil" text="Accueil" />
             <Button defaultButton="true" mnemonicParsing="false" onAction="#doRetour" prefHeight="25.0" prefWidth="60.0" text="Retour" />
             <Button cancelButton="true" mnemonicParsing="false" onAction="#doValider" text="Valider" />
          </children>

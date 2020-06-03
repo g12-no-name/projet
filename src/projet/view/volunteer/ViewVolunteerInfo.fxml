@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="390.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Volunteer.ControllerVolunteerInfo">
+<AnchorPane fx:id="paneRoot" prefHeight="390.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.volunteer.ControllerVolunteerInfo">
    <children>
       <Label alignment="CENTER" layoutY="29.0" styleClass="titre-vue" text="Informations sur le benevole" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
       <VBox alignment="CENTER" fillWidth="false" layoutY="80.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
@@ -33,7 +33,7 @@
               </rowConstraints>
                <children>
                   <Label text="Nom et prénom" />
-                  <TextField fx:id="textFieldNom" editable="false" GridPane.columnIndex="1" />
+                  <TextField fx:id="textFieldNomEtPrenom" editable="false" GridPane.columnIndex="1" />
                   <Label prefHeight="17.0" prefWidth="80.0" text="Telephone" GridPane.rowIndex="1" />
                   <TextField fx:id="textFieldTel" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label prefHeight="17.0" prefWidth="80.0" text="Mail" GridPane.rowIndex="2" />
@@ -43,7 +43,7 @@
                   <Label prefHeight="17.0" prefWidth="80.0" text="Naissance" GridPane.rowIndex="4" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <DatePicker fx:id="DatePickerDateNaissance" editable="false" prefHeight="25.0" prefWidth="106.0" />
+                        <DatePicker fx:id="datePickerDateNaissance" editable="false" prefHeight="25.0" prefWidth="106.0" />
                         <Label prefHeight="29.0" prefWidth="43.0" text="Mineur:" />
                         <CheckBox fx:id="mineur" mnemonicParsing="false" />
                      </children>
@@ -66,7 +66,7 @@
                      </children>
                   </GridPane>
                   <Label text="Disponibilités" GridPane.rowIndex="5" />
-                  <TextField fx:id="textFieldDispo" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="textFieldDispos" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
          </children>

@@ -47,6 +47,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#doAccueil" text="Accueil" />
             <Button defaultButton="true" mnemonicParsing="false" onAction="#doRetour" prefHeight="25.0" prefWidth="60.0" text="Retour" />
             <Button cancelButton="true" mnemonicParsing="false" onAction="#doModifier" text="Modifier" />
          </children>

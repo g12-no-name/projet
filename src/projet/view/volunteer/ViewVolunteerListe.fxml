@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="paneRoot" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Volunteer.ControllerVolunteerListe">
+<AnchorPane fx:id="paneRoot" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.volunteer.ControllerVolunteerListe">
    <children>
       <Label alignment="CENTER" styleClass="titre-vue" text="Liste des benevoles" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
       <HBox alignment="CENTER" layoutY="75.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
@@ -25,6 +25,7 @@
             <Button fx:id="buttonModifier" mnemonicParsing="false" onAction="#doModify" text="Modifier" />
             <Button fx:id="buttonObserver" mnemonicParsing="false" onAction="#doObserve" text="Observer" />
             <Button fx:id="buttonDelete" mnemonicParsing="false" onAction="#doDelete" text="Supprimer" />
+            <Button fx:id="buttonGetBack" mnemonicParsing="false" onAction="#goBack" text="Retour" />
          </children>
       </HBox>
    </children>
