@@ -128,9 +128,9 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Slider>
-                  <TextField alignment="CENTER" onMouseMoved="#doheure" text="Sponsor">
+                  <TextField alignment="TOP_LEFT" onMouseMoved="#doheure" prefHeight="25.0" prefWidth="249.0" text="Cette course est sponsorise par Hyper U">
                      <VBox.margin>
-                        <Insets left="10.0" right="80.0" />
+                        <Insets left="10.0" right="60.0" />
                      </VBox.margin>
                   </TextField>
                </children>

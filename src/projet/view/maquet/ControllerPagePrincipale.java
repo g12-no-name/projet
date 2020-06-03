@@ -115,13 +115,13 @@ public class ControllerPagePrincipale {
 		@FXML
 		private void doAjoutBenevole() {
 			modelpageprincipale.preparerAjouter();;
-			// managerGui.showView( EnumView.BenevoleAjouter );
+			managerGui.showView( EnumView.BenevoleCreate );
 		}
 		
 		@FXML
 		private void doAjoutPoste() {
 			modelpageprincipale.preparerAjouter2();;
-			// managerGui.showView( EnumView.PosteAjouter );
+			managerGui.showView( EnumView.PosteCreation );
 		}
 		
 		@FXML

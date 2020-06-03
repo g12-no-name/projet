@@ -96,9 +96,9 @@
                   </Slider>
                </children>
             </HBox>
-            <TextField alignment="CENTER" onMouseMoved="#doheure" prefWidth="100.0" text="Sponsor">
+            <TextField alignment="CENTER" onMouseMoved="#doheure" prefWidth="100.0" text="Cette course est sponsorise par Hyper U">
                <VBox.margin>
-                  <Insets bottom="10.0" left="200.0" right="200.0" top="10.0" />
+                  <Insets bottom="10.0" left="180.0" right="180.0" top="10.0" />
                </VBox.margin>
             </TextField>
          </children>
