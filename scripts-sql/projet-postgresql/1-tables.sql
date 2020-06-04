@@ -73,6 +73,9 @@ CREATE TABLE poste (
 	heureD			TIME,
 	heureF			TIME ,
 
+	xCarte			INT,
+	yCarte			INT,
+
 	PRIMARY KEY (id),
 	FOREIGN KEY (typePoste) REFERENCES typePoste (id)
 );
