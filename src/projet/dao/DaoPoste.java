@@ -192,6 +192,7 @@ public class DaoPoste {
 			poste.setX(rs.getObject( "yCarte", Integer.class));
 		} catch (Exception e) {}
      	if ( flagComplet ) {
+     		
 //			equipe.setTypeCourse(daoTypeCourse.retrouver(rs.getObject("id", Integer.class)));
 //			equipe.setCatCourse(daoCategorieCourse.retrouver(rs.getObject("id", Integer.class)));
      		poste.setTypePoste(daoTypePoste.retrouver(rs.getObject( "typePoste", Integer.class )));
