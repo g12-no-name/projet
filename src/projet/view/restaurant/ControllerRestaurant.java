@@ -101,7 +101,7 @@ public class ControllerRestaurant {
 	private void deductionRepas() {
 		// retire le nombre de repas necessaire
 		if(this.equipeSelectionne) {
-			this.modelRestaurant.deductionRepas(this.equipeCourrante, (Integer.valueOf(this.nbRepas.getText())-this.nbRetireValue));
+			this.modelRestaurant.deductionRepas(this.equipeCourrante, this.equipeCourrante.getNbBouffe()-this.nbRetireValue);
 			//
 			this.zoneInfo.setText("");
 			this.nbRetire.setText("0");
