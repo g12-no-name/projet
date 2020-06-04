@@ -24,28 +24,6 @@ ALTER TABLE compte ALTER COLUMN id RESTART WITH 4;
 
 
 
-
-
-
-
-
--- Benevole
-
-INSERT INTO benevole (id, nom, prenom, numTel,heureD, heureF) VALUES 
-  ( 4, 'RandomFriendly', 'number 1254', '0505050505','15:05','16:00' ),
-  ( 5, 'RandomGuy', 'number 7826', '0606060606',null,null ),
-  ( 6, 'RandomCat', 'number 9135', '0909090909',null,null );
-
-ALTER TABLE personne ALTER COLUMN id RESTART WITH 6;
-
-
-INSERT INTO participant (id, nom, prenom, numTel,equipe) VALUES 
-  ( 1, 'RandomDude', 'number 1254', '0505050505' ,0),
-  ( 2, 'RandomGuy', 'number 7826', '0606060606' ,1),
-  ( 3, 'RandomCat', 'number 9135', '0909090909' ,1);
-
-ALTER TABLE personne ALTER COLUMN id RESTART WITH 6;
-
 --categorieCourse 
 
 INSERT INTO categorieCourse (id, nom) VALUES
@@ -65,6 +43,34 @@ INSERT INTO typeCourse (id, nom) VALUES
   (3, 'juste ici pour la bouffe');
 
 ALTER TABLE typeCourse ALTER COLUMN id RESTART WITH 4;
+
+
+
+
+-- Benevole
+
+INSERT INTO benevole (id, nom, prenom, numTel,heureD, heureF) VALUES 
+  ( 4, 'RandomFriendly', 'number 1254', '0505050505','15:05','16:00' ),
+  ( 5, 'RandomGuy', 'number 7826', '0606060606',null,null ),
+  ( 6, 'RandomCat', 'number 9135', '0909090909',null,null );
+
+ALTER TABLE personne ALTER COLUMN id RESTART WITH 6;
+
+INSERT INTO equipe (id, nom,nbBouffe,typeCourse,catCourse) VALUES
+  (1, 'RandomGuy_RandomCat',2,1,1),
+  (2, 'RandomDude_RandomTetromino', 5,1,1);
+
+ALTER TABLE typePoste ALTER COLUMN id RESTART WITH 3;
+
+
+INSERT INTO participant (id, nom, prenom, numTel,equipe) VALUES 
+  ( 1, 'RandomDude', 'number 1254', '0505050505',2),
+  ( 2, 'RandomGuy', 'number 7826', '0606060606' ,1),
+  ( 3, 'RandomCat', 'number 9135', '0909090909' ,1);
+
+ALTER TABLE personne ALTER COLUMN id RESTART WITH 6;
+
+
 
 --typePoste
 
@@ -87,10 +93,6 @@ INSERT INTO poste (id, nom, typePoste, heureD, heureF) VALUES
 
 ALTER TABLE poste ALTER COLUMN id RESTART WITH 7;
 
-INSERT INTO equipe (id, nom,nbBouffe,typeCourse,catCourse) VALUES
-  (1, 'RandomGuy_RandomCat',2,1,1);
-
-ALTER TABLE typePoste ALTER COLUMN id RESTART WITH 2;
 
 
 

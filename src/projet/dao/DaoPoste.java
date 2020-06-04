@@ -41,15 +41,19 @@ public class DaoPoste {
 			cn = dataSource.getConnection();
 
 			// Insère l'equipe
-			sql = "INSERT INTO poste ( nom, typePoste ,heureD, heureF ) VALUES ( ?, ?, ?, ? )";
+			sql = "INSERT INTO poste ( nom, typePoste ,heureD, heureF, xCarte, yCarte) VALUES ( ?, ?, ?, ?, ?, ?)";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
 			stmt.setString(	1, poste.getNom() );
 			stmt.setInt(	2, poste.getTypePoste().getId() );
 			stmt.setObject(	3, poste.getHeureD() );
 			stmt.setObject(	4, poste.getHeureF());
+			try {
+				stmt.setObject(5, poste.getX());
+				stmt.setObject(6, poste.getY());
+			}catch(Exception e) {stmt.setObject(5, -100);stmt.setObject(6, -100);}
 			stmt.executeUpdate();
 
-			// Récupère l'identifiant généré par le SGBD
+			// Recupere l'identifiant genere par le SGBD
 			rs = stmt.getGeneratedKeys();
 			rs.next();
 			poste.setId( rs.getObject( 1, Integer.class ) );
@@ -75,13 +79,15 @@ public class DaoPoste {
 			cn = dataSource.getConnection();
 
 			// Modifie l'equipe
-			sql = "UPDATE poste SET nom = ?, typePoste = ?, heureD = ?, heureF = ? WHERE id =  ?";
+			sql = "UPDATE poste SET nom = ?, typePoste = ?, heureD = ?, heureF = ?, xCarte = ?, yCarte = ? WHERE id =  ?";
 			stmt = cn.prepareStatement( sql );
 			stmt.setString(	1, poste.getNom() );
 			stmt.setInt(	2, poste.getTypePoste().getId() );
 			stmt.setObject(	3, poste.getHeureD() );
 			stmt.setObject(	4, poste.getHeureF());
 			stmt.setObject(	5, poste.getId());
+			stmt.setObject( 6, poste.getX());
+			stmt.setObject( 7, poste.getY());
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -170,64 +176,9 @@ public class DaoPoste {
 		}
 	}
 
-	
-//	public List<Personne> listerPourMemo( int idMemo )   {
-//
-//		Connection			cn		= null;
-//		PreparedStatement	stmt	= null;
-//		ResultSet 			rs 		= null;
-//		String				sql;
-//
-//		try {
-//			cn = dataSource.getConnection();
-//
-//			sql = "SELECT p.* FROM personne p" 
-//				+ " INNER JOIN concerner c ON p.idpersonne = c.idpersonne" 
-//				+ " WHERE c.idmemo = ?" 
-//				+ " ORDER BY nom, prenom";
-//			stmt = cn.prepareStatement(sql);
-//			stmt.setObject( 1, idMemo ); 
-//			rs = stmt.executeQuery();
-//			
-//			List<Personne> personnes = new ArrayList<>();
-//			while (rs.next()) {
-//				personnes.add( construirePersonne(rs, false) );
-//			}
-//			return personnes;
-//
-//		} catch (SQLException e) {
-//			throw new RuntimeException(e);
-//		} finally {
-//			UtilJdbc.close( rs, stmt, cn );
-//		}
-//	}
 
-    
-//    public int compterPourCategorie(int idCategorie) {
-//    	
-//		Connection			cn		= null;
-//		PreparedStatement	stmt 	= null;
-//		ResultSet 			rs		= null;
-//
-//		try {
-//			cn = dataSource.getConnection();
-//            String sql = "SELECT COUNT(*) FROM personne WHERE idcategorie = ?";
-//            stmt = cn.prepareStatement( sql );
-//            stmt.setObject( 1, idCategorie );
-//            rs = stmt.executeQuery();
-//
-//            rs.next();
-//            return rs.getInt( 1 );
-//
-//		} catch (SQLException e) {
-//			throw new RuntimeException(e);
-//		} finally {
-//			UtilJdbc.close( rs, stmt, cn );
-//		}
-//    }
-//	
 	
-// Méthodes auxiliaires
+// Methodes auxiliaires
 	
 	private Poste construirePoste( ResultSet rs, boolean flagComplet ) throws SQLException {
 
@@ -236,6 +187,10 @@ public class DaoPoste {
 		poste.setNom(rs.getObject( "nom", String.class ));
 		poste.setHeureD(rs.getObject("heureD", LocalTime.class));
 		poste.setHeureF(rs.getObject("heureF", LocalTime.class));
+		try {
+			poste.setX(rs.getObject( "xCarte", Integer.class));
+			poste.setX(rs.getObject( "yCarte", Integer.class));
+		} catch (Exception e) {}
      	if ( flagComplet ) {
 //			equipe.setTypeCourse(daoTypeCourse.retrouver(rs.getObject("id", Integer.class)));
 //			equipe.setCatCourse(daoCategorieCourse.retrouver(rs.getObject("id", Integer.class)));
