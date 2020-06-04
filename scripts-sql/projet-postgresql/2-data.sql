@@ -39,10 +39,10 @@ INSERT INTO benevole (id, nom, prenom, numTel,heureD, heureF) VALUES
 ALTER TABLE personne ALTER COLUMN id RESTART WITH 6;
 
 
-INSERT INTO participant (id, nom, prenom, numTel) VALUES 
-  ( 1, 'RandomDude', 'number 1254', '0505050505' ),
-  ( 2, 'RandomGuy', 'number 7826', '0606060606' ),
-  ( 3, 'RandomCat', 'number 9135', '0909090909' );
+INSERT INTO participant (id, nom, prenom, numTel,equipe) VALUES 
+  ( 1, 'RandomDude', 'number 1254', '0505050505' ,0),
+  ( 2, 'RandomGuy', 'number 7826', '0606060606' ,1),
+  ( 3, 'RandomCat', 'number 9135', '0909090909' ,1);
 
 ALTER TABLE personne ALTER COLUMN id RESTART WITH 6;
 
