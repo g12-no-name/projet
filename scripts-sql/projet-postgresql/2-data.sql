@@ -87,6 +87,11 @@ INSERT INTO poste (id, nom, typePoste, heureD, heureF) VALUES
 
 ALTER TABLE poste ALTER COLUMN id RESTART WITH 7;
 
+INSERT INTO equipe (id, nom,nbBouffe,typeCourse,catCourse) VALUES
+  (1, 'RandomGuy_RandomCat',2,1,1);
+
+ALTER TABLE typePoste ALTER COLUMN id RESTART WITH 2;
+
 
 
 
