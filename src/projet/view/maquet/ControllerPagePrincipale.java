@@ -26,12 +26,12 @@ public class ControllerPagePrincipale implements MapDrawer{
 	@Inject
 	private IManagerGui					managerGui;
 	@Inject
-	private ModelPagePrincipale			mpp;
+	public ModelPagePrincipale			mpp;
 	
 	@FXML
 	private ListView<Benevole>			listViewB;
 	@FXML
-	private ListView<Poste>				listViewP;
+	public ListView<Poste>				listViewP;
 	
 	@FXML
 	private TextField           		heure;

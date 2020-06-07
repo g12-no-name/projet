@@ -18,7 +18,18 @@ public interface MapDrawer {
 		for(Poste p : mpp.getPostes()) {draw(p, canvas, plotSize);}
 	}
 	
+	default void plotDaPlots(ListView<Poste> listViewP, ModelPageCarte mpp, Canvas canvas, int plotSize) {
+		drawMap(mpp, canvas);
+		try {drawSelectedPlotMarker(listViewP.getSelectionModel().getSelectedItem(), canvas, plotSize);}catch(Exception e) {}
+		for(Poste p : mpp.getPostes()) {draw(p, canvas, plotSize);}
+	}
+	
 	default void drawMap(ModelPagePrincipale mpp, Canvas canvas) {
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.drawImage(mpp.imageCarteProperty().getValue(),0,0, canvas.getWidth(), canvas.getHeight());
+	}
+	
+	default void drawMap(ModelPageCarte mpp, Canvas canvas) {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.drawImage(mpp.imageCarteProperty().getValue(),0,0, canvas.getWidth(), canvas.getHeight());
 	}
@@ -47,7 +58,7 @@ public interface MapDrawer {
 				if((xp-x)*(xp-x)+(yp-y)*(yp-y)<plotSize*plotSize) {
 					//select the corresponding plot in the list
 					listViewP.getSelectionModel().select(p);
-					drawSelectedPlotMarker(p, canvas, yp);
+					drawSelectedPlotMarker(p, canvas, plotSize);
 				}
 			} catch (Exception e) {}
 		}

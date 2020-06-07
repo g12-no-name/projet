@@ -70,7 +70,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Canvas fx:id="canvas" height="202.0" width="601.0" />
+            <Canvas fx:id="canvas" height="240.0" onMouseClicked="#doClickOnMap" width="601.0" />
             <HBox prefHeight="55.0" prefWidth="600.0">
                <children>
                   <TextField alignment="CENTER" onMouseMoved="#doheure" text="Coordonnées">
