@@ -44,7 +44,11 @@ public class DaoPoste {
 			sql = "INSERT INTO poste ( nom, typePoste ,heureD, heureF, xCarte, yCarte) VALUES ( ?, ?, ?, ?, ?, ?)";
 			stmt = cn.prepareStatement( sql, Statement.RETURN_GENERATED_KEYS  );
 			stmt.setString(	1, poste.getNom() );
-			stmt.setInt(	2, poste.getTypePoste().getId() );
+			
+///////////////////////////////////////////////////////////ATTENTION YVES, J'AI REGLE "RANDOM" PAR DEFAUT ICI (id = 2)
+			stmt.setInt(	2, 2/*poste.getTypePoste().getId()*/ );
+//////////////////////////////////////////////////////////YVES REGARDES ICI ET MAINTENANT. QUELQUE CHOSE MARCHAIT PAS SINON.
+			
 			stmt.setObject(	3, poste.getHeureD() );
 			stmt.setObject(	4, poste.getHeureF());
 			try {
@@ -189,7 +193,7 @@ public class DaoPoste {
 		poste.setHeureF(rs.getObject("heureF", LocalTime.class));
 		try {
 			poste.setX(rs.getObject( "xCarte", Integer.class));
-			poste.setX(rs.getObject( "yCarte", Integer.class));
+			poste.setY(rs.getObject( "yCarte", Integer.class));
 		} catch (Exception e) {}
      	if ( flagComplet ) {
      		

@@ -7,12 +7,14 @@ import java.util.Date;
 import javax.inject.Inject;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Benevole;
@@ -27,9 +29,9 @@ public class ControllerPagePrincipale {
 	private ModelPagePrincipale			mpp;
 	
 	@FXML
-	private ListView<Benevole>			listView;
+	private ListView<Benevole>			listViewB;
 	@FXML
-	private ListView<Poste>				listView2;
+	private ListView<Poste>				listViewP;
 	
 	@FXML
 	private TextField           		heure;
@@ -41,6 +43,7 @@ public class ControllerPagePrincipale {
 	
 	private Mode m;
 	
+	public static int x=-100, y=-100;
 
 /////////////////////////////////////////////OPENING FUNCTIONS
 	
@@ -52,10 +55,11 @@ public class ControllerPagePrincipale {
 		
 		gc.drawImage(mpp.imageCarteProperty().getValue(),0,0, canvas.getWidth(), canvas.getHeight());
 		// Data binding
-		listView.setItems( mpp.getListe() );
-		listView.setCellFactory(  UtilFX.cellFactory( item -> item.getNom() ));
-		listView2.setItems( mpp.getListe2() );
-		listView2.setCellFactory(  UtilFX.cellFactory( item -> item.getNom() ));
+		listViewB.setItems( mpp.getListe() );
+		listViewB.setCellFactory(  UtilFX.cellFactory( item -> item.getNom() ));
+		listViewP.setItems( mpp.getListe2() );
+		listViewP.setCellFactory(  UtilFX.cellFactory( item -> item.getNom() ));
+		
 		
 		// l'heure actuelle
 		Date now= new Date();
@@ -65,17 +69,18 @@ public class ControllerPagePrincipale {
 	    
 	    m=Mode.observe;
 	    mode.setText(m.getMessage());
+	    
+	    plotDaPlots();
 	}
-	
-	
 
 	public void refresh() {
 		mpp.actualiserListe();
-		UtilFX.selectInListView( listView, mpp.getCourant() );
-		listView.requestFocus();
+		UtilFX.selectInListView( listViewB, mpp.getCourant() );
+		listViewB.requestFocus();
 		mpp.actualiserListe2();
-		UtilFX.selectInListView( listView2, mpp.getCourant2() );
-		listView2.requestFocus();
+		UtilFX.selectInListView( listViewP, mpp.getCourant2() );
+		listViewP.requestFocus();
+		plotDaPlots();
 	}
 	
 	
@@ -102,7 +107,7 @@ public class ControllerPagePrincipale {
 	
 	@FXML
 	private void doSupprimer() {
-		Benevole item = listView.getSelectionModel().getSelectedItem();
+		Benevole item = listViewB.getSelectionModel().getSelectedItem();
 		if ( item == null ) {
 			managerGui.showDialogError( "Aucun element n'est selectionne dans la liste.");
 		} else {
@@ -116,7 +121,7 @@ public class ControllerPagePrincipale {
 	
 	@FXML
 	private void doSupprimer2() {
-		Poste item = listView2.getSelectionModel().getSelectedItem();
+		Poste item = listViewP.getSelectionModel().getSelectedItem();
 		if ( item == null ) {
 			managerGui.showDialogError( "Aucun element n'est selectionne dans la liste.");
 		} else {
@@ -130,18 +135,32 @@ public class ControllerPagePrincipale {
 	
 	@FXML 
 	public void doClickOnMap(MouseEvent e) {
-		System.out.println(m);
 		if (m==Mode.addPlot) {
 			m=Mode.observe;
+			x=(int)e.getX();y=(int)e.getY();
 			addPoste(e.getX(), e.getY());
 		}
 	}
 
 	private void addPoste(double x, double y) {
-		mpp.preparerAjouter2();
+		mpp.preparerAjouter2((int)x, (int)y);
 		managerGui.showView( EnumView.PosteCreation );
 	}
 	
+	private void plotDaPlots() {
+		for(Poste p : mpp.getPostes()) {draw(p);}
+	}
+	
+	private void draw(Poste p) {
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		try {
+			int x = p.getX(), y = p.getY();
+			gc.setFill(Color.RED);
+			gc.fillOval(x, y, 10, 10);
+		} catch (Exception e) {System.out.println("tried: "+p.getNom());return;}
+		
+	}
+
 ////////////////////////////////GETTERS SETTERS
 	
 	@FXML
@@ -149,6 +168,11 @@ public class ControllerPagePrincipale {
 		if (m==Mode.observe) {m=Mode.addPlot;}
 		else if (m==Mode.addPlot) {m=Mode.observe;}
 		mode.setText(m.getMessage());
+	}
+
+	public static void reinitPosition() {
+		x=-100;
+		y=-100;
 	}
 
 	

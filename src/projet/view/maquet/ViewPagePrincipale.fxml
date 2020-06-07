@@ -143,12 +143,12 @@
               <tabs>
                 <Tab text="Bénevole">
                      <content>
-                        <ListView fx:id="listView" onMouseMoved="#doheure" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="listViewB" onMouseMoved="#doheure" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </Tab>
                 <Tab text="Poste">
                      <content>
-                        <ListView fx:id="listView2" onMouseMoved="#doheure" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="listViewP" onMouseMoved="#doheure" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </Tab>
               </tabs>

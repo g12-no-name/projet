@@ -43,6 +43,8 @@ public class ModelPagePrincipale {
 	
 	private final ObservableList<Poste>    liste2 = FXCollections.observableArrayList();
 	
+
+	
 	//private final Property<Image>	schema = new SimpleObjectProperty<>();
 	
 
@@ -55,6 +57,8 @@ public class ModelPagePrincipale {
 	public void init() {
 		//schema.addListener( obs -> flagModifSchema = true );
 		chargerImages();
+		actualiserListe();
+		actualiserListe2();
 	}
 		
 	// Actualisations
@@ -100,9 +104,11 @@ public class ModelPagePrincipale {
 		mapper.update( courant, new Benevole() );
 	}
 	
-	public void preparerAjouter2() {
-		mapper.update( courant2, new Poste() );
+	public void preparerAjouter2(double x, double y) {
+		courant2.setX((int)x);courant2.setY((int)y);
+		mapper.update(  courant2, new Poste()); 
 	}
+	
 	
 	public void supprimer( Benevole item ) {
 		daobenevole.supprimer( item.getId() );
@@ -115,6 +121,11 @@ public class ModelPagePrincipale {
 		mapper.update( courant2, UtilFX.findNext( liste2, item ) );
 	}
 	
+	public ObservableList<Poste> getPostes(){
+		return this.getListe2();
+	}
+
+
 	// Methodes auxiliaires
 	
 //		public File getFichierSchemaCourant() {

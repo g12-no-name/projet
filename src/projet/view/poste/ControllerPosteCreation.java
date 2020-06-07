@@ -12,6 +12,7 @@ import jfox.javafx.view.IManagerGui;
 import projet.data.Poste;
 import projet.data.TypePoste;
 import projet.view.EnumView;
+import projet.view.maquet.ControllerPagePrincipale;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
@@ -49,17 +50,22 @@ public class ControllerPosteCreation {
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty()  );
 		comboBoxType.setItems( modelPoste.getTypePoste() );
 		comboBoxType.valueProperty().bindBidirectional( courant.typePosteProperty() );
-		//textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter()  );
-		//textFieldHeureF.textProperty().bindBidirectional( courant.heureFProperty(), new LocalTimeStringConverter()  ); 
-//		listView.setItems(courant.getBenevoles());
-//		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole() ));
+		if (ControllerPagePrincipale.x>0 && ControllerPagePrincipale.y>0) {
+			courant.setX(ControllerPagePrincipale.x);
+			courant.setY(ControllerPagePrincipale.y);
+			ControllerPagePrincipale.reinitPosition();
+		}
+			//textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter()  );
+			//textFieldHeureF.textProperty().bindBidirectional( courant.heureFProperty(), new LocalTimeStringConverter()  ); 
+			//		listView.setItems(courant.getBenevoles());
+			//		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole() ));
 	}
 	
 	
 	// Actions
 	
 	private boolean actualiserHeureDDansModele() {
-		// Modifie le statut en fct du bouton radio selectionné
+		// Modifie le statut en fct du bouton radio selectionne
 		String texte = textFieldHeureD.getText();
 		boolean b=true;
 		System.out.println(texte);

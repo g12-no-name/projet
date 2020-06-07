@@ -36,8 +36,7 @@ public class ModelPoste  {
 	// Initialisations
 	
 	@PostConstruct
-	public void init() {
-	}
+	public void init() {}
 	
 	
 	// Getters 
