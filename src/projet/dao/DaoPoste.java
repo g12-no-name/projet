@@ -87,7 +87,11 @@ public class DaoPoste {
 			sql = "UPDATE poste SET nom = ?, typePoste = ?, heureD = ?, heureF = ?, xCarte = ?, yCarte = ? WHERE id =  ?";
 			stmt = cn.prepareStatement( sql );
 			stmt.setString(	1, poste.getNom() );
-			stmt.setInt(	2, poste.getTypePoste().getId() );
+			try {
+				stmt.setInt( 2, poste.getTypePoste().getId() );
+			} catch (Exception e) {
+				stmt.setInt(2, 2 );
+			}
 			stmt.setObject(	3, poste.getHeureD() );
 			stmt.setObject(	4, poste.getHeureF());
 			stmt.setObject(	5, poste.getId());

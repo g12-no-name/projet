@@ -37,7 +37,7 @@ public class ModelPagePrincipale {
 	
 	private final Benevole	courant = new Benevole();
 	
-	private final Poste 	courant2 = new Poste();
+	private final Poste 	courantP = new Poste();
 	
 	private final ObservableList<Benevole> liste = FXCollections.observableArrayList();
 	
@@ -90,7 +90,7 @@ public class ModelPagePrincipale {
 	}
 	
 	public Poste getCourant2() {
-		return courant2;
+		return courantP;
 	}
 	
 // Action
@@ -104,40 +104,32 @@ public class ModelPagePrincipale {
 		mapper.update( courant, new Benevole() );
 	}
 	
-	public void preparerAjouter2(double x, double y) {
-		courant2.setX((int)x);courant2.setY((int)y);
-		mapper.update(  courant2, new Poste()); 
-	}
-	
+//	public void preparerAjouter2(double x, double y) {
+//		courant2.setX((int)x);courant2.setY((int)y);
+//		mapper.update(  courant2, new Poste()); 
+//	}
 	
 	public void supprimer( Benevole item ) {
 		daobenevole.supprimer( item.getId() );
 		mapper.update( courant, UtilFX.findNext( liste, item ) );
-		
 	}
 //		
 	public void supprimer2( Poste item ) {
 		daoposte.supprimer( item.getId() );
-		mapper.update( courant2, UtilFX.findNext( liste2, item ) );
+		mapper.update( courantP, UtilFX.findNext( liste2, item ) );
 	}
 	
 	public ObservableList<Poste> getPostes(){
 		return this.getListe2();
 	}
 
+	public int inserer(Poste p) {
+		return daoposte.inserer(p);
+	}
 
-	// Methodes auxiliaires
-	
-//		public File getFichierSchemaCourant() {
-//			String nomFichier = String.format( "%06d.jpg", courant.getId() );
-//			File dossierSchemas = modelConfig.getDossierSchemas();
-//			return new File( dossierSchemas, nomFichier );
-//		}
-//		
-//		public File getFichierSchemaCourant2() {
-//			String nomFichier = String.format( "%06d.jpg", courant2.getId() );
-//			File dossierSchemas = modelConfig.getDossierSchemas();
-//			return new File( dossierSchemas, nomFichier );
-//		}
+
+	public void modifier(Poste p) {
+		daoposte.modifier(p);
+	}
 
 }

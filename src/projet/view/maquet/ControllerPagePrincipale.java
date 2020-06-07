@@ -140,34 +140,61 @@ public class ControllerPagePrincipale implements MapDrawer{
 			m=Mode.observe;
 			xStaticForTransmission=(int)(e.getX()*1000/canvas.getWidth());
 			yStaticForTransmission=(int)(e.getY()*1000/canvas.getHeight());
-			addPoste(e.getX()*1000/canvas.getWidth(), e.getY()*1000/canvas.getHeight());
+			addPoste();
 		}else if(m==Mode.observe) {
 			int x=(int)(e.getX());int y=(int)(e.getY());
 			checkForProximityWithAPlot(x, y, listViewP, canvas, plotSize);
+		}else if(m==Mode.modifyPlot) {
+			if (listViewP.getSelectionModel().getSelectedItem()!=null) {
+				xStaticForTransmission=(int)(e.getX()*1000/canvas.getWidth());
+				yStaticForTransmission=(int)(e.getY()*1000/canvas.getHeight());
+				Poste courant = listViewP.getSelectionModel().getSelectedItem();
+				courant.setX(xStaticForTransmission);
+				courant.setY(yStaticForTransmission);
+				if ( courant.getId() == null ) {
+					courant.setId( mpp.inserer( courant ) );
+				} else {
+					// modificiation
+					mpp.modifier( courant );
+				}
+			}else {
+				managerGui.showDialogError("Veuillez sélectionner un poste");
+			}
 		}
 		plotDaPlots(listViewP, mpp, canvas, plotSize);
 	}
 
 	
 
-	private void addPoste(double x, double y) {
-		mpp.preparerAjouter2((int)x, (int)y);
+	private void addPoste() {
 		managerGui.showView( EnumView.PosteCreation );
+	}
+	
+	private void modifyPoste() {
+		managerGui.showView(EnumView.PosteModif);
 	}
 	
 	/////////////////////////////////////METHODS THAT DRAW
 	
 	
 
-////////////////////////////////GETTERS SETTERS
+	//////////////////////////////////////GETTERS SETTERS
 	
 	@FXML
 	public void setMode() {
 		if (m==Mode.observe) {m=Mode.addPlot;}
-		else if (m==Mode.addPlot) {m=Mode.observe;}
+		else {m=Mode.observe;}
 		mode.setText(m.getMessage());
 	}
-
+	
+	@FXML 
+	public void modeModif() {
+		if (m==Mode.modifyPlot) {m=Mode.observe;}
+		else {m=Mode.modifyPlot;}
+		mode.setText(m.getMessage());
+	}
+	
+	@FXML
 	public static void reinitPosition() {
 		xStaticForTransmission=-100;
 		yStaticForTransmission=-100;

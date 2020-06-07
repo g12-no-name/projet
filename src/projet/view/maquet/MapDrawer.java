@@ -9,31 +9,6 @@ import projet.data.Poste;
 
 public interface MapDrawer {
 	
-	@FXML
-	void plot();
-	
-	default void plotDaPlots(ListView<Poste> listViewP, ModelPagePrincipale mpp, Canvas canvas, int plotSize) {
-		drawMap(mpp, canvas);
-		try {drawSelectedPlotMarker(listViewP.getSelectionModel().getSelectedItem(), canvas, plotSize);}catch(Exception e) {}
-		for(Poste p : mpp.getPostes()) {draw(p, canvas, plotSize);}
-	}
-	
-	default void plotDaPlots(ListView<Poste> listViewP, ModelPageCarte mpp, Canvas canvas, int plotSize) {
-		drawMap(mpp, canvas);
-		try {drawSelectedPlotMarker(listViewP.getSelectionModel().getSelectedItem(), canvas, plotSize);}catch(Exception e) {}
-		for(Poste p : mpp.getPostes()) {draw(p, canvas, plotSize);}
-	}
-	
-	default void drawMap(ModelPagePrincipale mpp, Canvas canvas) {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.drawImage(mpp.imageCarteProperty().getValue(),0,0, canvas.getWidth(), canvas.getHeight());
-	}
-	
-	default void drawMap(ModelPageCarte mpp, Canvas canvas) {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.drawImage(mpp.imageCarteProperty().getValue(),0,0, canvas.getWidth(), canvas.getHeight());
-	}
-
 	default void draw(Poste p, Canvas canvas, int plotSize) {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		try {
@@ -63,6 +38,36 @@ public interface MapDrawer {
 			} catch (Exception e) {}
 		}
 	}
+	
+	////////////CONTROLLER PAGE PRINCIPALE EXCLUSIVE
+	@FXML
+	void plot();
+	
+	default void plotDaPlots(ListView<Poste> listViewP, ModelPagePrincipale mpp, Canvas canvas, int plotSize) {
+		drawMap(mpp, canvas);
+		try {drawSelectedPlotMarker(listViewP.getSelectionModel().getSelectedItem(), canvas, plotSize);}catch(Exception e) {}
+		for(Poste p : mpp.getPostes()) {draw(p, canvas, plotSize);}
+	}
+	
+	default void drawMap(ModelPagePrincipale mpp, Canvas canvas) {
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.drawImage(mpp.imageCarteProperty().getValue(),0,0, canvas.getWidth(), canvas.getHeight());
+	}
+	
+	////////////CONTROLLER PAGE CARTE EXCLUSIVE
+	
+	default void plotDaPlots(ListView<Poste> listViewP, ModelPageCarte mpp, Canvas canvas, int plotSize) {
+		drawMap(mpp, canvas);
+		try {drawSelectedPlotMarker(listViewP.getSelectionModel().getSelectedItem(), canvas, plotSize);}catch(Exception e) {}
+		for(Poste p : mpp.getPostes()) {draw(p, canvas, plotSize);}
+	}
+	
+	default void drawMap(ModelPageCarte mpp, Canvas canvas) {
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.drawImage(mpp.imageCarteProperty().getValue(),0,0, canvas.getWidth(), canvas.getHeight());
+	}
+
+	
 	
 	
 	
