@@ -3,7 +3,7 @@ package projet.view.maquet;
 public enum Mode {
 	observe("Veuillez selectionner une option."),
 	addPlot("Cliquez sur la carte pour poser un poste."),
-	
+	addMultPlots("Cliquez sur la carte pour poser un poste."),
 	
 	
 	;

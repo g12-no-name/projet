@@ -17,7 +17,7 @@ import projet.data.TypePoste;
 public class ModelPoste  {
 	
 	
-	// Données observables 
+	// Donnees observables 
 	
 	private final ObservableList<Poste> liste = FXCollections.observableArrayList(); 
 	
@@ -67,7 +67,14 @@ public class ModelPoste  {
 	public void preparerAjouter() {
 		modelTypePoste.actualiserListe();
 		mapper.update( courant, new Poste() );
-
+		
+	}
+	
+	public void prepAddFromPP(double x ,double y) {
+		modelTypePoste.actualiserListe();
+		mapper.update( courant, new Poste() );
+		courant.setX((int)x);
+		courant.setY((int)y);
 	}
 	
 	public void preparerModifier( Poste item ) {
@@ -83,7 +90,7 @@ public class ModelPoste  {
 		StringBuilder message = new StringBuilder();
 
 		if( courant.getNom() == null || courant.getNom().isEmpty() ) {
-			message.append( "\nLe titre ne doit pas être vide." );
+			message.append( "\nLe titre ne doit pas etre vide." );
 		} else  if ( courant.getNom().length()> 50 ) {
 			message.append( "\nLe titre est trop long : 50 maxi." );
 		}

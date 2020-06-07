@@ -32,7 +32,7 @@ public class MainProjet {
 			// Configure le ManagerReport
 			context.getBean( ManagerReport.class ).setDirReports( "etats" );;
 			
-			// Demarre l'application
+			// Launches the app
 			context.getBean( ManagerGui.class ).launch();
 			
 		} catch(Exception e) {

@@ -21,13 +21,6 @@ import projet.view.EnumView;
 
 public class ControllerPagePrincipale {
 	
-   private double x, y;
-   private double largeur;
-   
-
-
-   // Composant de la vue	
-
 	@Inject
 	private IManagerGui					managerGui;
 	@Inject
@@ -46,14 +39,12 @@ public class ControllerPagePrincipale {
 	@FXML
 	private Canvas 						canvas;
 	
-	
 	private Mode m;
+	
 
-
+/////////////////////////////////////////////OPENING FUNCTIONS
+	
 	public ControllerPagePrincipale() {}
-
-
-	// Initialisation du Controller
 
 	@FXML
 	private void initialize() {
@@ -62,11 +53,8 @@ public class ControllerPagePrincipale {
 		gc.drawImage(mpp.imageCarteProperty().getValue(),0,0, canvas.getWidth(), canvas.getHeight());
 		// Data binding
 		listView.setItems( mpp.getListe() );
-		
 		listView.setCellFactory(  UtilFX.cellFactory( item -> item.getNom() ));
-		
 		listView2.setItems( mpp.getListe2() );
-		
 		listView2.setCellFactory(  UtilFX.cellFactory( item -> item.getNom() ));
 		
 		// l'heure actuelle
@@ -75,7 +63,8 @@ public class ControllerPagePrincipale {
 	    String dateTimeString = df.format(now);
 	    heure.setText(dateTimeString);
 	    
-	    setMode(Mode.observe);
+	    m=Mode.observe;
+	    mode.setText(m.getMessage());
 	}
 	
 	
@@ -90,50 +79,26 @@ public class ControllerPagePrincipale {
 	}
 	
 	
-
-
-
-// Actions
+////////////////////////////////////////BUTTON AND CLICK FUNCTIONS
 	
 	@FXML
 	private void doheure() {
-			    Date now= new Date();
-	      
-	            DateFormat df = new SimpleDateFormat("HH:mm");
-	            String dateTimeString = df.format(now);
-	            heure.setText(dateTimeString);
-	     
+		Date now= new Date();
+        DateFormat df = new SimpleDateFormat("HH:mm");
+        String dateTimeString = df.format(now);
+        heure.setText(dateTimeString);
 	}
 
 	@FXML
 	private void doCarte() {
-		managerGui.execTask( () -> {
-			Platform.runLater( () -> {
-        			managerGui.showView(EnumView.PageCarte);
-            }) ;
-		} );
+		managerGui.execTask( () -> {Platform.runLater( () -> {managerGui.showView(EnumView.PageCarte);});} );
 	}
 	
 	@FXML
 	private void doAjoutBenevole() {
-		mpp.preparerAjouter();;
+		mpp.preparerAjouter();
 		managerGui.showView( EnumView.BenevoleCreate );
 	}
-	
-	@FXML
-	private void doAjoutPoste() {
-		setMode(Mode.addPlot);
-//		modelpageprincipale.preparerAjouter2();
-//		managerGui.showView( EnumView.PosteCreation );
-	}
-	
-	@FXML 
-	private void doClickOnMap(MouseEvent e) {
-		if (m==Mode.addPlot) {
-			
-		}
-	}
-	
 	
 	@FXML
 	private void doSupprimer() {
@@ -163,35 +128,54 @@ public class ControllerPagePrincipale {
 		}
 	}
 	
-	@FXML
-	private void pointDeContact(MouseEvent souris) {
-		x = souris.getX();
-		y = souris.getY();
-    }
-	
-//	@FXML
-//	private void deplacer(MouseEvent souris) {
-//		double offsetX = (souris.getX() - x)/largeur + ascenceur.getHvalue();
-//		double offsetY = (souris.getY() - y)/largeur + ascenceur.getVvalue();
-//		ascenceur.setHvalue(offsetX);
-//		ascenceur.setVvalue(offsetY);
-//		pointDeContact(souris);
-//	}
-	
-	
-//	@FXML
-//	private void Zoom() {
-//        double memX = ascenceur.getHvalue();
-//        double memY = ascenceur.getVvalue();
-//        largeur = 400;
-//        imageCarte.setFitWidth(largeur);
-//        ascenceur.setHvalue(memX);
-//        ascenceur.setVvalue(memY);
-//	}
-	
+	@FXML 
+	public void doClickOnMap(MouseEvent e) {
+		System.out.println(m);
+		if (m==Mode.addPlot) {
+			m=Mode.observe;
+			addPoste(e.getX(), e.getY());
+		}
+	}
 
-	private void setMode(Mode m2) {m=m2; mode.setText(m.getMessage());}
+	private void addPoste(double x, double y) {
+		mpp.preparerAjouter2();
+		managerGui.showView( EnumView.PosteCreation );
+	}
+	
+////////////////////////////////GETTERS SETTERS
+	
+	@FXML
+	public void setMode() {
+		if (m==Mode.observe) {m=Mode.addPlot;}
+		else if (m==Mode.addPlot) {m=Mode.observe;}
+		mode.setText(m.getMessage());
+	}
 
 	
 
 }
+
+
+
+
+//@FXML
+//private void deplacer(MouseEvent souris) {
+//	double offsetX = (souris.getX() - x)/largeur + ascenceur.getHvalue();
+//	double offsetY = (souris.getY() - y)/largeur + ascenceur.getVvalue();
+//	ascenceur.setHvalue(offsetX);
+//	ascenceur.setVvalue(offsetY);
+//	pointDeContact(souris);
+//}
+
+
+//@FXML
+//private void Zoom() {
+//    double memX = ascenceur.getHvalue();
+//    double memY = ascenceur.getVvalue();
+//    largeur = 400;
+//    imageCarte.setFitWidth(largeur);
+//    ascenceur.setHvalue(memX);
+//    ascenceur.setVvalue(memY);
+//}
+
+
