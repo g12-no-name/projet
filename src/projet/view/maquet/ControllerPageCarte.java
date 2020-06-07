@@ -10,18 +10,15 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.view.EnumView;
 
-public class ControllerPageCarte {
+public class ControllerPageCarte implements MapDrawer{
 	
-	 private double x, y;
-	   private double largeur;
+	private double x, y;
+	private double largeur;
 
 	public ControllerPageCarte() {
 		// TODO Auto-generated constructor stub
@@ -77,6 +74,12 @@ public class ControllerPageCarte {
 	private void pointDeContact(MouseEvent souris) {
 		x = souris.getX();
 		y = souris.getY();
+	}
+
+
+	@Override
+	public void plot() {
+		//plotDaPlots(mpp., mpp, canvas, plotSize)
 	}
 			
 //			@FXML

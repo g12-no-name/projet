@@ -148,7 +148,7 @@
                   </Tab>
                 <Tab text="Poste">
                      <content>
-                        <ListView fx:id="listViewP" onMouseMoved="#doheure" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="listViewP" onMouseClicked="#plot" onMouseMoved="#doheure" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </Tab>
               </tabs>

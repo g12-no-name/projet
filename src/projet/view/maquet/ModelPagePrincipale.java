@@ -31,7 +31,7 @@ public class ModelPagePrincipale {
     private ModelConfig		modelConfig;
 	
 	
-	// donnés observables
+	// donnees observables
 	
 	private final Property<Image> carte= new SimpleObjectProperty<>();
 	

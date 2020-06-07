@@ -21,7 +21,7 @@ import projet.data.Benevole;
 import projet.data.Poste;
 import projet.view.EnumView;
 
-public class ControllerPagePrincipale {
+public class ControllerPagePrincipale implements MapDrawer{
 	
 	@Inject
 	private IManagerGui					managerGui;
@@ -43,7 +43,9 @@ public class ControllerPagePrincipale {
 	
 	private Mode m;
 	
-	public static int x=-100, y=-100;
+	public static int xStaticForTransmission=-100, yStaticForTransmission=-100;
+	
+	public static int plotSize=10;
 
 /////////////////////////////////////////////OPENING FUNCTIONS
 	
@@ -51,9 +53,7 @@ public class ControllerPagePrincipale {
 
 	@FXML
 	private void initialize() {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		
-		gc.drawImage(mpp.imageCarteProperty().getValue(),0,0, canvas.getWidth(), canvas.getHeight());
+		drawMap(mpp, canvas);
 		// Data binding
 		listViewB.setItems( mpp.getListe() );
 		listViewB.setCellFactory(  UtilFX.cellFactory( item -> item.getNom() ));
@@ -70,7 +70,7 @@ public class ControllerPagePrincipale {
 	    m=Mode.observe;
 	    mode.setText(m.getMessage());
 	    
-	    plotDaPlots();
+	    plotDaPlots(listViewP, mpp, canvas, plotSize);
 	}
 
 	public void refresh() {
@@ -80,7 +80,8 @@ public class ControllerPagePrincipale {
 		mpp.actualiserListe2();
 		UtilFX.selectInListView( listViewP, mpp.getCourant2() );
 		listViewP.requestFocus();
-		plotDaPlots();
+		plotDaPlots(listViewP, mpp, canvas, plotSize); 
+		mode.setText(m.getMessage());
 	}
 	
 	
@@ -137,30 +138,26 @@ public class ControllerPagePrincipale {
 	public void doClickOnMap(MouseEvent e) {
 		if (m==Mode.addPlot) {
 			m=Mode.observe;
-			x=(int)e.getX();y=(int)e.getY();
-			addPoste(e.getX(), e.getY());
+			xStaticForTransmission=(int)(e.getX()*1000/canvas.getWidth());
+			yStaticForTransmission=(int)(e.getY()*1000/canvas.getHeight());
+			addPoste(e.getX()*1000/canvas.getWidth(), e.getY()*1000/canvas.getHeight());
+		}else if(m==Mode.observe) {
+			int x=(int)(e.getX());int y=(int)(e.getY());
+			checkForProximityWithAPlot(x, y, listViewP, canvas, plotSize);
 		}
+		plotDaPlots(listViewP, mpp, canvas, plotSize);
 	}
+
+	
 
 	private void addPoste(double x, double y) {
 		mpp.preparerAjouter2((int)x, (int)y);
 		managerGui.showView( EnumView.PosteCreation );
 	}
 	
-	private void plotDaPlots() {
-		for(Poste p : mpp.getPostes()) {draw(p);}
-		
-	}
+	/////////////////////////////////////METHODS THAT DRAW
 	
-	private void draw(Poste p) {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		try {
-			int x = p.getX(), y = p.getY();
-			gc.setFill(Color.RED);
-			gc.fillOval(x, y, 10, 10);
-		} catch (Exception e) {System.out.println("tried: "+p.getNom());return;}
-		
-	}
+	
 
 ////////////////////////////////GETTERS SETTERS
 	
@@ -172,8 +169,14 @@ public class ControllerPagePrincipale {
 	}
 
 	public static void reinitPosition() {
-		x=-100;
-		y=-100;
+		xStaticForTransmission=-100;
+		yStaticForTransmission=-100;
+	}
+
+	@Override
+	@FXML
+	public void plot() {
+		plotDaPlots(listViewP, mpp, canvas, plotSize);
 	}
 
 	

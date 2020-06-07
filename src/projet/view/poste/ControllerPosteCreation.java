@@ -50,9 +50,9 @@ public class ControllerPosteCreation {
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty()  );
 		comboBoxType.setItems( modelPoste.getTypePoste() );
 		comboBoxType.valueProperty().bindBidirectional( courant.typePosteProperty() );
-		if (ControllerPagePrincipale.x>0 && ControllerPagePrincipale.y>0) {
-			courant.setX(ControllerPagePrincipale.x);
-			courant.setY(ControllerPagePrincipale.y);
+		if (ControllerPagePrincipale.xStaticForTransmission>0 && ControllerPagePrincipale.yStaticForTransmission>0) {
+			courant.setX(ControllerPagePrincipale.xStaticForTransmission);
+			courant.setY(ControllerPagePrincipale.yStaticForTransmission);
 			ControllerPagePrincipale.reinitPosition();
 		}
 			//textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter()  );
