@@ -24,7 +24,10 @@ public class ModelRestaurant {
 		//
 		List<Equipe> listeEquipe = daoEquipe.listerTout();
 		for(int i=0;i<listeEquipe.size();i++) {
-			if(listeEquipe.get(i).getNom() == participant1+"_"+participant2 || listeEquipe.get(i).getNom() == participant2+"_"+participant1) {
+			String s1=listeEquipe.get(i).getNom().toLowerCase();
+			String s2=participant1.toLowerCase()+"_"+participant2.toLowerCase();
+			String s3=participant2.toLowerCase()+"_"+participant1.toLowerCase();
+			if( s1.equals(s2) || s1.equals(s3)) {
 				temp = listeEquipe.get(i);
 			}
 		}

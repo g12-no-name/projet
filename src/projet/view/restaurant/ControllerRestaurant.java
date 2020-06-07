@@ -67,11 +67,11 @@ public class ControllerRestaurant {
 			text = text+"\t capitain:"+(this.participantsCourant.get(0).getNom())+" "+(this.participantsCourant.get(0).getPrenom())+" \n";
 			text = text+"\t equipe:"+(this.participantsCourant.get(1).getNom())+" "+(this.participantsCourant.get(1).getPrenom())+" \n";
 			//
+			
 			if(this.equipeCourrante.getTypeCourse().getId() == 1) {
 				text = text+"\t Mini Bol d'air \n";
-			}else {
-				text = text+"\t Bol d'air \n";
-			}
+			}else {text = text+"\t Bol d'air \n";}
+			
 			switch(this.equipeCourrante.getCatCourse().getId()) {
 			case 1:
 				text = text+"\t mixte \n";
@@ -91,7 +91,7 @@ public class ControllerRestaurant {
 			//
 			this.equipeSelectionne = true;
 		}else {
-			this.zoneInfo.setText("Equipe non trouvée");
+			this.zoneInfo.setText("Equipe non trouvee");
 			this.equipeSelectionne = false;
 		}
 	}
@@ -101,7 +101,7 @@ public class ControllerRestaurant {
 	private void deductionRepas() {
 		// retire le nombre de repas necessaire
 		if(this.equipeSelectionne) {
-			this.modelRestaurant.deductionRepas(this.equipeCourrante, (Integer.valueOf(this.nbRepas.getText())-this.nbRetireValue));
+			this.modelRestaurant.deductionRepas(this.equipeCourrante, this.equipeCourrante.getNbBouffe()-this.nbRetireValue);
 			//
 			this.zoneInfo.setText("");
 			this.nbRetire.setText("0");

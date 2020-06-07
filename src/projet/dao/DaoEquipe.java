@@ -166,7 +166,7 @@ public class DaoEquipe {
 			
 			List<Equipe> equipes = new ArrayList<>();
 			while (rs.next()) {
-				equipes.add( construireEquipe(rs, false) );
+				equipes.add( construireEquipe(rs, true) );
 			}
 			return equipes;
 
@@ -189,7 +189,7 @@ public class DaoEquipe {
 
 			sql = "SELECT * FROM participant WHERE equipe = ?";
             stmt = cn.prepareStatement(sql);
-            stmt.setObject( 1, idEquipe);
+            stmt.setObject(1, idEquipe);
             rs = stmt.executeQuery();
 			
 			List<Participant> participants = new ArrayList<>();
@@ -268,7 +268,7 @@ public class DaoEquipe {
 //    }
 //	
 	
-// Méthodes auxiliaires
+// Methodes auxiliaires
 	
 	private Equipe construireEquipe( ResultSet rs, boolean flagComplet ) throws SQLException {
 
