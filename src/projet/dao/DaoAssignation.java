@@ -199,6 +199,63 @@ public class DaoAssignation {
 			UtilJdbc.close( rs, stmt, cn );
 		}
 	}
+	
+	public List<Assignation> listerAssignationBenevole(int idBenevole)   {
+
+		Connection			cn		= null;
+		PreparedStatement	stmt	= null;
+		ResultSet 			rs 		= null;
+		String				sql;
+
+		try {
+			cn = dataSource.getConnection();
+
+			sql = "SELECT * FROM assignation WHERE idBenevole = ? ORDER BY id";
+			stmt = cn.prepareStatement(sql);
+            stmt.setObject( 1, idBenevole);
+			rs = stmt.executeQuery();
+			
+			List<Assignation> assignations = new ArrayList<>();
+			while (rs.next()) {
+				assignations.add( construireAssignation(rs, false) );
+			}
+			return assignations;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+	}
+	
+	public List<Assignation> listerAssignationSearch(int idBenevole, int idPoste)   {
+
+		Connection			cn		= null;
+		PreparedStatement	stmt	= null;
+		ResultSet 			rs 		= null;
+		String				sql;
+
+		try {
+			cn = dataSource.getConnection();
+
+			sql = "SELECT * FROM assignation WHERE idBenevole = ? AND idPoste = ? ORDER BY id";
+			stmt = cn.prepareStatement(sql);
+            stmt.setObject( 1, idBenevole);
+            stmt.setObject( 2, idPoste);
+			rs = stmt.executeQuery();
+			
+			List<Assignation> assignations = new ArrayList<>();
+			while (rs.next()) {
+				assignations.add( construireAssignation(rs, false) );
+			}
+			return assignations;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			UtilJdbc.close( rs, stmt, cn );
+		}
+	}
 
 	
 //	public List<Personne> listerPourMemo( int idMemo )   {
@@ -263,8 +320,8 @@ public class DaoAssignation {
 
 		Assignation assignation = new Assignation();
 		assignation.setId(rs.getObject( "id", Integer.class ));
-		assignation.setBenevole(daoBenevole.retrouver(rs.getObject( "id", Integer.class )));
-		assignation.setPoste(daoPoste.retrouver(rs.getObject( "id", Integer.class )));
+		assignation.setBenevole(daoBenevole.retrouver(rs.getObject( "idBenevole", Integer.class )));
+		assignation.setPoste(daoPoste.retrouver(rs.getObject( "idPoste", Integer.class )));
 		assignation.setHeureD(rs.getObject("heureD", LocalTime.class));
 		assignation.setHeureF(rs.getObject("heureF", LocalTime.class));
 //		if ( flagComplet ) {

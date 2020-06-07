@@ -37,6 +37,8 @@ public class ControllerPosteInfo {
 	private IManagerGui			managerGui;
 	@Inject
 	private ModelPoste		modelPoste;
+	@Inject
+	private ModelAssignation modelAssignation;
 
 
 	// Initialisation du Controller
@@ -51,7 +53,8 @@ public class ControllerPosteInfo {
 		textFieldType.textProperty().bindBidirectional( courant.getTypePoste().nomProperty() );
 		textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter()  );
 		textFieldHeureF.textProperty().bindBidirectional( courant.heureFProperty(), new LocalTimeStringConverter()  ); 
-		listView.setItems(courant.getBenevoles());
+		modelAssignation.actualiserListePoste(courant.getId());
+		listView.setItems(modelAssignation.getListe());
 		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole() ));
 	}
 	

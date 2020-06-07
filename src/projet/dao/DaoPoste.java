@@ -25,6 +25,7 @@ public class DaoPoste {
 	private DataSource		dataSource;
 	@Inject
 	private DaoTypePoste 	daoTypePoste;
+	
 
 
 	

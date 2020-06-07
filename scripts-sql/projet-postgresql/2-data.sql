@@ -22,25 +22,6 @@ INSERT INTO compte (id, pseudo, motdepasse, mail ) VALUES
 ALTER TABLE compte ALTER COLUMN id RESTART WITH 4;
 
 
-
-
-
--- Poste
-INSERT INTO poste (id,nom,heured,heuref) VALUES
- (1,'Parking','07:00:00','09:00:00'),
- (2,'Signaleur','08:30:00','13:30:00'),
- (3,'Buvette','07:00:00','15:00:00');
- 
-ALTER TABLE poste ALTER COLUMN id RESTART WITH 4;
-
-----TypePoste
-INSERT INTO typePoste (id,nom) VALUES
- (1,'NOM1'),
- (2,'NOM2'),
- (3,'NOM3');
- 
-ALTER TABLE typePoste ALTER COLUMN id RESTART WITH 4;
-
 -- Benevole
 
 INSERT INTO benevole (id, nom, prenom, numTel,heureD, heureF) VALUES 

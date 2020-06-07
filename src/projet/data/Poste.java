@@ -1,6 +1,7 @@
 package projet.data;
 
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.beans.property.Property;
@@ -22,7 +23,6 @@ public class Poste  {
 	private final Property<LocalTime> heureD=new SimpleObjectProperty<>();
 	private final Property<LocalTime> heureF=new SimpleObjectProperty<>();
 	private final ObservableList<Assignation> benevoles = FXCollections.observableArrayList();
-
 	
 	
 	// Constructeurs
@@ -145,5 +145,16 @@ public class Poste  {
 	
 	public ObservableList<Assignation> getBenevoles() {
 		return benevoles;}
+	
+	public void setBenevoles(List<Assignation> assignations) {
+		int i=0;
+		benevoles.clear();
+		while(i<assignations.size()) {
+			benevoles.add(assignations.get(i));
+			i++;
+		}
+	}
+
+	
 }
 

@@ -24,20 +24,36 @@ public class Assignation  {
 	public Assignation() {
 	}
 
-	public Assignation( final int id) {
+	public Assignation( final int id, final Benevole benevole, final Poste poste, final LocalTime heureD, final LocalTime heureF) {
 		setId(id);
+		setBenevole(benevole);
+		setPoste(poste);
+		setHeureD(heureD);
+		setHeureF(heureF);
 	}
 	
 	public String toStringBenevole() {
 		
-		return getBenevole().getNom()+" "+getBenevole().getPrenom()+" -> "+getHeureD().toString()+"/"+getHeureF().toString();
+		 String text = getBenevole().getNom()+" "+getBenevole().getPrenom()+" de "+getHeureD().toString()+" à "+getHeureF().toString();
+		 return text;
 	}
 
 	public String toStringPoste() {
 		
-		return getPoste().toString()+" -> "+getHeureD().toString()+"/"+getHeureF().toString();
+		String text = getPoste().toString()+" de "+getHeureD().toString()+" à "+getHeureF().toString();
+		return text; 
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String text= getPoste().getNom().toString()+" -> "+getBenevole().getNom().toString()+" -> "+getHeureD().toString()+"/"+getHeureF().toString();
+		return text;
+	}
+	
+	public String test(){
+		return "test num"+getId();
+	}
 	
 	
 	// hashCode() & equals()

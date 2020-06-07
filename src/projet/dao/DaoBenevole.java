@@ -24,6 +24,7 @@ public class DaoBenevole {
 
 	@Inject
 	private DataSource		dataSource;
+	
 
 	
 	// Actions
@@ -54,7 +55,7 @@ public class DaoBenevole {
 				stmt.setObject( 13, benevole.getHeureF() );
 				stmt.executeUpdate();
 
-				// Recup l'identifiant généré par le SGBD
+				// Recup l'identifiant gï¿½nï¿½rï¿½ par le SGBD
 				rs = stmt.getGeneratedKeys();
 				rs.next();
 				benevole.setId( rs.getObject( 1, Integer.class ) );

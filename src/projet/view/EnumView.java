@@ -37,6 +37,10 @@ public enum EnumView implements IEnumView {
 	AjouterAssignationPoste		("poste/ViewAjouterAssignationPoste.fxml"),
 	ModifierAssignationPoste	("poste/ViewModifierAssignationPoste.fxml"),
 	
+	ListeAssignation		("poste/ViewListeAssignation.fxml"),
+	AjouterAssignation		("poste/ViewAjouterAssignation.fxml"),
+	ModifierAssignation	("poste/ViewModifierAssignation.fxml"),
+	
 	BenevoleListe		( "volunteer/ViewVolunteerListe.fxml" ),
 	BenevoleCreate		( "volunteer/ViewVolunteerCreation.fxml" ),
 	BenevoleModify		( "volunteer/ViewVolunteerModif.fxml" ),

@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import jfox.commun.exception.ExceptionValidation;
 import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
+import projet.dao.DaoAssignation;
 import projet.dao.DaoPoste;
 import projet.data.Assignation;
 import projet.data.Poste;
@@ -20,6 +21,7 @@ public class ModelPoste  {
 	// Données observables 
 	
 	private final ObservableList<Poste> liste = FXCollections.observableArrayList(); 
+	private final ObservableList<Assignation> listeA = FXCollections.observableArrayList(); 
 	
 	private final Poste	courant = new Poste();
 
@@ -30,7 +32,12 @@ public class ModelPoste  {
     @Inject
 	private DaoPoste			daoPoste;
     @Inject
+	private DaoAssignation			daoAssignation;
+    @Inject
     private ModelTypePoste		modelTypePoste;
+    @Inject
+    private ModelAssignation	modelAssignation;
+    
 	
     
 	// Initialisations
@@ -55,12 +62,19 @@ public class ModelPoste  {
 		return modelTypePoste.getListe();
 	}
 	
+	public ObservableList<Assignation> getListeA() {
+		return listeA;
+	}
+	
 	// Actualisations
 	
 	public void actualiserListe() {
 		liste.setAll( daoPoste.listerTout() );
  	}
-
+	
+	public void actualiserListeA() {
+		listeA.setAll( daoAssignation.listerAssignationPoste(courant.getId()) );
+ 	}
 
 	// Actions
 	
@@ -72,6 +86,7 @@ public class ModelPoste  {
 	
 	public void preparerModifier( Poste item ) {
 		modelTypePoste.actualiserListe();
+		modelAssignation.actualiserListePoste(item.getId());
 		mapper.update( courant, daoPoste.retrouver( item.getId() ) );
 	}
 	
@@ -112,15 +127,6 @@ public class ModelPoste  {
 		mapper.update( courant, UtilFX.findNext( liste, item ) );
 		
 		//getFichierSchemaCourant().delete();
-	}
-
-	
-	public void supprimerBenevole( Assignation item ) {
-		courant.getBenevoles().remove(item);
-	}
-	
-	public void ajouterBenevole( Assignation item ) {
-		courant.getBenevoles().add(item);
 	}
 	
 	
