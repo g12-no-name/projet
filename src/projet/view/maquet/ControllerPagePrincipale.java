@@ -149,6 +149,7 @@ public class ControllerPagePrincipale {
 	
 	private void plotDaPlots() {
 		for(Poste p : mpp.getPostes()) {draw(p);}
+		
 	}
 	
 	private void draw(Poste p) {
