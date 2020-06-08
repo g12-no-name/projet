@@ -163,6 +163,7 @@ public class ControllerPagePrincipale implements MapDrawer{
 					mpp.modifier( courant );
 				}
 				m=Mode.observe;
+				mode.setText(m.getMessage());
 			}else {
 				int x=(int)(e.getX());int y=(int)(e.getY());
 				if(checkForProximityWithAPlot(x, y, listViewP, canvas, plotSize)) {

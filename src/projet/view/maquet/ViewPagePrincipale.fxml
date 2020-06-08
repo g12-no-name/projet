@@ -4,7 +4,6 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -122,11 +121,6 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
-                  <Slider>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Slider>
                   <TextField fx:id="mode" alignment="TOP_LEFT" onMouseMoved="#doheure" prefHeight="25.0" prefWidth="249.0" text="Cette course est sponsorise par Hyper U">
                      <VBox.margin>
                         <Insets left="10.0" right="60.0" />
