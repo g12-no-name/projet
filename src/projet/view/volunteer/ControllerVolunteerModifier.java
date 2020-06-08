@@ -8,10 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
+import projet.data.Assignation;
 import projet.data.Benevole;
 import projet.view.EnumView;
+import projet.view.poste.ModelAssignation;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
@@ -42,6 +46,8 @@ public class ControllerVolunteerModifier {
 	private CheckBox 			permisDeConduire;
 	@FXML 
 	private CheckBox			membership;
+	@FXML
+	private ListView<Assignation>	listView;
 	
 	@FXML
 	private Button 				goBack;
@@ -56,6 +62,8 @@ public class ControllerVolunteerModifier {
 	private IManagerGui			managerGui;
 	@Inject
 	private ModelVolunteer	modelV;
+	@Inject
+	private ModelAssignation	modelAssignation;
 
 
 	// Initialisation du Controller
@@ -90,6 +98,10 @@ public class ControllerVolunteerModifier {
 		try {
 		membership.selectedProperty().bindBidirectional( courant.membreProperty() );
 		}catch(NullPointerException e) {}
+		
+		modelAssignation.actualiserListeBenevole(courant.getId());
+		listView.setItems(modelAssignation.getListe());
+		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringPoste() ));
 	}
 	
 	
@@ -98,6 +110,10 @@ public class ControllerVolunteerModifier {
 	@FXML
 	private void doGoBack() {
 		managerGui.showView( EnumView.BenevoleListe );
+	}
+	
+	@FXML void doModifierBenevole() {
+		managerGui.showView( EnumView.ListeAssignationVolunteer );	
 	}
 	
 	@FXML
@@ -119,7 +135,7 @@ public class ControllerVolunteerModifier {
 			Integer hf = Integer.parseInt(hourF);
 			Integer mf = Integer.parseInt(minF);
 			if (hd < 0 || hf < 0 || hd > 23 || hf > 23 || md < 0 || mf < 0 || md > 59 || mf > 59) {
-				managerGui.showDialogError("Veuillez verifier la validite des horaires rentrées");
+				managerGui.showDialogError("Veuillez verifier la validite des horaires rentrï¿½es");
 				return;
 			}
 			modelV.getCourant().setHeureD(LocalTime.of(hd, md));

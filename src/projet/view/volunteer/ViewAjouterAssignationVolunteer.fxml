@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="paneRoot" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.volunteer.ControllerAjouterAssignationVolunteer">
+   <children>
+      <VBox alignment="CENTER" layoutX="67.0" layoutY="14.0" prefHeight="418.0" prefWidth="466.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="403.0" prefWidth="398.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="32.0" prefWidth="466.0">
+                     <children>
+                        <Label alignment="CENTER" styleClass="titre-vue" text="Ajouter une assignation " />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="33.0" prefWidth="398.0">
+                     <children>
+                        <Label text="Poste : " />
+                        <ComboBox fx:id="comboBoxPoste" prefHeight="26.0" prefWidth="211.0">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Button mnemonicParsing="false" onAction="#doActualiserHoraires" text="Actualiser horaires">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="15.0" prefWidth="398.0">
+                     <children>
+                        <Label text="Horaires : " textAlignment="CENTER" />
+                        <TextField fx:id="textFieldPosteD" editable="false">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="textFieldPosteF" editable="false" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <GridPane prefHeight="259.0" prefWidth="305.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="122.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="183.2" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="119.20001831054688" minHeight="10.0" prefHeight="39.199989318847656" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="163.19998626708986" minHeight="10.0" prefHeight="161.60001068115236" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="80.40001220703124" minHeight="0.0" prefHeight="29.000024414062494" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="74.4000244140625" minHeight="0.0" prefHeight="29.199951171875" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Bénévole" textAlignment="CENTER" />
+                        <TextField fx:id="textFieldHeureD" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <TextField fx:id="textFieldHeureF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Heure de début" GridPane.rowIndex="2" />
+                        <Label text="Heure de fin" GridPane.rowIndex="3" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <ListView fx:id="listViewD" disable="true" editable="true" prefHeight="200.0" prefWidth="200.0" />
+                              <ListView fx:id="listViewF" disable="true" editable="true" prefHeight="200.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Disponibilités">
+                                 <padding>
+                                    <Insets bottom="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <TextField fx:id="textFieldBene" editable="false" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="202.0" layoutY="426.0" prefHeight="60.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#doAccueil" text="Accueil" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#doRetour" prefHeight="25.0" prefWidth="60.0" text="Retour" />
+            <Button fx:id="buttonValider" mnemonicParsing="false" onAction="#doValider" prefHeight="25.0" prefWidth="60.0" text="Valider" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

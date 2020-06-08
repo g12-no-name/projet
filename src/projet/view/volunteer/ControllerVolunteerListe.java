@@ -11,6 +11,7 @@ import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Benevole;
 import projet.view.EnumView;
+import projet.view.poste.ModelPoste;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
@@ -40,7 +41,8 @@ public class ControllerVolunteerListe {
 	private IManagerGui			managerGui;
 	@Inject
 	private ModelVolunteer		modelV;
-
+	@Inject
+	private ModelPoste			modelPoste;
 
 	// Initialisation du Controller
 
@@ -71,7 +73,7 @@ public class ControllerVolunteerListe {
 	
 	@FXML
 	private void doDelete() {
-		if ( managerGui.showDialogConfirm( "Confirmez-vous la suppresion ?" ) ) {
+		if ( managerGui.showDialogConfirm( "Confirmez-vous la suppresionï¿½?" ) ) {
 			modelV.supprimer( list.getSelectionModel().getSelectedItem() );
 			refresh();
 		}
@@ -92,6 +94,13 @@ public class ControllerVolunteerListe {
 	@FXML
 	private void goBack() {
 		managerGui.showView( EnumView.PagePrincipale );
+	}
+	
+	@FXML
+	private void doAssignation() {
+		modelPoste.actualiserListe();
+		modelV.actualiserListe();
+		managerGui.showView(EnumView.ListeAssignation);
 	}
 	
 	// Gestion des evenements

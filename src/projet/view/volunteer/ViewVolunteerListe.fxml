@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="paneRoot" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.volunteer.ControllerVolunteerListe">
+<AnchorPane fx:id="paneRoot" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.volunteer.ControllerVolunteerListe">
    <children>
       <Label alignment="CENTER" styleClass="titre-vue" text="Liste des benevoles" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
       <HBox alignment="CENTER" layoutY="75.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
@@ -16,7 +16,15 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
             </ListView>
+            <Button mnemonicParsing="false" onAction="#doAssignation" text="Assignation">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutY="263.0" prefHeight="60.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

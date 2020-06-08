@@ -8,10 +8,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.data.Assignation;
 import projet.data.Benevole;
 import projet.view.EnumView;
+import projet.view.poste.ModelAssignation;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
@@ -52,6 +54,8 @@ public class ControllerVolunteerInfo {
 	private IManagerGui			managerGui;
 	@Inject
 	private ModelVolunteer      modelV;
+	@Inject
+	private ModelAssignation 	modelAssignation;
 
 
 	// Initialisation du Controller
@@ -86,6 +90,10 @@ public class ControllerVolunteerInfo {
 		if(courant.getHeureD()!=null) {s+="A partir de: "+courant.getHeureD().getHour()+":"+courant.getHeureD().getMinute()+" ";}
 		if(courant.getHeureF()!=null) {s+="jusqu'a: "+courant.getHeureF().getHour()+":"+courant.getHeureF().getMinute();}
 		textFieldDispos.setText(s);
+		
+		modelAssignation.actualiserListeBenevole(courant.getId());
+		listView.setItems(modelAssignation.getListe());
+		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringPoste() ));
 	}
 	
 	

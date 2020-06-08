@@ -12,12 +12,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="390.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.volunteer.ControllerVolunteerCreate">
+<AnchorPane fx:id="paneRoot" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.volunteer.ControllerVolunteerCreate">
    <children>
       <Label alignment="CENTER" layoutY="29.0" styleClass="titre-vue" text="Ajout d'un nouveau bénévole" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
       <VBox alignment="CENTER" fillWidth="false" layoutY="80.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <GridPane prefHeight="224.0" prefWidth="303.0">
+            <GridPane prefHeight="315.0" prefWidth="356.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="92.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="211.0" />
@@ -46,7 +46,7 @@
                   <Label prefHeight="17.0" prefWidth="90.0" text="Adresse et ville" GridPane.rowIndex="3" />
                   <TextField fx:id="textFieldAdresse" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label prefHeight="17.0" prefWidth="80.0" text="Naissance" GridPane.rowIndex="4" />
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="225.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
                         <DatePicker fx:id="datePickerDateNaissance" prefHeight="25.0" prefWidth="100.0" />
                         <Label prefHeight="29.0" prefWidth="43.0" text="Mineur:" />
@@ -71,7 +71,7 @@
                      </children>
                   </GridPane>
                   <Label text="Disponibilités" GridPane.rowIndex="5" />
-                  <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <HBox alignment="CENTER" prefHeight="29.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <children>
                         <TextField fx:id="textFieldDispoD" prefHeight="25.0" prefWidth="101.0" promptText="A partir de" />
                         <TextField fx:id="textFieldDispoF" prefHeight="25.0" prefWidth="109.0" promptText="Jusqu'a" />

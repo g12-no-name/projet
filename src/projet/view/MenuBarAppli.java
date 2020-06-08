@@ -97,10 +97,7 @@ public class MenuBarAppli extends MenuBar {
 		configurerMenu( modelConnexion.getCompteActif() );
 
 		// Le changement du compte connecté modifie automatiquement le menu
-		modelConnexion.compteActifProperty().addListener( (obs) -> {
-					Platform.runLater( () -> configurerMenu( modelConnexion.getCompteActif() ) );
-				}
-			); 
+		modelConnexion.compteActifProperty().addListener( (obs) -> {Platform.runLater( () -> configurerMenu( modelConnexion.getCompteActif() ) );}); 
 		
 	}
 

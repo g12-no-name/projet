@@ -41,7 +41,7 @@ public class ManagerGui extends ManagerGuiAbstract {
 		stage.setTitle( "Gestion de l'organisation du Bol d'air" );
 		stage.setWidth(600);
 		stage.setHeight(440);
-		stage.setMinWidth(400);
+		stage.setMinWidth(440);
 		stage.setMinHeight(300);
 		stage.getIcons().add(new Image(getClass().getResource("icone.png").toExternalForm()));
 		
