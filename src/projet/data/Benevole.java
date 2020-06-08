@@ -56,69 +56,74 @@ public class Benevole {
 	public void ModificationDispo(List<Assignation> assignations) {
 		this.setPostes(assignations);
 		disponible.clear();
-		if (!postes.isEmpty()) {
-			LocalTime debut = heureD.getValue(), fin, previous;
-			boolean b = false, complet = false, changer;
-			for (int i = 0; i < postes.size(); i++) {
-				if (heureD.getValue().equals(postes.get(i).getHeureD())) {
-					b = true;
+		if(heureD.getValue()==null||heureF.getValue()==null){
+			disponible.put(LocalTime.MIDNIGHT, LocalTime.MIDNIGHT);
+		}else {
+			if (!postes.isEmpty()) {
+				LocalTime debut = heureD.getValue(), fin, previous;
+				boolean b = false, complet = false, changer;
+				for (int i = 0; i < postes.size(); i++) {
+					if (heureD.getValue().equals(postes.get(i).getHeureD())) {
+						b = true;
+					}
 				}
-			}
-			if (!b) {
-				fin = heureF.getValue();
-				do {
-					changer = false;
-					for (int i = 0; i < postes.size(); i++) {
-						if (fin.isAfter(postes.get(i).getHeureD())) {
-							fin = postes.get(i).getHeureD();
-							changer = true;
-						}
-					}
-				} while (changer);
-				disponible.put(debut, fin);
-			}
-			debut = getHeureF();
-			previous = getHeureD();
-			while (!complet) {
-				do {
-					changer = false;
-					for (int i = 0; i < postes.size(); i++) {
-						if (debut.isAfter(postes.get(i).getHeureF()) && previous.isBefore(postes.get(i).getHeureF())) {
-							debut = postes.get(i).getHeureF();
-							changer = true;
-						}
-					}
-				} while (changer);
-				previous = debut;
-				if (!(debut.equals(getHeureF()))) {
-					fin = getHeureF();
-					int k=0;
+				if (!b) {
+					fin = heureF.getValue();
 					do {
 						changer = false;
 						for (int i = 0; i < postes.size(); i++) {
-							if (fin.isAfter(postes.get(i).getHeureD()) && debut.isBefore(postes.get(i).getHeureD())) {
+							if (fin.isAfter(postes.get(i).getHeureD())) {
 								fin = postes.get(i).getHeureD();
-								k=i;
 								changer = true;
 							}
 						}
 					} while (changer);
 					disponible.put(debut, fin);
-					debut=postes.get(k).getHeureF();
-					if(fin.equals(getHeureF())||debut.equals(getHeureF())) {
-						complet=true;
+				}
+				debut = getHeureF();
+				previous = getHeureD();
+				while (!complet) {
+					do {
+						changer = false;
+						for (int i = 0; i < postes.size(); i++) {
+							if (debut.isAfter(postes.get(i).getHeureF()) && previous.isBefore(postes.get(i).getHeureF())) {
+								debut = postes.get(i).getHeureF();
+								changer = true;
+							}
+						}
+					} while (changer);
+					previous = debut;
+					if (!(debut.equals(getHeureF()))) {
+						fin = getHeureF();
+						int k=0;
+						do {
+							changer = false;
+							for (int i = 0; i < postes.size(); i++) {
+								if (fin.isAfter(postes.get(i).getHeureD()) && debut.isBefore(postes.get(i).getHeureD())) {
+									fin = postes.get(i).getHeureD();
+									k=i;
+									changer = true;
+								}
+							}
+						} while (changer);
+						disponible.put(debut, fin);
+						debut=postes.get(k).getHeureF();
+						if(fin.equals(getHeureF())||debut.equals(getHeureF())) {
+							complet=true;
+						}
+					} else {
+						complet = true;
 					}
-				} else {
-					complet = true;
+				}
+			} else {
+				if(heureD==null || heureF==null) {
+					disponible.put(LocalTime.MIDNIGHT, LocalTime.MIDNIGHT);
+				}else {
+					disponible.put(getHeureD(), getHeureF());
 				}
 			}
-		} else {
-			if(heureD==null || heureF==null) {
-				disponible.put(LocalTime.MIDNIGHT, LocalTime.MIDNIGHT);
-			}else {
-				disponible.put(getHeureD(), getHeureF());
-			}
 		}
+		
 	}
 
 	// hashCode() & equals()
