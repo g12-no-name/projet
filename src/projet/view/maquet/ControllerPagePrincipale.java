@@ -149,6 +149,9 @@ public class ControllerPagePrincipale implements MapDrawer{
 		}else if(m==Mode.observe) {
 			int x=(int)(e.getX());int y=(int)(e.getY());
 			checkForProximityWithAPlot(x, y, listViewP, canvas, plotSize);
+			
+			
+			
 		}else if(m==Mode.modifyPlot) {
 			if (listViewP.getSelectionModel().getSelectedItem()!=null) {
 				xStaticForTransmission=(int)(e.getX()*1000/canvas.getWidth());
