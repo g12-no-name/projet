@@ -68,9 +68,19 @@ INSERT INTO benevole (id, nom, prenom, numTel,heureD, heureF) VALUES
   ( 22, 'siegward', 'number 2467', '2222222222',null,null ),
   ( 23, 'pat', 'number 7424', '2323232323',null,null ),
   ( 24, 'yoel', 'number 2456', '2424242424','15:05','16:00' );
+<<<<<<< HEAD
  
 ALTER TABLE personne ALTER COLUMN id RESTART WITH 25;
  
+=======
+
+  
+  
+  
+ 
+ALTER TABLE personne ALTER COLUMN id RESTART WITH 6;
+
+>>>>>>> branch 'master' of https://github.com/g12-no-name/projet.git
 INSERT INTO equipe (id, nom,nbBouffe,typeCourse,catCourse) VALUES
   (1, 'RandomGuy_RandomCat',2,1,1),
   (2, 'RandomDude_RandomTetromino', 5,1,1);
@@ -94,9 +104,15 @@ INSERT INTO typePoste (id, nom) VALUES
   (3, 'game'),
   (4,'honor'),
   (5,'for');
+<<<<<<< HEAD
  
 ALTER TABLE typePoste ALTER COLUMN id RESTART WITH 6;
  
+=======
+
+ALTER TABLE typePoste ALTER COLUMN id RESTART WITH 4;
+
+>>>>>>> branch 'master' of https://github.com/g12-no-name/projet.git
 --Poste
  
 INSERT INTO poste (id, nom, typePoste, heureD, heureF, xCarte, yCarte) VALUES
@@ -126,6 +142,7 @@ INSERT INTO poste (id, nom, typePoste, heureD, heureF, xCarte, yCarte) VALUES
 ALTER TABLE poste ALTER COLUMN id RESTART WITH 23;
  
 
+<<<<<<< HEAD
 -------asignation
  
 INSERT INTO assignation (id, idBenevole,idPoste, heureD, heureF) VALUES
@@ -152,3 +169,67 @@ INSERT INTO assignation (id, idBenevole,idPoste, heureD, heureF) VALUES
   (21,24,21,'12:05','15:15');
   
 ALTER TABLE assignation ALTER COLUMN id RESTART WITH 22;
+=======
+INSERT INTO poste (id, nom, typePoste, heureD, heureF) VALUES
+  (1, 'poste 1', 1, '15:05','15:15' ),
+  (2, 'poste 4', 3, '08:05','10:15'),
+  (3, 'I do', 2, '14:05','16:15'),
+  (4, 'not know', 2, '12:05','15:15'),
+  (5, 'what to do', 1, '15:05','15:15'),
+  (6, 'anymore', 2, '15:05','15:15'),
+  (7, 'velo', 2, '12:05','15:15'),
+  (8, 'gourdier', 1, '12:05','16:00'),
+  (9, 'gardien', 5, '15:05','16:15'),
+  (10, 'emissaire', 4, '12:05','15:15'),
+  (11, 'spadassin', 4, '15:05','16:15'),
+  (12, 'sentinelle',4, '12:05','15:15'),
+  (13, 'fleau', 4, '12:05','15:15'),
+  (14, 'victimaire', 5, '12:05','16:15'),
+  (15, 'hersir', 5, '12:05','15:15'),
+  (16, 'berserker', 5, '12:05','16:15'),
+  (17, 'valkyrie', 3, '15:05','16:15'),
+  (18, 'jarl', 3, '15:05','16:15'),
+  (19, 'chamane', 3, '12:05','16:15'),
+  (20, 'kensei', 2, '12:05','16:15'),
+  (21, 'orochi', 2, '15:05','16:15'),
+  (22, 'shugoki', 1, '15:05','15:15');
+
+ALTER TABLE poste ALTER COLUMN id RESTART WITH 7;
+
+
+-------asignation
+
+INSERT INTO assignation (id, idBenevole,idPoste, heureD, heureF) VALUES
+  (1,4,1,'15:05','15:15'),
+  (2,5,2,'15:05','15:15'),
+  (3,6,3,'15:05','15:15'),
+  (4,7,4,'12:05','15:15'),
+  (5,8,5,'12:05','15:15'),
+  (6,9,6,'12:05','15:15'),
+  (7,10,7,'12:05','16:15'),
+  (8,11,8,'12:05','16:15'),
+  (9,12,9,'12:05','16:15'),
+  (10,13,10,'15:05','15:15'),
+  (11,14,11,'15:05','15:15'),
+  (12,15,12,'15:05','15:15'),
+  (13,16,13,'12:05','15:15'),
+  (14,17,14,'12:05','15:15'),
+  (15,18,15,'12:05','15:15'),
+  (16,19,16,'12:05','16:15'),
+  (17,20,17,'12:05','16:15'),
+  (18,21,18,'15:05','15:15'),
+  (19,22,19,'15:05','15:15'),
+  (20,23,20,'15:05','15:15'),
+  (21,24,21,'12:05','15:15');
+  
+ALTER TABLE assignation ALTER COLUMN id RESTART WITH 4;
+
+
+
+
+
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/g12-no-name/projet.git
