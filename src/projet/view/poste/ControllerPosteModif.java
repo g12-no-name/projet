@@ -20,8 +20,6 @@ import projet.view.EnumView;
 
 public class ControllerPosteModif {
 
-	public static int dernier;
-
 	// Composants de la vue
 	
 	@FXML
@@ -42,6 +40,8 @@ public class ControllerPosteModif {
 	private IManagerGui			managerGui;
 	@Inject
 	private ModelPoste		modelPoste;
+	@Inject
+	private ModelAssignation modelAssignation;
 
 
 	// Initialisation du Controller
@@ -52,16 +52,17 @@ public class ControllerPosteModif {
 		// Data binding
 		
 		Poste courant = modelPoste.getCourant();
-		dernier=courant.getId();
+		modelAssignation.actualiserListePoste(courant.getId());
 		textFieldNom.textProperty().bindBidirectional( courant.nomProperty()  );
 		comboBoxType.setItems( modelPoste.getTypePoste() );
 		comboBoxType.valueProperty().bindBidirectional( courant.typePosteProperty() );
 		actualiserHeureDDansVue();
 		actualiserHeureFDansVue();
 		//textFieldHeureD.textProperty().bindBidirectional( courant.heureDProperty(), new LocalTimeStringConverter()  );
-		//textFieldHeureF.textProperty().bindBidirectional( courant.heureFProperty(), new LocalTimeStringConverter()  ); 
-		listView.setItems(courant.getBenevoles());
-		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole() ));
+		//textFieldHeureF.textProperty().bindBidirectional( courant.heureFProperty(),new LocalTimeStringConverter()  ); 
+		
+		listView.setItems(modelAssignation.getListe());
+		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole()));
 	}
 	
 	

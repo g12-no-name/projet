@@ -4,7 +4,6 @@ import javax.inject.Inject;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -29,8 +28,6 @@ public class ControllerListeAssignationPoste {
 	private Button				buttonSupprimer;
 	@FXML
 	private Button				buttonAjouter;
-	@FXML
-	private Label 				nomPoste;
 
 
 	// Autres champs
@@ -38,9 +35,9 @@ public class ControllerListeAssignationPoste {
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	private ModelPoste			modelPoste;
-	@Inject
 	private ModelAssignation	modelAssignation;
+	@Inject
+	private ModelPoste			modelPoste;
 	
 	
 	// Initialisation du Controller
@@ -48,9 +45,9 @@ public class ControllerListeAssignationPoste {
 	@FXML
 	private void initialize() {
 		// Data binding
+		Poste posteCourant = modelPoste.getCourant();
+		modelAssignation.actualiserListePoste(posteCourant.getId());
 		listView.setItems( modelAssignation.getListe() );
-		nomPoste.textProperty().bind(modelPoste.getCourant().nomProperty());
-		
 		listView.setCellFactory(  UtilFX.cellFactory( item -> item.toStringBenevole() ));
 		
 		// Configuraiton des boutons
@@ -63,6 +60,8 @@ public class ControllerListeAssignationPoste {
 	}
 	
 	public void refresh() {
+		modelAssignation.actualiserListePoste(modelPoste.getCourant().getId());
+		UtilFX.selectInListView( listView, modelAssignation.getCourant() );
 		listView.requestFocus();
 	}
 
@@ -80,7 +79,8 @@ public class ControllerListeAssignationPoste {
 		Assignation item = listView.getSelectionModel().getSelectedItem();
 		if ( item == null ) {
 			managerGui.showDialogError( "Aucun élément n'est sélectionné dans la liste.");
-		} else {	
+		} else {
+			modelAssignation.preparerModifier(item);
 			managerGui.showView( EnumView.ModifierAssignationPoste );
 		}
 	}
@@ -93,7 +93,7 @@ public class ControllerListeAssignationPoste {
 		} else {
 			boolean reponse = managerGui.showDialogConfirm( "Confirmez-vous la suppresion ?" );
 			if ( reponse ) {
-				modelPoste.getCourant().getBenevoles().remove(item);
+				modelAssignation.supprimer(item);
 				refresh();
 			}
 		}
@@ -101,7 +101,7 @@ public class ControllerListeAssignationPoste {
 	
 	@FXML
 	private void doRetour() {
-		managerGui.showView( EnumView.ListeAssignationPoste);
+		managerGui.showView( EnumView.PosteModif);
 	}
 	
 	@FXML

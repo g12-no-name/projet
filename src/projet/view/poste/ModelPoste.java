@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import jfox.commun.exception.ExceptionValidation;
 import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
+import projet.dao.DaoAssignation;
 import projet.dao.DaoPoste;
 import projet.data.Assignation;
 import projet.data.Poste;
@@ -17,9 +18,10 @@ import projet.data.TypePoste;
 public class ModelPoste  {
 	
 	
-	// Données observables 
+	// Donnees observables 
 	
 	private final ObservableList<Poste> liste = FXCollections.observableArrayList(); 
+	private final ObservableList<Assignation> listeA = FXCollections.observableArrayList(); 
 	
 	private final Poste	courant = new Poste();
 
@@ -30,14 +32,18 @@ public class ModelPoste  {
     @Inject
 	private DaoPoste			daoPoste;
     @Inject
+	private DaoAssignation			daoAssignation;
+    @Inject
     private ModelTypePoste		modelTypePoste;
+    @Inject
+    private ModelAssignation	modelAssignation;
+    
 	
     
 	// Initialisations
 	
 	@PostConstruct
-	public void init() {
-	}
+	public void init() {}
 	
 	
 	// Getters 
@@ -55,23 +61,38 @@ public class ModelPoste  {
 		return modelTypePoste.getListe();
 	}
 	
+	public ObservableList<Assignation> getListeA() {
+		return listeA;
+	}
+	
 	// Actualisations
 	
 	public void actualiserListe() {
 		liste.setAll( daoPoste.listerTout() );
  	}
-
+	
+	public void actualiserListeA() {
+		listeA.setAll( daoAssignation.listerAssignationPoste(courant.getId()) );
+ 	}
 
 	// Actions
 	
 	public void preparerAjouter() {
 		modelTypePoste.actualiserListe();
 		mapper.update( courant, new Poste() );
-
+		
+	}
+	
+	public void prepAddFromPP(double x ,double y) {
+		modelTypePoste.actualiserListe();
+		mapper.update( courant, new Poste() );
+		courant.setX((int)x);
+		courant.setY((int)y);
 	}
 	
 	public void preparerModifier( Poste item ) {
 		modelTypePoste.actualiserListe();
+		modelAssignation.actualiserListePoste(item.getId());
 		mapper.update( courant, daoPoste.retrouver( item.getId() ) );
 	}
 	
@@ -83,7 +104,7 @@ public class ModelPoste  {
 		StringBuilder message = new StringBuilder();
 
 		if( courant.getNom() == null || courant.getNom().isEmpty() ) {
-			message.append( "\nLe titre ne doit pas être vide." );
+			message.append( "\nLe titre ne doit pas etre vide." );
 		} else  if ( courant.getNom().length()> 50 ) {
 			message.append( "\nLe titre est trop long : 50 maxi." );
 		}
@@ -112,15 +133,6 @@ public class ModelPoste  {
 		mapper.update( courant, UtilFX.findNext( liste, item ) );
 		
 		//getFichierSchemaCourant().delete();
-	}
-
-	
-	public void supprimerBenevole( Assignation item ) {
-		courant.getBenevoles().remove(item);
-	}
-	
-	public void ajouterBenevole( Assignation item ) {
-		courant.getBenevoles().add(item);
 	}
 	
 	

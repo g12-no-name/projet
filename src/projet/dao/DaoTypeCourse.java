@@ -151,7 +151,7 @@ public class DaoTypeCourse {
 	}
 	
 	
-	// Méthodes auxiliaires
+	// Methodes auxiliaires
 	
 	private TypeCourse construireTypeCourse( ResultSet rs ) throws SQLException {
 		TypeCourse typeCourse = new TypeCourse();

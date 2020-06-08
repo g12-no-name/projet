@@ -13,7 +13,6 @@ import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
 import projet.dao.DaoAssignation;
 import projet.data.Assignation;
-import projet.data.Poste;
 import projet.view.volunteer.ModelVolunteer;
 
 public class ModelAssignation {
@@ -31,6 +30,8 @@ public class ModelAssignation {
 	private DaoAssignation daoAssignation;
 	@Inject
 	private ModelVolunteer modelVolunteer;
+	@Inject
+	private ModelPoste		modelPoste;
 
 	// Initialisations
 
@@ -50,30 +51,41 @@ public class ModelAssignation {
 
 	// Actualisations
 
-	public void actualiserListe() {
-		liste.setAll(daoAssignation.listerAssignationPoste(ControllerPosteModif.dernier));
+	public void actualiserListePoste(int poste) {
+		liste.setAll(daoAssignation.listerAssignationPoste(poste));
+	}
+	
+	public void actualiserListeBenevole(int benevole) {
+		liste.setAll(daoAssignation.listerAssignationBenevole(benevole));
+	}
+	
+	public void actualiserListeSearch(int benevole, int poste) {
+		liste.setAll(daoAssignation.listerAssignationSearch(benevole, poste));
 	}
 
+	public void actualiserListe() {
+		liste.setAll(daoAssignation.listerTout());
+	}
 	// Actions
 
 	public void preparerAjouter() {
+		modelPoste.actualiserListe();
 		modelVolunteer.actualiserListe();
 		mapper.update(courant, new Assignation());
 
 	}
 
-	public void preparerModifier(Poste item) {
+	public void preparerModifier(Assignation item) {
+		modelPoste.actualiserListe();
 		modelVolunteer.actualiserListe();
 		mapper.update(courant, daoAssignation.retrouver(item.getId()));
 	}
 
 	public boolean verifDispo() {
-		courant.getBenevole().ModificationDispo();
+		courant.getBenevole().ModificationDispo(daoAssignation.listerAssignationBenevole(courant.getBenevole().getId()));
 		if(!courant.getBenevole().getDisponible().isEmpty()) {
 			for (Map.Entry<LocalTime, LocalTime> dispo : courant.getBenevole().getDisponible().entrySet()) {
-				if (((courant.getHeureD().isAfter(dispo.getKey())) || (courant.getHeureD().equals(dispo.getKey())))
-						&& ((courant.getHeureF().isBefore(dispo.getValue()))
-								|| (courant.getHeureF().equals(dispo.getValue())))) {
+				if (courant.getHeureD().isAfter(dispo.getKey()) && courant.getHeureF().isBefore(dispo.getValue())) {
 					return true;
 				}
 			}
@@ -93,6 +105,13 @@ public class ModelAssignation {
 			if (!verifDispo()) {
 				message.append("\nLe benevole doit être disponible");
 			}
+		}
+		if (courant.getPoste() == null) {
+			message.append("\nIl doit y avoir un poste.");
+		}
+		if (courant.getPoste().getHeureD().isAfter(courant.getHeureD())||
+				courant.getPoste().getHeureF().isBefore(courant.getHeureF())) {
+			message.append("\nL'assignation doit être dans les horaires du poste.");
 		}
 
 		if (message.length() > 0) {

@@ -3,6 +3,7 @@ package projet.data;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.beans.property.Property;
@@ -52,7 +53,8 @@ public class Benevole {
 		return getNom() + " " + getPrenom();
 	}
 
-	public void ModificationDispo() {
+	public void ModificationDispo(List<Assignation> assignations) {
+		this.setPostes(assignations);
 		disponible.clear();
 		if (!postes.isEmpty()) {
 			LocalTime debut = heureD.getValue(), fin, previous;
@@ -310,8 +312,18 @@ public class Benevole {
 		return postes;
 	}
 
+	public void setPostes(List<Assignation> assignations) {
+		int i=0;
+		postes.clear();
+		while(i<assignations.size()) {
+			postes.add(assignations.get(i));
+			i++;
+		}
+	}
+	
 	public HashMap<LocalTime, LocalTime> getDisponible() {
 		return disponible;
 	}
+	
 
 }

@@ -9,21 +9,18 @@ import javax.inject.Inject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import jfox.javafx.util.UtilFX;
 import jfox.javafx.view.IManagerGui;
 import projet.dao.DaoAssignation;
 import projet.data.Assignation;
-import projet.data.Benevole;
 import projet.data.Poste;
 import projet.view.EnumView;
-import projet.view.volunteer.ModelVolunteer;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
-public class ControllerAjouterAssignationPoste {
+public class ControllerModifierAssignationPoste {
 
 	
 	// Composants de la vue
@@ -37,9 +34,9 @@ public class ControllerAjouterAssignationPoste {
 	@FXML
 	private TextField			textFieldPosteF;
 	@FXML
-	private TextField			textFieldPosteNom;
+	private TextField				posteNom;
 	@FXML
-	private ComboBox<Benevole>			comboBoxBene;
+	private TextField			textFieldBene;
 	@FXML
 	private ListView<LocalTime>			listViewD;
 	@FXML
@@ -53,14 +50,11 @@ public class ControllerAjouterAssignationPoste {
 	@Inject
 	private IManagerGui			managerGui;
 	@Inject
-	private ModelVolunteer		modelBenevole;
-	@Inject
 	private ModelAssignation		modelAssignation;
 	@Inject
-	private ModelPoste		modelPoste;
+	private ModelPoste				modelPoste;
 	@Inject
-	private DaoAssignation	daoAssignation;
-	
+	private DaoAssignation			daoAssignation;
 
 
 	// Initialisation du Controller
@@ -72,19 +66,25 @@ public class ControllerAjouterAssignationPoste {
 		Assignation courant=modelAssignation.getCourant();
 		Poste posteCourant=modelPoste.getCourant();
 		courant.setPoste(posteCourant);
-		textFieldPosteNom.setText(courant.getPoste().toString());
+		posteNom.setText(posteCourant.getNom());
 		textFieldPosteD.setText(posteCourant.getHeureD().toString());
 		textFieldPosteF.setText(posteCourant.getHeureF().toString());
-//		textFieldPosteD.textProperty().bindBidirectional( ControllerPosteModif.dernier.heureDProperty(), new LocalTimeStringConverter()  );
-//		textFieldPosteF.textProperty().bindBidirectional( ControllerPosteModif.dernier.heureFProperty(), new LocalTimeStringConverter()  ); 
-		comboBoxBene.setItems( modelBenevole.getListe() );
-		comboBoxBene.valueProperty().bindBidirectional( courant.benevoleProperty() );
+		textFieldHeureD.setText(courant.getHeureD().toString());
+		textFieldHeureF.setText(courant.getHeureF().toString());
+		textFieldBene.setText(courant.getBenevole().toString());
+		courant.getBenevole().ModificationDispo(daoAssignation.listerAssignationBenevole(courant.getBenevole().getId()));
 		HD.clear();
 		HF.clear();
+		for(Map.Entry<LocalTime, LocalTime> h:courant.getBenevole().getDisponible().entrySet())
+		{
+			HD.add(h.getKey());
+			HF.add(h.getValue());
+		}
 		listViewD.setItems( HD );	
 		listViewD.setCellFactory(  UtilFX.cellFactory( item -> item.toString() ));
 		listViewF.setItems( HF );	
 		listViewF.setCellFactory(  UtilFX.cellFactory( item -> item.toString() ));
+		
 
 	}
 	
@@ -196,20 +196,6 @@ public class ControllerAjouterAssignationPoste {
 				managerGui.showView( EnumView.ListeAssignationPoste );	
 			}
 		}	
-	}
-	
-	@FXML void doActualiser() {
-		Assignation courant=modelAssignation.getCourant();
-		courant.getBenevole().ModificationDispo(daoAssignation.listerAssignationBenevole(courant.getBenevole().getId()));
-		HD.clear();
-		HF.clear();
-		for(Map.Entry<LocalTime, LocalTime> h:courant.getBenevole().getDisponible().entrySet())
-		{
-			HD.add(h.getKey());
-			HF.add(h.getValue());
-		}
-		listViewD.refresh();
-		listViewF.refresh();
 	}
 
 }

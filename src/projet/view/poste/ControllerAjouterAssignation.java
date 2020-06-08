@@ -23,7 +23,7 @@ import projet.view.volunteer.ModelVolunteer;
 
 //////////////////THIS CLASS STILL TO BE MODIFIED. PLEASE TAKE NOTE OR GET LOST.
 
-public class ControllerAjouterAssignationPoste {
+public class ControllerAjouterAssignation {
 
 	
 	// Composants de la vue
@@ -37,9 +37,9 @@ public class ControllerAjouterAssignationPoste {
 	@FXML
 	private TextField			textFieldPosteF;
 	@FXML
-	private TextField			textFieldPosteNom;
-	@FXML
 	private ComboBox<Benevole>			comboBoxBene;
+	@FXML
+	private ComboBox<Poste>			comboBoxPoste;
 	@FXML
 	private ListView<LocalTime>			listViewD;
 	@FXML
@@ -70,15 +70,10 @@ public class ControllerAjouterAssignationPoste {
 
 		// Data binding
 		Assignation courant=modelAssignation.getCourant();
-		Poste posteCourant=modelPoste.getCourant();
-		courant.setPoste(posteCourant);
-		textFieldPosteNom.setText(courant.getPoste().toString());
-		textFieldPosteD.setText(posteCourant.getHeureD().toString());
-		textFieldPosteF.setText(posteCourant.getHeureF().toString());
-//		textFieldPosteD.textProperty().bindBidirectional( ControllerPosteModif.dernier.heureDProperty(), new LocalTimeStringConverter()  );
-//		textFieldPosteF.textProperty().bindBidirectional( ControllerPosteModif.dernier.heureFProperty(), new LocalTimeStringConverter()  ); 
 		comboBoxBene.setItems( modelBenevole.getListe() );
 		comboBoxBene.valueProperty().bindBidirectional( courant.benevoleProperty() );
+		comboBoxPoste.setItems( modelPoste.getListe() );
+		comboBoxPoste.valueProperty().bindBidirectional( courant.posteProperty() );
 		HD.clear();
 		HF.clear();
 		listViewD.setItems( HD );	
@@ -180,7 +175,7 @@ public class ControllerAjouterAssignationPoste {
 		
 	@FXML
 	private void doRetour() {
-		managerGui.showView( EnumView.ListeAssignationPoste);
+		managerGui.showView( EnumView.ListeAssignation);
 	}
 	
 	@FXML
@@ -193,7 +188,7 @@ public class ControllerAjouterAssignationPoste {
 		if(actualiserHeureDDansModele()) {
 			if(actualiserHeureFDansModele()) {
 				modelAssignation.validerMiseAJour();
-				managerGui.showView( EnumView.ListeAssignationPoste );	
+				managerGui.showView( EnumView.ListeAssignation);	
 			}
 		}	
 	}
@@ -210,6 +205,11 @@ public class ControllerAjouterAssignationPoste {
 		}
 		listViewD.refresh();
 		listViewF.refresh();
+	}
+	
+	@FXML void doActualiserHoraires(){
+		textFieldPosteD.setText(modelAssignation.getCourant().getPoste().getHeureD().toString());
+		textFieldPosteF.setText(modelAssignation.getCourant().getPoste().getHeureF().toString());
 	}
 
 }

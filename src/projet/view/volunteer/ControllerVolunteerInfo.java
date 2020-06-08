@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import jfox.javafx.view.IManagerGui;
+import projet.data.Assignation;
 import projet.data.Benevole;
 import projet.view.EnumView;
 
@@ -36,7 +38,8 @@ public class ControllerVolunteerInfo {
 	private CheckBox 			permisDeConduire;
 	@FXML 
 	private CheckBox			membership;
-	
+	@FXML
+	private ListView<Assignation>		listView;
 	
 	@FXML
 	private Button 				goBack;

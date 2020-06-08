@@ -1,6 +1,7 @@
 package projet.data;
 
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.beans.property.Property;
@@ -14,7 +15,7 @@ import javafx.collections.ObservableList;
 public class Poste  {
 	
 
-	// Données observables
+	// Donnees observables
 	
 	private final Property<Integer>	id		= new SimpleObjectProperty<>();
 	private final StringProperty	nom	= new SimpleStringProperty();
@@ -22,20 +23,23 @@ public class Poste  {
 	private final Property<LocalTime> heureD=new SimpleObjectProperty<>();
 	private final Property<LocalTime> heureF=new SimpleObjectProperty<>();
 	private final ObservableList<Assignation> benevoles = FXCollections.observableArrayList();
-
 	
+	private final Property<Integer> x = new SimpleObjectProperty<>();
+	private final Property<Integer> y = new SimpleObjectProperty<>();
 	
 	// Constructeurs
 	
 	public Poste() {
 	}
 
-	public Poste( final int id, final String nom, final TypePoste typePoste, final LocalTime heureD, final LocalTime heureF ) {
+	public Poste( final int id, final String nom, final TypePoste typePoste, final LocalTime heureD, final LocalTime heureF, final int x, final int y) {
 		setId(id);
 		setNom(nom);
 		setTypePoste(typePoste);
 		setHeureD(heureD);
 		setHeureF(heureF);
+		setX(x);
+		setY(y);
 	}
 	
 	
@@ -145,5 +149,51 @@ public class Poste  {
 	
 	public ObservableList<Assignation> getBenevoles() {
 		return benevoles;}
+
+	
+	public void setBenevoles(List<Assignation> assignations) {
+		int i=0;
+		benevoles.clear();
+		while(i<assignations.size()) {
+			benevoles.add(assignations.get(i));
+			i++;
+		}
+	}
+
+	
+
+
+	public final Property<Integer> xProperty() {
+		return this.x;
+	}
+	
+
+	public final Integer getX() {
+		return this.xProperty().getValue();
+	}
+	
+
+	public final void setX(final Integer x) {
+		this.xProperty().setValue(x);
+	}
+	
+
+	public final Property<Integer> yProperty() {
+		return this.y;
+	}
+	
+
+	public final Integer getY() {
+		return this.yProperty().getValue();
+	}
+	
+
+	public final void setY(final Integer y) {
+		this.yProperty().setValue(y);
+	}
+	
+	
+
+
 }
 
