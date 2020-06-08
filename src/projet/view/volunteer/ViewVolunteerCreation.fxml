@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="paneRoot" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.volunteer.ControllerVolunteerCreate">
+<AnchorPane fx:id="paneRoot" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.view.volunteer.ControllerVolunteerCreate">
    <children>
       <Label alignment="CENTER" layoutY="29.0" styleClass="titre-vue" text="Ajout d'un nouveau bénévole" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
       <VBox alignment="CENTER" fillWidth="false" layoutY="80.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
@@ -85,7 +85,6 @@
          <children>
             <Button fx:id="goBack" defaultButton="true" mnemonicParsing="false" onAction="#doGoBack" prefHeight="25.0" prefWidth="60.0" text="Annuler" />
             <Button fx:id="add" cancelButton="true" mnemonicParsing="false" onAction="#doAdd" text="Ajouter" />
-            <Button fx:id="reinitialize" mnemonicParsing="false" onAction="#doReinitialize" text="Tout effacer" />
          </children>
       </HBox>
    </children>
