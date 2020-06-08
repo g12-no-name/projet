@@ -26,7 +26,7 @@ public interface MapDrawer {
 		gc.strokeOval(x-plotSize/2, y-plotSize/2, plotSize, plotSize);
 	}
 	
-	default void checkForProximityWithAPlot(int x, int y, ListView<Poste> listViewP, Canvas canvas, int plotSize) {
+	default boolean checkForProximityWithAPlot(int x, int y, ListView<Poste> listViewP, Canvas canvas, int plotSize) {
 		for(Poste p : listViewP.getItems()) {
 			try {
 				int xp=(int) (p.getX()*canvas.getWidth()/1000); int yp=(int) (p.getY()*canvas.getHeight()/1000);
@@ -34,9 +34,11 @@ public interface MapDrawer {
 					//select the corresponding plot in the list
 					listViewP.getSelectionModel().select(p);
 					drawSelectedPlotMarker(p, canvas, plotSize);
+					return true;
 				}
 			} catch (Exception e) {}
 		}
+		return false;
 	}
 	
 	////////////CONTROLLER PAGE PRINCIPALE EXCLUSIVE

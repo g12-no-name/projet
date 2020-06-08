@@ -157,8 +157,11 @@ public class ControllerPagePrincipale implements MapDrawer{
 					// modificiation
 					mpp.modifier( courant );
 				}
+				m=Mode.observe;
 			}else {
-				managerGui.showDialogError("Veuillez sélectionner un poste");
+				int x=(int)(e.getX());int y=(int)(e.getY());
+				if(checkForProximityWithAPlot(x, y, listViewP, canvas, plotSize)) {
+				}else {managerGui.showDialogError("Veuillez selectionner un poste");}
 			}
 		}
 		plotDaPlots(listViewP, mpp, canvas, plotSize);
