@@ -85,6 +85,10 @@ public class ControllerPageCarte implements MapDrawer{
 		managerGui.execTask( () -> {Platform.runLater( () -> {managerGui.showView(EnumView.PagePrincipale);});});
 	}
 
+	@FXML
+	private void doM() {
+		managerGui.execTask( () -> {Platform.runLater( () -> {managerGui.showView(EnumView.PageMessagerie);});});
+	}
 
 	@Override
 	@FXML

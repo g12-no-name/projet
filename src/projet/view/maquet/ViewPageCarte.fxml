@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -49,7 +48,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Messagerie">
+                  <Button mnemonicParsing="false" onAction="#doM" text="Messagerie">
                      <HBox.margin>
                         <Insets left="10.0" top="30.0" />
                      </HBox.margin>
@@ -70,24 +69,8 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Canvas fx:id="canvas" height="240.0" onMouseClicked="#doClickOnMap" width="601.0" />
-            <HBox prefHeight="55.0" prefWidth="600.0">
-               <children>
-                  <TextField alignment="CENTER" onMouseMoved="#doheure" text="Coordonnées">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="3.0" right="40.0" top="3.0" />
-                     </padding>
-                  </TextField>
-                  <Slider prefWidth="200.0">
-                     <HBox.margin>
-                        <Insets left="150.0" top="15.0" />
-                     </HBox.margin>
-                  </Slider>
-               </children>
-            </HBox>
+            <Canvas fx:id="canvas" height="276.0" onMouseClicked="#doClickOnMap" width="601.0" />
+            <HBox prefHeight="55.0" prefWidth="600.0" />
             <TextField alignment="CENTER" onMouseMoved="#doheure" prefWidth="100.0" text="Cette course est sponsorise par Hyper U">
                <VBox.margin>
                   <Insets bottom="10.0" left="180.0" right="180.0" top="10.0" />
