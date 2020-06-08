@@ -11,8 +11,10 @@ import projet.commun.IMapper;
 import projet.dao.DaoAssignation;
 import projet.dao.DaoPoste;
 import projet.data.Assignation;
+import projet.data.Benevole;
 import projet.data.Poste;
 import projet.data.TypePoste;
+import projet.view.maquet.Message;
 
 
 public class ModelPoste  {
@@ -37,7 +39,7 @@ public class ModelPoste  {
     private ModelTypePoste		modelTypePoste;
     @Inject
     private ModelAssignation	modelAssignation;
-    
+    ObservableList<Message> listeM = FXCollections.observableArrayList();
 	
     
 	// Initialisations
@@ -133,6 +135,21 @@ public class ModelPoste  {
 		mapper.update( courant, UtilFX.findNext( liste, item ) );
 		
 		//getFichierSchemaCourant().delete();
+	}
+
+
+	public ObservableList<Message> getListeMessages() {
+		for(Poste p : liste) {
+			try {p.getBenevoles().get(0);
+			}catch(Exception e) {listeM.add(new Message("Le poste" + p.getNom()+" n'a pas de benevoles."));}
+			try {
+				int x=p.getX();
+				if (x<=0) {
+					listeM.add(new Message("Le poste " + p.getNom()+" n'a pas de position sur la carte."));
+				}
+			}catch(Exception e) {listeM.add(new Message("Le poste" + p.getNom()+" n'a pas de position sur la carte."));}
+		}
+		return listeM;
 	}
 	
 	

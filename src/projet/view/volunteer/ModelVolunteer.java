@@ -9,6 +9,7 @@ import jfox.javafx.util.UtilFX;
 import projet.commun.IMapper;
 import projet.dao.DaoBenevole;
 import projet.data.Benevole;
+import projet.view.maquet.Message;
 
 
 public class ModelVolunteer {
@@ -20,6 +21,7 @@ public class ModelVolunteer {
 	
 	private final Benevole		courant = new Benevole();
 	
+	ObservableList<Message> listeM = FXCollections.observableArrayList();
 	
 	// Autres champs
 	
@@ -117,6 +119,17 @@ public class ModelVolunteer {
 	public void supprimer( Benevole item ) {
 		daoBenevole.supprimer( item.getId() );
 		mapper.update( courant, UtilFX.findNext( liste, item ) );
+	}
+
+	public ObservableList<Message> getListeMessages() {
+		for(Benevole b : liste) {
+			try {
+				if (b.getHeureD().isAfter(b.getHeureF())) {
+					listeM.add(new Message("Les horaires du benevole "+b.getNom()+" sont erronees."));
+				}
+			} catch (Exception e) {}
+		}
+		return listeM;
 	}
 	
 
