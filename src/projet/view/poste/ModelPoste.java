@@ -141,13 +141,13 @@ public class ModelPoste  {
 	public ObservableList<Message> getListeMessages() {
 		for(Poste p : liste) {
 			try {p.getBenevoles().get(0);
-			}catch(Exception e) {listeM.add(new Message("Le poste" + p.getNom()+" n'a pas de benevoles."));}
+			}catch(Exception e) {listeM.add(new Message("Le poste " + p.getNom()+" n'a pas de benevoles."));}
 			try {
 				int x=p.getX();
 				if (x<=0) {
 					listeM.add(new Message("Le poste " + p.getNom()+" n'a pas de position sur la carte."));
 				}
-			}catch(Exception e) {listeM.add(new Message("Le poste" + p.getNom()+" n'a pas de position sur la carte."));}
+			}catch(Exception e) {listeM.add(new Message("Le poste " + p.getNom()+" n'a pas de position sur la carte."));}
 		}
 		return listeM;
 	}
