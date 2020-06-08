@@ -101,6 +101,11 @@ public class ControllerPagePrincipale implements MapDrawer{
 	}
 	
 	@FXML
+	private void doMessagerie() {
+		managerGui.execTask( () -> {Platform.runLater( () -> {managerGui.showView(EnumView.PageMessagerie);});} );
+	}
+	
+	@FXML
 	private void doAjoutBenevole() {
 		mpp.preparerAjouter();
 		managerGui.showView( EnumView.BenevoleCreate );

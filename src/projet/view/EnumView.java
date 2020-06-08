@@ -48,11 +48,13 @@ public enum EnumView implements IEnumView {
 	ModifierAssignation	("poste/ViewModifierAssignation.fxml"),
     
     PagePrincipale      ("maquet/ViewPagePrincipale.fxml"),
+    PageMessagerie		("maquet/ViewMessages.fxml"),
     PageCarte           ("maquet/ViewPageCarte.fxml"),
     Info                ( "maquet/ViewInfo.fxml" ),
     Connexion            ( "maquet/ViewConnexion.fxml" ),
     
-    resto            ( "restaurant/ViewRestaurant.fxml" )
+    resto            ( "restaurant/ViewRestaurant.fxml" ), 
+    
     
     ;
  
