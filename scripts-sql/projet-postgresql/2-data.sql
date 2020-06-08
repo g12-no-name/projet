@@ -69,6 +69,10 @@ INSERT INTO benevole (id, nom, prenom, numTel,heureD, heureF) VALUES
   ( 23, 'pat', 'number 7424', '2323232323',null,null ),
   ( 24, 'yoel', 'number 2456', '2424242424','15:05','16:00' );
 
+  
+  
+  
+ 
 ALTER TABLE personne ALTER COLUMN id RESTART WITH 6;
 
 INSERT INTO equipe (id, nom,nbBouffe,typeCourse,catCourse) VALUES
